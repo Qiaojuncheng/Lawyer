@@ -1,0 +1,109 @@
+//
+//  NetWork_config.h
+//  TheLawyer
+//
+//  Created by yaoyao on 17/7/18.
+//  Copyright © 2017年 shangyukeji. All rights reserved.
+//
+//http://www.huirongfa.com/App/Index/api
+#pragma mark ----------- 地址
+#if 1  /*正式地址*/
+
+//#define BASE_URL @"http://www.huirongfa.com/App/Index/api"
+//#define Image_URL @"http://www.huirongfa.com"
+#define BASE_URL  @"http://lvshi.huirongfa.com/App/Index/api"
+#define Image_URL @"http://lvshi.huirongfa.com"
+
+#else  /*测试地址*/
+
+#define BASE_URL @"http://122.114.208.180:92/App/Index/api"
+#define Image_URL @"http://122.114.208.180:92"
+
+#define BASE_WEBURL @""
+
+#endif
+#define  UserId [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"]
+#pragma mark ----------- 接口
+
+/*首页*/
+#define LS_HOME [NSString stringWithFormat:@"%@%@",BASE_URL, @"/Home/QueryIndex"]
+/*上传接口*/
+#define LS_UPLODE [NSString stringWithFormat:@"%@%@",BASE_URL, @"/FileUpLoad/FileUpLoad"]
+//抢单
+#define LS_GRAB [NSString stringWithFormat:@"%@%@",BASE_URL, @"App/Lawyer/law"]
+
+// 我的预约 
+#define QJYUYUE      [dic setValue:@"App/Lawyer/yuyue" forKey:@"action"];
+//我的预约 同意拒绝
+#define QJYUYUEStaTus      [dic setValue:@"App/Lawyer/changYuyueStatus" forKey:@"action"];
+// 我的预约 预约完成
+#define QJYUYUE_Over      [dic setValue:@"App/Lawyer/yuyue_over" forKey:@"action"];
+
+
+//我的咨询
+#define QJCZIXUN      [dic setValue:@"App/Lawyer/zixun" forKey:@"action"];
+
+// 回复
+#define QJCZIXUNREPLY      [dic setValue:@"App/Lawyer/reply" forKey:@"action"];
+//我的服务   App/Lawyer/history
+#define QJCSERVICE      [dic setValue:@"App/Lawyer/history" forKey:@"action"];
+// 我的服务完成  App/Lawyer/lawyer_over
+#define QJLAWYEROVER      [dic setValue:@"App/Lawyer/lawyer_over" forKey:@"action"];
+
+//接单 App/Lawyer/order
+#define QJCQIANGDAN      [dic setValue:@"App/Lawyer/order" forKey:@"action"];
+// 领域 三级联动
+#define QJCQICATEGORY      [dic setValue:@"App/Lawyer/getCategory" forKey:@"action"];
+// 个人资料
+#define QJCPERSONINFO      [dic setValue:@"App/Lawyer/ziliao" forKey:@"action"];
+//修改个人资料
+#define QJCCHANGRINFO      [dic setValue:@"App/Lawyer/editZiliao" forKey:@"action"];
+// 完善个人资料
+#define QJCADDPERSONINFO      [dic setValue:@"App/Lawyer/addZiliao" forKey:@"action"];
+//律师定位
+#define QJCLayerLOCATION      [dic setValue:@"App/Lawyer/getLocation" forKey:@"action"];
+
+//提现信息
+#define QJTXINFO [dic setValue:@"App/Public/tx_info" forKey:@"action"];
+// 提现接口
+#define UserdoCash [dic setValue:@"App/Lawyer/tx" forKey:@"action"];
+
+// 意见反馈
+#define QJAddvice [dic setValue:@"App/Lawyer/fankui" forKey:@"action"];
+
+//忘记密码
+#define QJFINDPASS    [dic setValue:@"Base/User/find_user_password" forKey:@"action"];
+//忘记密码获取验证码
+#define QJFINDCODE     [dic setValue:@"Base/User/user_find_code" forKey:@"action"];
+
+//第三方登录
+#define QJTHREELOGIN     [dic setValue:@"App/Lawyer/threeLogin" forKey:@"action"];
+// 绑定手机号 App/Lawyer/bindThree
+#define QJTBangDingPhone     [dic setValue:@"App/Lawyer/bindThree" forKey:@"action"];
+
+// 常见问题
+#define  QJCQUESTION   [dic setValue:@"App/User/question" forKey:@"action"];
+// 资讯详情
+#define INFODETAIL  @"/Wap/News/info/id"
+
+
+
+#pragma  mark  新的接口
+//咨询和首页咨询   传lawyer_id  为我的咨询  不传lawyer_id  为首页咨询
+#define NewConsult  [dic setValue:@"App/Lawyer/consult" forKey:@"action"];
+//咨询详情
+#define NewConsultDetail  [dic setValue:@"App/Lawyer/consultXq" forKey:@"action"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+link ../../../AliyunOSSiOS/AliyunOSSiOS/OSSModel.h
