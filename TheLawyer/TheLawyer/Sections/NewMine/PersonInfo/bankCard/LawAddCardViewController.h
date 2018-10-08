@@ -12,6 +12,10 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextField *CardNumberTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *Cardimage;
+@property (weak, nonatomic) IBOutlet UILabel *CardName;
+
+
 
 @property (weak, nonatomic) IBOutlet UIButton *NextBtn;
 

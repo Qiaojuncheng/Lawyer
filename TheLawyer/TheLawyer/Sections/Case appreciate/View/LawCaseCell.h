@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LawCaseNewModel.h"
 @interface LawCaseCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *CaseImage;
@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *NUmberLB;
 
 
+@property (strong, nonatomic) LawCaseNewModel * model ;
 
 
 

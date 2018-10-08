@@ -7,8 +7,7 @@
 //
 
 #import "BaseViewController.h"
-//#import "LoginViewController.h"
-//#import "MyCenterViewController.h"
+ //#import "MyCenterViewController.h"
 
 @interface BaseViewController ()
 

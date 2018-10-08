@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [Utile makeCorner:self.CardImage.height/2 view:self.CardImage];
     // Initialization code
 }
 

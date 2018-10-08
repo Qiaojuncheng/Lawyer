@@ -8,7 +8,13 @@
 
 #import "BaseViewController.h"
 #import "LawMainConsultCellMoldel.h"
+typedef void (^ReloadData)(void);
 @interface LawConsultDetailViewController : BaseViewController
 
 @property (strong , nonatomic) LawMainConsultCellMoldel *model;
+@property (strong , nonatomic) NSString * type ;
+@property (strong , nonatomic) NSString * mid ;
+@property (strong , nonatomic) NSString * constultId ;
+
+@property (copy  , nonatomic)   ReloadData reloadBlock;
 @end

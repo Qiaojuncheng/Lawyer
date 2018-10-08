@@ -47,19 +47,47 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是律师的回答" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRM-MA-Otc">
                         <rect key="frame" x="52" y="55" width="305" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adopt" translatesAutoresizingMaskIntoConstraints="NO" id="O02-SI-9rv">
+                        <rect key="frame" x="293" y="0.0" width="70" height="58"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="G65-Vq-Uss"/>
+                            <constraint firstAttribute="height" constant="58" id="dVl-3g-zpX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已回答" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRf-91-S8D">
+                        <rect key="frame" x="143" y="14" width="52" height="18"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="52" id="JqZ-PM-7p7"/>
+                            <constraint firstAttribute="height" constant="18" id="kFC-Dl-KTg"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="qNG-yF-TOC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-iF-TxM">
+                        <rect key="frame" x="16" y="91" width="345" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="eRM-MA-Otc" secondAttribute="bottom" constant="5" id="6LW-jD-5r3"/>
+                    <constraint firstAttribute="trailing" secondItem="O02-SI-9rv" secondAttribute="trailing" constant="12" id="9Hv-1Z-fEt"/>
                     <constraint firstItem="feT-h2-mpF" firstAttribute="leading" secondItem="15j-UO-rby" secondAttribute="trailing" constant="8" id="IwX-aF-tMN"/>
                     <constraint firstItem="15j-UO-rby" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="VRL-xu-gRg"/>
+                    <constraint firstItem="O02-SI-9rv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Z2d-nx-EyQ"/>
                     <constraint firstItem="eRM-MA-Otc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="36" id="ZvM-cI-Ae3"/>
                     <constraint firstItem="15j-UO-rby" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="bei-JX-8oD"/>
+                    <constraint firstItem="MRf-91-S8D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="cQU-iO-40z"/>
                     <constraint firstItem="qXw-Lr-wB0" firstAttribute="leading" secondItem="15j-UO-rby" secondAttribute="trailing" constant="8" id="hIz-ho-J2k"/>
                     <constraint firstItem="feT-h2-mpF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="olU-7G-dCf"/>
+                    <constraint firstItem="MRf-91-S8D" firstAttribute="leading" secondItem="feT-h2-mpF" secondAttribute="trailing" constant="5" id="ooe-4t-otl"/>
                     <constraint firstItem="eRM-MA-Otc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-2" id="reg-5W-kyz"/>
                     <constraint firstItem="qXw-Lr-wB0" firstAttribute="top" secondItem="feT-h2-mpF" secondAttribute="bottom" constant="5" id="ryY-yj-AN5"/>
                     <constraint firstItem="eRM-MA-Otc" firstAttribute="top" secondItem="qXw-Lr-wB0" secondAttribute="bottom" constant="8" id="teS-Vk-aqv"/>
@@ -68,10 +96,15 @@
             <connections>
                 <outlet property="PersonImage" destination="15j-UO-rby" id="6hx-0X-INR"/>
                 <outlet property="PersonName" destination="feT-h2-mpF" id="3QR-fA-UII"/>
+                <outlet property="ReplayLB" destination="MRf-91-S8D" id="RTR-LQ-qJx"/>
                 <outlet property="TimeLB" destination="qXw-Lr-wB0" id="vMa-n8-Ret"/>
+                <outlet property="adoptImage" destination="O02-SI-9rv" id="Tls-FJ-bys"/>
                 <outlet property="concentLB" destination="eRM-MA-Otc" id="kJA-je-NOy"/>
             </connections>
             <point key="canvasLocation" x="63.5" y="48"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="adopt" width="69" height="58"/>
+    </resources>
 </document>

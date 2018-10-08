@@ -15,6 +15,9 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - AliyunOSSiOS (2.5.4)
+  - AMapFoundation (1.5.3)
+  - AMapLocation (2.6.0):
+    - AMapFoundation (~> 1.4)
   - BaiduMapKit (3.4.2)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -35,6 +38,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AliyunOSSiOS (~> 2.5.0)
+  - AMapLocation
   - BaiduMapKit
   - FMDB
   - IQKeyboardManager (~> 5.0.6)
@@ -46,9 +50,29 @@ DEPENDENCIES:
   - SDAutoLayout (~> 1.31)
   - SDWebImage (~> 3.8.1)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AliyunOSSiOS
+    - AMapFoundation
+    - AMapLocation
+    - BaiduMapKit
+    - FMDB
+    - IQKeyboardManager
+    - JCore
+    - JPush
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - SDAutoLayout
+    - SDWebImage
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AliyunOSSiOS: 2bd80cd234763b5cf3948d7eb51769cd1ae694a0
+  AMapFoundation: 58f883c80754c659cf626deb3150936bfe8f1772
+  AMapLocation: 55116a2c8956eab7550cbb56e989aa5cdcc424e3
   BaiduMapKit: f61b19ecf07a3f2deede72b221b366bf698739ed
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: 077b7f691dfa9d69db9cff66f2bed68ebfc02d9b
@@ -61,6 +85,6 @@ SPEC CHECKSUMS:
   SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: d57cdec19c3b8f6f4fd539d03e005f4d050e5264
+PODFILE CHECKSUM: 56b570376407c200081d4ceebaec6278f047e4ee
 
-COCOAPODS: 1.2.1.rc.1
+COCOAPODS: 1.5.3

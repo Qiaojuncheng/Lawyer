@@ -26,12 +26,47 @@
     
     [self.TixianLB whenTapped:^{
        
+        if([_PriceLB.text integerValue] < 100){
+            
+            [self showHint:@"少于100不能提现"];
+            return  ;
+        }
+        
         LawRemainingwithdrawalVC * lawTixanVC =[[LawRemainingwithdrawalVC alloc]init];
+        lawTixanVC.AllMoney = _PriceLB.text;
         [self.navigationController pushViewController:lawTixanVC animated:YES];
+        
     }];
+    [self makeYUE];
     // Do any additional setup after loading the view from its nib.
 }
+-(void)makeYUE{
+    NSDictionary * dic  =[[NSMutableDictionary alloc]init];
+    QJAddvicegetMoney
+    if( [UserId length] < 1){
+        return ;
+    }
+    NSDictionary * valudic  = @{@"id":UserId,@"type":@"2"};
+    NSString * baseStr = [NSString getBase64StringWithArray:valudic];
+    [dic setValue:baseStr forKey:@"value"];
+    
+    [self showHudInView:self.view hint:nil];
+    
+    
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([str isEqualToString:@"0"]) {
+            NSString * moneyStr =[NSString stringWithFormat:@"%@",data[@"data"][@"money"]];
+            _PriceLB.text = moneyStr;
+        }
+        [self hideHud];
+    } failure:^(NSError *error) {
+        [self hideHud];
+        NSLog(@"%@",error);
+    }];
+    
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

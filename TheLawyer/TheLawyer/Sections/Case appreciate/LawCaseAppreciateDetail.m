@@ -9,7 +9,7 @@
 #import "LawCaseAppreciateDetail.h"
 #import <WebKit/WebKit.h>
 @interface LawCaseAppreciateDetail ()<WKNavigationDelegate,WKUIDelegate>{
- 
+    UIButton * consultBtn ;
     
 }
 @property (strong, nonatomic) WKWebView * webView;
@@ -20,30 +20,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+/*
+   */
+    [self addCenterLabelWithTitle:self.model.title titleColor:nil];
     self.view.backgroundColor =[UIColor whiteColor];
-    [self addCenterLabelWithTitle:self.titleStr titleColor:nil];
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, NavStatusBarHeight +10, SCREENWIDTH, SCREENHEIGHT - NavStatusBarHeight - 68- 10)];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]]];
+     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, NavStatusBarHeight +10, SCREENWIDTH, SCREENHEIGHT - NavStatusBarHeight - 68- 10)];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.huirongfa.com/Wap/News/xq/app/1/id/%@.html",self.model.id]]]];
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
     //开了支持滑动返回
     self.webView.allowsBackForwardNavigationGestures = YES;
     [self.view addSubview:self.webView];
-   
-    [self addBottomView];
+     [self addBottomView];
+    
+    [self showHudInView:self.view hint:nil];
     // Do any additional setup after loading the view.
+}
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+   
+    [self hideHud];
+    
+}
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
+    [self hideHud];
+    [self showHint:@"页面加载失败，请重试！"];
 }
 -(void)addBottomView{
     
-    UIButton * consultBtn =[[UIButton alloc]initWithFrame:CGRectMake(68, self.webView.bottom +1, SCREENWIDTH  - 68*2, 40)];
-    [consultBtn setTitle:@"收藏" forState:UIControlStateNormal];
-    [consultBtn setTitleColor:[UIColor colorWithHex:0x3181FE] forState:UIControlStateNormal];
-    [consultBtn setBackgroundColor:[UIColor colorWithHex:0x3181FE]];
+     consultBtn =[[UIButton alloc]initWithFrame:CGRectMake(68, self.webView.bottom +10, SCREENWIDTH  - 68*2, 40)];
   
-    consultBtn.selected = YES;
-    
     [consultBtn setTitle:@"取消收藏" forState:UIControlStateSelected];
     [consultBtn setTitleColor:[UIColor colorWithHex:0xffffff] forState:UIControlStateSelected];
+    
+    [consultBtn setTitle:@"收藏" forState:UIControlStateNormal];
+    [consultBtn setTitleColor:[UIColor colorWithHex:0x3181FE] forState:UIControlStateNormal];
+    
+    if([self.model.is_collect isEqualToString:@"1"]){
+        consultBtn.selected = YES;
+        [consultBtn setBackgroundColor:[UIColor colorWithHex:0x3181FE]];
+       
+    }else{
+        consultBtn.selected = NO;
+        [consultBtn setBackgroundColor:[UIColor clearColor]];
+        
+       
+    }
+    
+   
 
     consultBtn.adjustsImageWhenHighlighted = NO;
     [consultBtn addTarget:self action:@selector(CollectionAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -55,14 +78,50 @@
 }
 
 -(void)CollectionAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        [sender setBackgroundColor:[UIColor colorWithHex:0x3181FE]];
-    }else{
-    [sender setBackgroundColor:[UIColor colorWithHex:0xffffff]];
-    }
+    
+    [self makeCollect];
+   
 }
+-(void)makeCollect{
+    
+         [self showHudInView:self.view hint:nil];
+        NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+        NewCaseNewscollect
+        NSMutableDictionary * valuedic =[[NSMutableDictionary alloc]init];
+        if ([UserId length]> 0) {
+            [valuedic setValue:UserId forKey:@"id"];
+            [valuedic setValue:@"1" forKey:@"type"];
+            [valuedic setValue:@"2" forKey:@"role"];
+            [valuedic setValue:self.model.id forKey:@"tid"];
+            
+         NSString * base64String =[NSString getBase64StringWithArray:valuedic];
+        [dic setValue:base64String forKey:@"value"];
+            __weak typeof(consultBtn)  weakConsultBtn = consultBtn;
+        [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+            [self hideHud];
+            // 处理数据
+            if ([responseObjeck[@"status"] integerValue] == 0) {
+           
+                weakConsultBtn.selected = !weakConsultBtn.selected;
+                if (weakConsultBtn.selected) {
+                    self.ChangCollectStatus(@"1");
+                    [weakConsultBtn setBackgroundColor:[UIColor colorWithHex:0x3181FE]];
+                }else{
+                    self.ChangCollectStatus(@"0");
+                     [weakConsultBtn setBackgroundColor:[UIColor colorWithHex:0xffffff]];
+                }
+            }
+            [self showHint:responseObjeck[@"msg"]];
+             [self hideHud];
 
+        } failure:^(NSError *error) {
+            [self hideHud];
+            
+        }];
+            
+        }
+ 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

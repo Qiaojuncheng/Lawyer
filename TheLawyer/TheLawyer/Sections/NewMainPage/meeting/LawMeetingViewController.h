@@ -10,4 +10,8 @@
 
 @interface LawMeetingViewController : BaseViewController
 @property (copy , nonatomic) NSString * meetTing;
+@property (copy , nonatomic) NSString * mid;// 消息id
+@property (copy , nonatomic) NSString * tid;// 预约id
+
+
 @end

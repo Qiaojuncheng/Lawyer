@@ -34,7 +34,7 @@
     
     
     NSDictionary * dic  =[[NSMutableDictionary alloc]init];
-    QJCQUESTION
+    NewPublicQuestion
 //    NSDictionary * valueDic  = @{@"uid":UserId,@"type":[NSString stringWithFormat:@"2"]};
 //    NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
 //    [dic setValue:baseStr forKey:@"value"];

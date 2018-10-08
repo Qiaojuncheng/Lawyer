@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface LawHeartViewController : BaseViewController
-
+@property (strong , nonatomic ) NSString * mid ;
 @end

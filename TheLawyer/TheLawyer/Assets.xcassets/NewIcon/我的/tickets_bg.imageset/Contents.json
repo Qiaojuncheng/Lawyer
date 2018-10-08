@@ -5,11 +5,33 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 30
+        },
+        "cap-insets" : {
+          "right" : 445,
+          "left" : 174
+        }
+      },
       "idiom" : "universal",
       "filename" : "tickets_bg@2x.png",
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 34
+        },
+        "cap-insets" : {
+          "right" : 610,
+          "left" : 369
+        }
+      },
       "idiom" : "universal",
       "filename" : "tickets_bg@3x.png",
       "scale" : "3x"

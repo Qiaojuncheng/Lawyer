@@ -23,7 +23,7 @@
 -(void)makeUI{
     
     UIWebView * web =[[UIWebView alloc]initWithFrame:CGRectMake(0, NavStatusBarHeight, SCREENWIDTH, SCREENHEIGHT - NavStatusBarHeight)];
-    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/lawyer_xieyi/type/app.html",Image_URL]]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.huirongfa.com/Wap/Index/lawyer_xieyi.html"]]];
     [web loadRequest:request];
     [self.view addSubview:web];
     

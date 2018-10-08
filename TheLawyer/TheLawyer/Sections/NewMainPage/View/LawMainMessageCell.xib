@@ -27,33 +27,38 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你有一个新的订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPy-9o-lCf">
-                        <rect key="frame" x="51" y="16" width="123" height="18"/>
+                        <rect key="frame" x="51" y="16" width="106.5" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="4Ks-Jn-hQz"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swe-tI-czd">
-                        <rect key="frame" x="182" y="22" width="8" height="8"/>
+                        <rect key="frame" x="165.5" y="21" width="8" height="8"/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.32156862745098036" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="Ild-Zl-IEF"/>
                             <constraint firstAttribute="width" constant="8" id="aAL-JC-k04"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下午3:16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3M-JH-2UU">
-                        <rect key="frame" x="222" y="17" width="83" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下午3:16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3M-JH-2UU">
+                        <rect key="frame" x="259.5" y="16" width="45.5" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="JSw-KK-9Mr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SPy-9o-lCf" firstAttribute="leading" secondItem="c8d-AR-tcB" secondAttribute="trailing" constant="7" id="4RT-Os-Ksa"/>
-                    <constraint firstItem="swe-tI-czd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="a7l-pR-cac"/>
+                    <constraint firstItem="I3M-JH-2UU" firstAttribute="centerY" secondItem="SPy-9o-lCf" secondAttribute="centerY" id="DUA-wc-AMe"/>
+                    <constraint firstAttribute="trailing" secondItem="I3M-JH-2UU" secondAttribute="trailing" constant="15" id="Jl6-kO-OS9"/>
+                    <constraint firstItem="swe-tI-czd" firstAttribute="centerY" secondItem="SPy-9o-lCf" secondAttribute="centerY" id="PaK-NH-pdE"/>
+                    <constraint firstItem="I3M-JH-2UU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="swe-tI-czd" secondAttribute="trailing" constant="3" id="TW8-3g-cmn"/>
                     <constraint firstItem="c8d-AR-tcB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="e3U-p6-RCJ"/>
                     <constraint firstItem="c8d-AR-tcB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="h06-YR-4ic"/>
                     <constraint firstItem="swe-tI-czd" firstAttribute="leading" secondItem="SPy-9o-lCf" secondAttribute="trailing" constant="8" id="j5f-ag-Bom"/>
@@ -61,9 +66,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="MeeageImage" destination="c8d-AR-tcB" id="b1n-g0-5HY"/>
                 <outlet property="MessageLb" destination="SPy-9o-lCf" id="Jtp-Ae-TRh"/>
                 <outlet property="RedView" destination="swe-tI-czd" id="NrE-nh-7Oo"/>
-                <outlet property="messageImage" destination="c8d-AR-tcB" id="I04-DG-Cqe"/>
+                <outlet property="TimeLB" destination="I3M-JH-2UU" id="ySt-Ff-Mtl"/>
             </connections>
         </tableViewCell>
     </objects>

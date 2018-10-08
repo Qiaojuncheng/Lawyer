@@ -15,11 +15,12 @@
  "lawyer_name":"张三律师",
  "avatar":"/Uploads/admin/Sys/2018-07-24/2bf12433b2c2b5554d53fb136cef25275b56ded36ab45.png"
  */
-
-@property (strong, nonatomic) NSString * content;
-@property (strong, nonatomic) NSString * time;
-@property (strong, nonatomic) NSString * lawyer_name;
+@property (strong, nonatomic) NSString * answered;
 @property (strong, nonatomic) NSString * avatar;
+@property (strong, nonatomic) NSString * content;
+@property (strong, nonatomic) NSString * is_adopt;
+@property (strong, nonatomic) NSString * lawyer_name;
+@property (strong, nonatomic) NSString * time;
 @property (assign, nonatomic) CGFloat   cellHeight;
 
 

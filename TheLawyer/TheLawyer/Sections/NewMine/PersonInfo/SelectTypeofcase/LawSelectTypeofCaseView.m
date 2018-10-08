@@ -9,18 +9,17 @@
 #import "LawSelectTypeofCaseView.h"
 #import "LawSelectLeftCaseCell.h"
 #import "LawzSekectRightCell.h"
+#import "LawConsultTypeModel.h"
 @implementation LawSelectTypeofCaseView
 
 -(void)setDataArray:(NSMutableArray *)dataArray{
-    _dataArray = dataArray;
-    rightselectIDArray = [[NSMutableArray alloc]init];
-    leftDataArray = @[@"法律咨询",@"刑事案件",@"劳动纠纷",@"婚姻家庭",@"刑事案件",@"劳动纠纷",@"婚姻家庭",@"刑事案件",@"劳动纠纷",@"婚姻家庭",@"刑事案件",@"劳动纠纷",@"婚姻家庭"];
-    rightDataArray  =  [leftDataArray copy];
+    rightselectIDArray = [[NSMutableArray alloc]initWithArray:dataArray];
+    leftDataArray =[[NSMutableArray alloc]init];
     self.backgroundColor =  [UIColor colorWithHex:0x000000 alpha:0.5];
     
     [self addcenterView];
     [self makeSubView];
-    
+    [self makeData];
     
     
 }
@@ -48,7 +47,7 @@
     [sureBtn setTitleColor:[UIColor colorWithHex:0x3181FE] forState:UIControlStateNormal];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     sureBtn.adjustsImageWhenHighlighted = NO;
-    
+    [sureBtn addTarget:self action:@selector(sureAction) forControlEvents:UIControlEventTouchUpInside];
     [centerView addSubview:sureBtn ];
     UIView * linviews = [[UIView alloc]initWithFrame:CGRectMake(0, 45, centerView.width, 1)];
     linviews.backgroundColor  = BackViewColor;
@@ -116,13 +115,15 @@
     if (tableView == _leftTv) {
         
         LawSelectLeftCaseCell  * cell  =[tableView dequeueReusableCellWithIdentifier:@"cells"];
+        
         if (cell == nil) {
             cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawSelectLeftCaseCell" owner:self options:nil]lastObject];
         }
         //    cell.model = dataArrray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.typeLabel.text = leftDataArray[indexPath.row];
+        LawConsultTypeModel  * TypeModel = leftDataArray[indexPath.row];
+
+        cell.typeLabel.text =TypeModel.name ;
         if (indexPath.row == leftselect) {
             cell.typeLabel.textColor= [UIColor colorWithHex:0x3181FE];
             cell.backgroundColor = BackViewColor;
@@ -144,51 +145,97 @@
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
  
-        cell.CaseTypeLB.text = rightDataArray[indexPath.row];
-        //        if ( [rightselectIDArray containsObject:indexPath.row]) {
-        if ( [rightselectIDArray containsObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]])  {
+        LawConsultTypeModel  * TypeModel = rightDataArray[indexPath.row];
+        cell.CaseTypeLB.text =TypeModel.name ;
+        
+        cell.CaseTypeLB.textColor =DEEPTintColor;
+        cell.SelectImage.image =[UIImage imageNamed:@"type_circle"];
+ 
+        for (LawConsultTypeModel * model  in rightselectIDArray) {
+           
+            if( [TypeModel.id isEqualToString:model.id]){
                 cell.CaseTypeLB.textColor= [UIColor colorWithHex:0x3181FE];
                 cell.SelectImage.image =[UIImage imageNamed:@"type_chose"];
-            }else{
-                cell.CaseTypeLB.textColor =DEEPTintColor;
-                cell.SelectImage.image =[UIImage imageNamed:@"type_circle"];
-                
-            }
-        return  cell ;
 
+            }
+            
+        }
+      
+        return  cell ;
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _leftTv) {
         leftselect = indexPath.row;
-        //        刷新右侧 tv
-        // 对数组乱序
-        rightDataArray = [rightDataArray sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
-            int seed = arc4random_uniform(2);
-            
-            if (seed) {
-                return [str1 compare:str2];
-            } else {
-                return [str2 compare:str1];
-            }
-        }];
+       
+        LawConsultTypeModel  * TypeModel = leftDataArray[indexPath.row];
+        rightDataArray = TypeModel.second_child;
         [_rightTv  reloadData];
         [_leftTv reloadData];
     }else{
-
-        [rightselectIDArray addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
-        [_rightTv  reloadData];
+        BOOL containModel;
+        containModel  = YES ; // YES 添加，NO不添加
+        LawConsultTypeModel * Selectmodel = rightDataArray[indexPath.row];
+       
+        for (LawConsultTypeModel * model  in rightselectIDArray.reverseObjectEnumerator) {
+            if( [Selectmodel.id isEqualToString:model.id]){
+                [rightselectIDArray removeObject:model];
+                containModel = NO;
+             }else{
+                
+            }
+        }
+        if (containModel) {
+            if(rightselectIDArray.count >2){
+                [self.viewController showHint:@"最可以选三条！"];
+            }else{
+            [rightselectIDArray addObject:Selectmodel];
+            }
+            
+        }
         
-        NSLog(@"right -- %@",rightDataArray[indexPath.row]);
-        
+         [_rightTv  reloadData];
     }
-    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 44;
     
 }
 
+-(void)makeData{
+    
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NewConsultGetType
+    //    获取分类
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        // 处理数据
+           if ([responseObjeck[@"status"] integerValue] == 0) {
+            for (NSDictionary * proDic in responseObjeck[@"data"]) {
+                
+                LawConsultTypeModel * TypeModel =[LawConsultTypeModel yy_modelWithJSON:proDic];
+                [leftDataArray addObject:TypeModel];
+                
+            }
+               if (leftDataArray.count > 0) {
+                   LawConsultTypeModel  * TypeModel = leftDataArray[0];
+                   rightDataArray = TypeModel.second_child;
+               }
+               [_leftTv reloadData];
+               [_rightTv reloadData];
+           }else{
+        
+        }
+    } failure:^(NSError *error) {
+     }];
+    
+}
+-(void)sureAction{
+    [self hiddaction:nil];
+    if (self.selectBlock) {
+        self.selectBlock(rightselectIDArray);
+    }
+    
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

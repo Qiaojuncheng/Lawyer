@@ -57,7 +57,7 @@
     //action、value
     NSString * UUid  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
-
+    UUid = [UUid stringByAppendingString:self.telTextField.text];
     NSDictionary *dic = @{
                           @"phone":[NSString stringWithFormat:@"%@",self.telTextField.text],
                           @"password":[NSString stringWithFormat:@"%@",self.passwordField.text]
@@ -227,6 +227,7 @@
 -(void)LoginWith:(NSString *)openId andtype:(NSString * )type{
     NSString * UUid  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    UUid = [UUid stringByAppendingString:self.telTextField.text];
 
     [self showHint:@"正在加载"];
     NSMutableDictionary * dic  =[[NSMutableDictionary alloc]init];

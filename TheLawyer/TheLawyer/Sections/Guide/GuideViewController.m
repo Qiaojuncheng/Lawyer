@@ -10,6 +10,7 @@
 #import "GuideViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "LawLogionViewController.h"
 //#import "DTabbarViewController.h"
 
 //获取屏幕宽高
@@ -72,11 +73,14 @@
     NSUserDefaults *userdefa =[NSUserDefaults standardUserDefaults];
     [userdefa setBool:YES forKey:@"MMIsFirst"];
     [userdefa synchronize];
-    AppDelegate * appdelegatee =(AppDelegate *)[UIApplication sharedApplication].delegate;
-    LoginViewController *view = [LoginViewController new];
-    UINavigationController * nav =[[UINavigationController alloc]initWithRootViewController:view];
-    appdelegatee.window.rootViewController = nav;
-
+//    AppDelegate * appdelegatee =(AppDelegate *)[UIApplication sharedApplication].delegate;
+//    LoginViewController *view = [LoginViewController new];
+//    UINavigationController * nav =[[UINavigationController alloc]initWithRootViewController:view];
+//    appdelegatee.window.rootViewController = nav;
+    LawLogionViewController *view = [LawLogionViewController new];
+    UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+    [UIApplication sharedApplication].delegate.window.rootViewController = na;
+    
     
     //点击button跳转到根视图
 //    AppDelegate * appdelegatee = [UIApplication sharedApplication].delegate;

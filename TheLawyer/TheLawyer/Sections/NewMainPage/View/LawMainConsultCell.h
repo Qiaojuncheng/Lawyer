@@ -23,7 +23,16 @@
 @property (weak, nonatomic) IBOutlet UIView *RedView;
 
 
-@property (weak, nonatomic) IBOutlet UILabel *answerLB;
+ 
+@property (weak, nonatomic) IBOutlet UIButton *answBtn;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *PriceLB;
+
+- (IBAction)AnswerBtnAction:(UIButton *)sender;
+
+
+
 
 @property (strong, nonatomic) LawMainConsultCellMoldel * model;
 

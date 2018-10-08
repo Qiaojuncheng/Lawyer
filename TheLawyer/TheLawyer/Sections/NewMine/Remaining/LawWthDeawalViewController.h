@@ -9,6 +9,9 @@
 #import "BaseViewController.h"
 
 @interface LawWthDeawalViewController : BaseViewController
+@property (strong , nonatomic )NSString * price ;
+@property (strong , nonatomic )NSString * cardName ;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *PriceLB;
 

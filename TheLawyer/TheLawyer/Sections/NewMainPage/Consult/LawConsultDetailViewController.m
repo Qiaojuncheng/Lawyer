@@ -31,9 +31,8 @@
 
     [self addCenterLabelWithTitle:@"咨询详情" titleColor:nil];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self addView ];
-    [self addbottomView];
     [self makedata];
+    [self addbottomView];
 
     // Do any additional setup after loading the view.
 }
@@ -45,7 +44,19 @@
     [self showHudInView:self.view hint:nil];
     NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
     NewConsultDetail
-    NSDictionary * vadic  = @{@"id":self.model.id};
+    NSDictionary * vadic ;
+    if([self.type  isEqualToString:@"2"]){
+        if(self.mid){
+            vadic  = @{@"id":self.constultId,@"type":self.type,@"lawyer_id":UserId,@"mid":self.mid};
+        }else{
+        vadic  = @{@"id":self.constultId,@"type":self.type,@"lawyer_id":UserId};
+        }
+        
+    }else{
+        vadic  = @{@"id":self.constultId,@"type":self.type};
+
+    }
+ 
     NSString * baseString = [NSString getBase64StringWithArray:vadic];
     [dic setValue:baseString forKey:@"value"];
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
@@ -53,13 +64,15 @@
         
         NSString * status = [NSString stringWithFormat:@"%@",data[@"status"]];
         if([status isEqualToString:@"0"]){
-            
-            for (NSDictionary * dics in data[@"data"][@"reply_list"]) {
+            self.model = [LawMainConsultCellMoldel yy_modelWithJSON:data[@"data"]];
+            [self addView ];
+
+             for (NSDictionary * dics in data[@"data"][@"reply_list"]) {
                 LawConsultDetailReplayModel * model =  [LawConsultDetailReplayModel yy_modelWithDictionary:dics];
-                model.cellHeight  = [NSString GetHeightWithMaxSize:CGSizeMake(SCREENHEIGHT - 70, MAXFLOAT) AndFont:[UIFont systemFontOfSize:15] AndText:model.content].height;
-             
+                  model.cellHeight  = [NSString GetHeightWithMaxSize:CGSizeMake(SCREENHEIGHT - 75, MAXFLOAT) AndFont:[UIFont systemFontOfSize:16] AndText:model.content].height;
+
                 [dataArrray addObject:model];
-                
+
             }
             
             [_tableView reloadData];
@@ -73,7 +86,17 @@
 }
 -(void)addView{
     
-    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,  NavStatusBarHeight, SCREENWIDTH, SCREENHEIGHT -  NavStatusBarHeight- 68) style:UITableViewStylePlain];
+    CGFloat _tableVeiwheight ;
+    if ([self.model.answered isEqualToString:@"0"]) {
+//        未回复
+        _tableVeiwheight =     SCREENHEIGHT -  NavStatusBarHeight- 68 ;
+
+    }else{
+        _tableVeiwheight =     SCREENHEIGHT -  NavStatusBarHeight;
+
+    }
+    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,  NavStatusBarHeight, SCREENWIDTH,_tableVeiwheight ) style:UITableViewStylePlain];
+    
     _tableView.delegate=  self;
     _tableView.dataSource = self;
     _tableView.separatorInset =  UIEdgeInsetsMake(0, SCREENWIDTH, 0, 0);
@@ -171,6 +194,7 @@
 }
 -(void)amserBtnAction{
     NSLog(@"评论");
+    
     [_textView.countNumTextView becomeFirstResponder];
 
 }
@@ -179,9 +203,53 @@
 {
     
     NSLog(@"%@",_textView.countNumTextView.text);
-    _textView.countNumTextView.text = @"";
-    _textView.countNumTextView.placeholder = @"请输入你的评论";
+    if ([NSString changeNullString:_textView.countNumTextView.text].length != 0) {
+        
+    }else{
+        [self showHint:@"请输入你的评论"];
+        return;
+    }
+    
 
+    [self showHudInView:self.view hint:nil];
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NewConsultReply
+
+    NSDictionary * vadic   = @{@"id":self.model.id,@"content":_textView.countNumTextView.text,@"lawyer_id":UserId};
+    
+     NSString * baseString = [NSString getBase64StringWithArray:vadic];
+    [dic setValue:baseString forKey:@"value"];
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSLog(@"%@",data);
+        [self hideHud];
+
+        NSString * status = [NSString stringWithFormat:@"%@",data[@"status"]];
+        if([status isEqualToString:@"0"]){
+            self.model.answered = @"1";
+            dispatch_async(dispatch_get_main_queue(), ^{
+            _tableView.height =   SCREENHEIGHT -  NavStatusBarHeight;
+                [_tableView bringToFront];
+            });
+            _textView.countNumTextView.text = @"";
+            _textView.countNumTextView.placeholder = @"请输入你的评论";
+            
+            if(self.reloadBlock){
+                self.reloadBlock();
+            }
+            
+            [self makedata];
+        }else{
+ 
+        }
+        [self showHint:data[@"msg"]];
+
+    } failure:^(NSError *error) {
+        [self hideHud];
+        [self showHint:@"回复失败"];
+
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

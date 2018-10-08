@@ -21,9 +21,19 @@
     [self addCenterLabelWithTitle:@"选择地域" titleColor:nil];
     [self addtopView];
     [self.view addSubview:self.caseSelectView];
-    self.caseSelectView.DataArray = [[NSMutableArray alloc]initWithArray:@[@"12",@"dsa"]];
-    self.caseSelectView.hidden = NO ;
-    
+    __strong typeof(self) StrongSelf  =  self;
+    self.caseSelectView.ProviStr =self.ProviStr;
+    self.caseSelectView.CityStr =self.CityStr;
+    self.caseSelectView.AreaStr =self.AreaStr;
+    [self.caseSelectView makeSubView];
+    self.caseSelectView.seleAreaBlock = ^(NSString *Proid, NSString *Cityid, NSString *Areamid, NSString *areaStr) {
+        if ( StrongSelf.SelectAreaBlock) {
+            StrongSelf.SelectAreaBlock(Proid, Cityid, Areamid, areaStr);
+            [StrongSelf.navigationController popViewControllerAnimated:YES];
+        }
+    };
+     self.caseSelectView.hidden = NO ;
+    self.caseSelectView.DataArray   =[[NSMutableArray alloc]init];
     // Do any additional setup after loading the view.
 }
 -(void)addtopView{

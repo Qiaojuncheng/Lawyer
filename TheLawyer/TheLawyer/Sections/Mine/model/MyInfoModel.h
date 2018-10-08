@@ -14,20 +14,25 @@
 @property (nonatomic, copy) NSString *identification;// 是否认证
 
 @property (nonatomic, copy) NSString *job;
-@property (nonatomic, assign) NSInteger id;
-@property (nonatomic, assign) NSInteger phone;
-@property (nonatomic, assign) NSInteger sex;
+@property (nonatomic, copy) NSString * id;
+@property (nonatomic, copy) NSString * phone;
+@property (nonatomic, copy) NSString * sex;
 @property (nonatomic, copy) NSString *unit;
  @property (nonatomic, copy) NSString *birth;
 @property (nonatomic, copy) NSString *company;
 @property (nonatomic, copy) NSString *jf;
-@property (nonatomic, assign) NSInteger lawyercode;
-@property (nonatomic, assign) NSInteger lawyerid;
+@property (nonatomic, copy) NSString * lawyercode;
+@property (nonatomic, copy) NSString * lawyerid;
 @property (nonatomic, copy) NSString *lingyu;
 @property (nonatomic, copy) NSString *thumb;
 @property (nonatomic, copy) NSString *worktime;
 @property (nonatomic, copy) NSString *is_show;
 
- 
+
+@property (nonatomic, copy) NSString *province;
+@property (nonatomic, copy) NSString *city;
+@property (nonatomic, copy) NSString *area;
+@property (nonatomic, copy) NSString *renzheng;
+@property (nonatomic, copy) NSString *is_bind;
 
 @end

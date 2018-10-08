@@ -31,6 +31,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 [self setTitle:@"发送验证码" forState:UIControlStateNormal];
+                [self setTitleColor:[UIColor colorWithHex:0x3181FE] forState:UIControlStateNormal];
                 self.userInteractionEnabled = YES;
             });
         }else{

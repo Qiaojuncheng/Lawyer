@@ -11,6 +11,7 @@ typedef void (^changeBlock)(NSString * changeValueStr);
 @interface LawChagebasicInfoVC : BaseViewController
 
 @property (strong , nonatomic) NSString * titleStr;
+@property (strong , nonatomic) NSString * placherStr;
 
 @property (copy, nonatomic) changeBlock ChangValue;
 

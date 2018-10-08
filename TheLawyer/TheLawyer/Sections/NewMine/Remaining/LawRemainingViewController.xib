@@ -63,7 +63,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14i-Pz-mlk">
-                            <rect key="frame" x="48" y="21" width="33" height="20"/>
+                            <rect key="frame" x="48" y="21" width="283" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="nPS-bZ-iND"/>
                             </constraints>
@@ -84,6 +84,7 @@
                         <constraint firstItem="hcP-Jo-I17" firstAttribute="top" secondItem="f8T-Kv-3jZ" secondAttribute="top" constant="25" id="Tlq-oE-7cF"/>
                         <constraint firstItem="14i-Pz-mlk" firstAttribute="leading" secondItem="g5z-Ug-Bsx" secondAttribute="trailing" constant="12" id="ZYu-0H-grE"/>
                         <constraint firstItem="14i-Pz-mlk" firstAttribute="top" secondItem="f8T-Kv-3jZ" secondAttribute="top" constant="21" id="bWJ-qL-GE8"/>
+                        <constraint firstItem="hcP-Jo-I17" firstAttribute="leading" secondItem="14i-Pz-mlk" secondAttribute="trailing" constant="20" id="c46-vc-TUX"/>
                         <constraint firstAttribute="height" constant="60" id="eS9-1w-t4T"/>
                         <constraint firstItem="g5z-Ug-Bsx" firstAttribute="top" secondItem="f8T-Kv-3jZ" secondAttribute="top" constant="23" id="iDZ-vk-g3F"/>
                         <constraint firstItem="g5z-Ug-Bsx" firstAttribute="leading" secondItem="f8T-Kv-3jZ" secondAttribute="leading" constant="16" id="nwS-sX-JfG"/>

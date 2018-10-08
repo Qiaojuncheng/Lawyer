@@ -8,21 +8,62 @@
 
 #import "LawMoneyDetailViewController.h"
 #import "LawMondetaulCell.h"
-@interface LawMoneyDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "LawMoneyDetailModel.h"
+@interface LawMoneyDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger Page ;
+}
 
 @property (strong , nonatomic) UITableView * tableView ;
-@property (copy , nonatomic) NSArray * dataArray;
+@property (strong , nonatomic) NSMutableArray * dataArray;
 @end
 
 @implementation LawMoneyDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataArray =[[NSArray alloc] initWithObjects:@"13",@"sdfa",@"adsf",nil];
+    Page =1 ;
+    self.dataArray =[[NSMutableArray alloc] init];
     [self addCenterLabelWithTitle:@"余额明细" titleColor:nil];
     self.view.backgroundColor = BackViewColor;
     [self addtableview];
+    [self makeData];
     // Do any additional setup after loading the view.
+}
+-(void)makeData{
+    NSDictionary * dic  =[[NSMutableDictionary alloc]init];
+    NewMoneydetailed
+    if( [UserId length] < 1){
+        return ;
+    }
+    NSDictionary * valudic  = @{@"lawyer_id":UserId,@"p":[NSString stringWithFormat:@"%ld",Page]};
+    NSString * baseStr = [NSString getBase64StringWithArray:valudic];
+    [dic setValue:baseStr forKey:@"value"];
+    
+    [self showHudInView:self.view hint:nil];
+    
+    MJWeakSelf
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([str isEqualToString:@"0"]) {
+            if (Page == 1) {
+                [weakSelf.dataArray removeAllObjects];
+            }
+            for (NSDictionary * dicc in data[@"data"]) {
+                LawMoneyDetailModel * model = [LawMoneyDetailModel yy_modelWithJSON:dicc];
+                [self.dataArray addObject:model];
+            }
+            [_tableView reloadData];
+        }
+        [self hideHud];
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+    } failure:^(NSError *error) {
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+        [self hideHud];
+        NSLog(@"%@",error);
+    }];
+    
 }
 -(void)addtableview{
     self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, NavStatusBarHeight, SCREENWIDTH, SCREENHEIGHT - NavStatusBarHeight )];
@@ -32,9 +73,12 @@
     self.tableView.tableFooterView = [UIView new];
 //    __weak typeof(self) weakSelf = self;
     self.tableView.mj_header  = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [weakSelf loadData];
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        Page = 1;
+        [self makeData];
+     }];
+    self.tableView.mj_footer =[MJRefreshBackFooter footerWithRefreshingBlock:^{
+        Page ++;
+        [self makeData];
     }];
     [self.view addSubview:self.tableView];
     
@@ -52,6 +96,7 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"LawMondetaulCell" owner:self options:nil]lastObject];
     }
+    cell.modle = self.dataArray[indexPath.row];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

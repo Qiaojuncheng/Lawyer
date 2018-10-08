@@ -16,8 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addCenterLabelWithTitle:@"关于软件" titleColor:[UIColor whiteColor]];
-    [Utile makeCorner:25 view:self.IconView];
+    [self addCenterLabelWithTitle:@"关于汇融法" titleColor:[UIColor whiteColor]];
+//    [Utile makeCorner:25 view:self.IconView];
     
     self.VersionLB.text  =[NSString stringWithFormat:@"版本号：%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     

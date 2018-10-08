@@ -8,26 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^Select)(NSArray *seleArray);
+
 @interface LawSelectTypeofCaseView : UIView<UITableViewDelegate,UITableViewDataSource>{
    
     UITableView * _leftTv;
     UITableView * _rightTv;
-
+     NSMutableArray *leftDataArray;
+    NSMutableArray *rightDataArray;
+      NSMutableArray * rightselectIDArray ;//根据id判断选中未选中 存放model
     
-    NSArray *leftDataArray;
-    NSArray *rightDataArray;
-    
-     NSMutableArray * rightselectIDArray ;//根据id判断选中未选中
-    
-    
-    NSInteger  leftselect;
+     NSInteger  leftselect;
     
     UIView * centerView;
+ 
 
 }
 
 @property (strong , nonatomic) NSMutableArray * dataArray;
 
-
+@property (strong ,nonatomic ) Select selectBlock;
 
 @end

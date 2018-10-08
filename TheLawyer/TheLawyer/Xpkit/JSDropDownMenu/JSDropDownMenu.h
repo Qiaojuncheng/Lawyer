@@ -12,6 +12,7 @@
 
 @interface JSIndexPath : NSObject
 
+
 @property (nonatomic, assign) NSInteger column;
 @property (nonatomic, assign) NSInteger leftOrRight;
 @property (nonatomic, assign) NSInteger leftRow;
@@ -30,14 +31,15 @@
 - (NSInteger)menu:(JSDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column leftOrRight:(NSInteger)leftOrRight leftRow:(NSInteger)leftRow;
 - (NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath;
 - (NSString *)menu:(JSDropDownMenu *)menu titleForColumn:(NSInteger)column;
+
 /**
  * 表视图显示时，左边表显示比例
  */
 - (CGFloat)widthRatioOfLeftColumn:(NSInteger)column;
 /**
- * 表视图显示时，是否需要两个表显示
+ * 表视图显示时，是否需要两个表显示  0  只有一个； 1 两个； 2 三个
  */
-- (BOOL)haveRightTableViewInColumn:(NSInteger)column;
+- (NSInteger )haveRightTableViewInColumn:(NSInteger)column;
 
 /**
  * 返回当前菜单左边表选中行
@@ -66,6 +68,18 @@
 @property (nonatomic, weak) id <JSDropDownMenuDataSource> dataSource;
 @property (nonatomic, weak) id <JSDropDownMenuDelegate> delegate;
 
+
+// 这几个参数 没用到
+// 第一个tableview选中的row
+@property (nonatomic, assign) NSInteger leftSelectedRow;
+// 第二个tableview选中的row
+@property (nonatomic, assign) NSInteger RightSelectedRow;
+// 第三个tableview选中的row
+@property (nonatomic, assign) NSInteger MoreSelectedRow;
+
+
+// 显示的选中的数组 存放的是 每一个 colum 每个元素里面发个一个数据表示 选中tableviewde index;
+@property (nonatomic, strong) NSMutableArray * SelectArray;
 @property (nonatomic, strong) UIColor *indicatorColor;
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *separatorColor;

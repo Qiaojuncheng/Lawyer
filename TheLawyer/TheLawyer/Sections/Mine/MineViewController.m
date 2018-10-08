@@ -16,6 +16,7 @@
 #import "IntegralViewController.h"//积分
 #import "RecordViewController.h"
 #import "LoginViewController.h"
+#import "LawLogionViewController.h"
 #import "AppointmentViewController.h"//
 #import "MyMessageViewController.h"//
 #import "ConsultingViewController.h"//咨询
@@ -80,10 +81,13 @@
     NSString *uid =[user objectForKey:@"userid"];//userID
     if (uid.length == 0) {
 //        self.tableView.hidden = YES;
-        LoginViewController *view = [LoginViewController new];
+//        LoginViewController *view = [LoginViewController new];
+//        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+        LawLogionViewController *view = [LawLogionViewController new];
         UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
         [UIApplication sharedApplication].delegate.window.rootViewController = na;
-
+        
     }else{
         
         [self requestData];

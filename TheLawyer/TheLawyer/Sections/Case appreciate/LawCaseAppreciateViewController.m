@@ -9,13 +9,18 @@
 #import "LawCaseAppreciateViewController.h"
 #import "LawCaseCell.h"
 #import "LawCaseAppreciateDetail.h"
-#import "LawCaseTypeSelectView.h"
+#import "LawAppreSelectCaseTypeView.h"
+#import "LawConsultTypeModel.h"
+#import "LawCaseNewModel.h"
 @interface LawCaseAppreciateViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray * dataArrray ;
     UITableView * _tableView;
+    NSMutableArray * CaseTypeArray ;
+    NSInteger page ;
+    NSString * Cate_id;
 }
-@property (strong, nonatomic) LawCaseTypeSelectView * caseSelectView;
+@property (strong, nonatomic) LawAppreSelectCaseTypeView * caseSelectView;
 
 @end
 
@@ -23,12 +28,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    dataArrray = [[NSMutableArray alloc]init];
+
+    page = 1;
+    Cate_id = @"";
     [self addCenterLabelWithTitle:@"案件赏析" titleColor:nil];
     MJWeakSelf
     [self addRightButtonWithTitle:@"案件筛选" titleColor:[UIColor colorWithHex:0xBAC2CE] actionBlock:^{
         [weakSelf showCaseTypeView];
     }];
     [self addView];
+    [self makeData];
+    [self makeTypeData];
     [self.view addSubview:self.caseSelectView];
     // Do any additional setup after loading the view.
 }
@@ -39,11 +50,19 @@
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsMake(0,SCREENWIDTH, 0, 0);
     _tableView.backgroundColor =[UIColor whiteColor];
+    _tableView.mj_header  =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        page = 1;
+        [self makeData];
+    }];
+    _tableView.mj_footer  = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+        page ++;
+        [self makeData];
+    }];
     _tableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:_tableView];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10; //dataArrray.count;
+    return dataArrray.count;
     
 }
 
@@ -53,34 +72,43 @@
     if (cell == nil) {
         cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawCaseCell" owner:self options:nil]lastObject];
     }
-    //    cell.model = dataArrray[indexPath.row];
+    cell.model = dataArrray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LawCaseNewModel *  model = dataArrray[indexPath.row];
     LawCaseAppreciateDetail * detail =[[LawCaseAppreciateDetail alloc]init];
+    detail.model = model;
+   
+    detail.ChangCollectStatus = ^(NSString *iscollect) {
+    model.is_collect = iscollect;
+    [dataArrray replaceObjectAtIndex:indexPath.row withObject:model];
+        [_tableView reloadData];
+    };
     [self.navigationController pushViewController:detail animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 120;
     
 }
--(LawCaseTypeSelectView *)caseSelectView{
+-(LawAppreSelectCaseTypeView *)caseSelectView{
     if (!_caseSelectView) {
-        _caseSelectView = [[LawCaseTypeSelectView alloc]initWithFrame:_tableView.frame];;
+        _caseSelectView = [[LawAppreSelectCaseTypeView alloc]initWithFrame:_tableView.frame];;
         _caseSelectView.hidden = YES;
-        _caseSelectView.TableViewHeight = _caseSelectView.height - 200;
- 
+        _caseSelectView.TableViewHeight = _tableView.height - 250;
     }
     return _caseSelectView;
 }
--(void)caseBackAction:(UITapGestureRecognizer *)tap{
-    if (tap.view == _caseSelectView) {
-        _caseSelectView.hidden = YES;
-    }
-}
+
  -(void)showCaseTypeView{
-    _caseSelectView.DataArray = [[NSMutableArray alloc]initWithArray:@[@"12",@"dsa"]];
+     MJWeakSelf ;
+    _caseSelectView.DataArray = [[NSMutableArray alloc]initWithArray:CaseTypeArray];
+     _caseSelectView.seleAreaBlock = ^(LawConsultTypeModel *selectModel) {
+         Cate_id = selectModel.id;
+         page = 1;
+         [weakSelf  makeData];
+     };
     _caseSelectView.hidden = NO ;
      
  }
@@ -88,7 +116,79 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)makeData{
+    [self showHudInView:self.view hint:nil];
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NewCaseNews
+    NSMutableDictionary * valuedic =[[NSMutableDictionary alloc]init];
+    if ([UserId length]> 0) {
+        [valuedic setValue:UserId forKey:@"id"];
+        [valuedic setValue:@"1" forKey:@"type"];
 
+    }
+    [valuedic setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"p"];
+    if (Cate_id.length > 0) {
+        [valuedic setValue:Cate_id forKey:@"cate_id"];
+   
+    }
+     NSString * base64String =[NSString getBase64StringWithArray:valuedic];
+      [dic setValue:base64String forKey:@"value"];
+    //    获取分类
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        [self hideHud];
+        // 处理数据
+        if ([responseObjeck[@"status"] integerValue] == 0) {
+             if (page == 1) {
+                 [dataArrray removeAllObjects];
+            }
+            for (NSDictionary  * dicc in responseObjeck[@"data"]) {
+                
+            LawCaseNewModel * model = [LawCaseNewModel yy_modelWithJSON:dicc];
+            [dataArrray addObject:model];
+           
+            }
+            
+            [_tableView reloadData];
+          
+        }else{
+ 
+        }
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        [self hideHud];
+
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
+    }];
+    
+}
+-(void)makeTypeData{
+    CaseTypeArray  =[[NSMutableArray alloc]init];
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NewConsultGetType
+    //    获取分类
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        // 处理数据
+        if ([responseObjeck[@"status"] integerValue] == 0) {
+            for (NSDictionary * proDic in responseObjeck[@"data"]) {
+                
+                LawConsultTypeModel * TypeModel =[LawConsultTypeModel yy_modelWithJSON:proDic];
+                [CaseTypeArray addObject:TypeModel];
+
+            }
+//            if (leftDataArray.count > 0) {
+//                LawConsultTypeModel  * TypeModel = leftDataArray[0];
+//                rightDataArray = TypeModel.second_child;
+//            }
+//
+        }else{
+            
+        }
+    } failure:^(NSError *error) {
+    }];
+    
+}
 /*
 #pragma mark - Navigation
 

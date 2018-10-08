@@ -11,6 +11,7 @@
 #import "MyMessageViewController.h"//
 #import "ConsultingViewController.h"//咨询
 #import "LoginViewController.h"
+#import "LawLogionViewController.h"
 #import "RegisteredViewController.h"
 
 @implementation MidddleCell

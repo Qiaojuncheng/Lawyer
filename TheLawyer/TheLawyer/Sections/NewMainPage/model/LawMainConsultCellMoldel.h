@@ -19,16 +19,25 @@
  "avatar": "\/Uploads\/wap\/avatar\/2018-08-27\/1535357180_15612162575b83b0fcf25f5.JPG",
  "province": "江苏省",
  "city": "无锡市",
- "cate_name": "一般民事"*/
+ "cate_name": "一般民事"
+ answered 0 已回答   其他未回答
+ 
+ answered  1未回答 显示回答按钮  2已回答 显示已回答  3未回答不能回答 不显示内容
+ 
+ */
 @property (strong, nonatomic)   NSString * id;
 @property (strong, nonatomic)   NSString * content;
 @property (strong, nonatomic)   NSString * reply_count;
 @property (strong, nonatomic)   NSString * create_time;
-@property (strong, nonatomic)   NSString * status;
+@property (strong, nonatomic)   NSString * status;// 1已采纳  2 已付款
 @property (strong, nonatomic)   NSString * name;
 @property (strong, nonatomic)   NSString * avatar;
 @property (strong, nonatomic)   NSString * province;
 @property (strong, nonatomic)   NSString * city;
 @property (strong, nonatomic)   NSString * cate_name;
- 
+@property (strong, nonatomic)   NSString * money;
+@property (strong, nonatomic)   NSString * answered;
+@property (strong, nonatomic)   NSString * type;// 1 显示价格  0 不显示
+@property (strong, nonatomic)   NSString * is_read;// 1 显示红点  0 不显示
+
 @end

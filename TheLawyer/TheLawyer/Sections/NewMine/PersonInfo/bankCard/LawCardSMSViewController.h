@@ -13,7 +13,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *ConcentLB;
 @property (weak, nonatomic) IBOutlet UITextField *CardTextField;
 
-
+@property (copy,nonatomic) NSString * phoneNumber;
+@property (copy,nonatomic) NSString * CardNumber;
+@property (copy,nonatomic) NSString * idcard;
+@property (copy,nonatomic) NSString * bankname;
+@property (copy,nonatomic) NSString * name;
 
 
 @property (weak, nonatomic) IBOutlet CountButton *GetCardBtn;
@@ -21,6 +25,8 @@
 - (IBAction)GetCardBtn:(id)sender;
 
 - (IBAction)notReviceBtnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *AddCarBtn;
+- (IBAction)AddbtnAction:(id)sender;
 
 
 

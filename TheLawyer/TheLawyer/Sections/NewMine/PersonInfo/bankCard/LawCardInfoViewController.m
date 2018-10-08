@@ -22,6 +22,8 @@
     [self.whatImage whenTapped:^{
         [self showPhoneMessage];
     }];
+    self.CardName.text  = self.cardNamestr;
+    self.CardNumberLB.text = self.cardnumber;
     // Do any additional setup after loading the view from its nib.
 }
 -(void)showPhoneMessage{
@@ -50,6 +52,11 @@
 
 - (IBAction)AgreeBtnACtion:(id)sender {
     LawCardSMSViewController  * cardSMS  = [[LawCardSMSViewController alloc]init];
+    cardSMS.phoneNumber = self.PhoneTextField.text;
+    cardSMS.CardNumber = self.cardnumber;
+    cardSMS.idcard =self.numberTextfield.text;
+    cardSMS.name =self.cardTExtFiled.text;
+    cardSMS.bankname = self.cardNamestr;
     [self.navigationController pushViewController:cardSMS animated:YES];
 }
 @end

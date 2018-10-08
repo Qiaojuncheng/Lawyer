@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+#import "LawPlatformModel.h"
 @interface LawPlatformAuthViewController : BaseViewController
-
+@property (strong , nonatomic) LawPlatformModel * model ;
+@property (assign , nonatomic) BOOL  CanEidt ;// yes能修改  no 不能修改
 @end

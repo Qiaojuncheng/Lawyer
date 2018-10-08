@@ -94,9 +94,11 @@
     [self.textView resignFirstResponder];
     
     NSDictionary * dic  =[[NSMutableDictionary alloc]init];
-    QJAddvice
-    
-    NSDictionary * valudic  = @{@"content":self.textView.text,@"user_id":UserId};
+    QJAddvicefeedback
+    if( [UserId length] < 1){
+        return ;
+    }
+    NSDictionary * valudic  = @{@"content":self.textView.text,@"id":UserId,@"type":@"2"};
     NSString * baseStr = [NSString getBase64StringWithArray:valudic];
     [dic setValue:baseStr forKey:@"value"];
     

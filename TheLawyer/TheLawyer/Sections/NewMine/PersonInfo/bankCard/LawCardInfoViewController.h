@@ -11,6 +11,8 @@
 @interface LawCardInfoViewController : BaseViewController
 
 
+@property (strong, nonatomic) NSString * cardnumber ;
+@property (strong, nonatomic) NSString * cardNamestr ;
 
 @property (weak, nonatomic) IBOutlet UITextField *cardTExtFiled;
 
@@ -21,6 +23,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *AgreeBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *whatImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *CardNumberLB;
+
+@property (weak, nonatomic) IBOutlet UILabel *CardName;
+
+ 
+
 
 
 - (IBAction)AgreeBtnACtion:(id)sender;

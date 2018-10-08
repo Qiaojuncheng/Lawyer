@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LawMessageModel.h"
+#import "LawNewMessageMM.h"
 
 @interface LawMessageCenterCell : UITableViewCell
-@property (strong ,nonatomic) LawMessageModel * model;
+@property (strong ,nonatomic) LawNewMessageMM * model;
 @property (weak, nonatomic) IBOutlet UILabel *ConcentLB;
 
 @property (weak, nonatomic) IBOutlet UIView *RedView;
@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *TimeLB;
 
 - (IBAction)SeeBtnAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIImageView *MeeageImage;
 
 
 @end

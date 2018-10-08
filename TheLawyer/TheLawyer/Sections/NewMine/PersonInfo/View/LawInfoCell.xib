@@ -32,6 +32,8 @@
                         <rect key="frame" x="279" y="19" width="73" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="7NE-bh-Yia"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Wtf-0D-6fa"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="emS-Wf-uYW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -73,6 +75,7 @@
                 <outlet property="ConcentLB" destination="x2u-Cx-3Vv" id="FzJ-xd-uoV"/>
                 <outlet property="LineView" destination="ZSP-u2-YEz" id="JMX-E7-12r"/>
                 <outlet property="RedView" destination="o3e-mi-lzl" id="4vb-3D-wR8"/>
+                <outlet property="RightImg" destination="dtC-Rt-8Vz" id="vsD-cA-pKh"/>
                 <outlet property="TypeLB" destination="TpZ-MO-pd6" id="8T1-9n-utP"/>
             </connections>
             <point key="canvasLocation" x="39.5" y="111"/>

@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
 #import "LoginViewController.h"
+#import "LawLogionViewController.h"
  #import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 #import "LawMineVc.h"
@@ -30,14 +31,20 @@
 
 #import <AudioToolbox/AudioServices.h>
 #import <AudioToolbox/AudioToolbox.h>
+
+// 高德地图
+#import "AMapServices.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 static SystemSoundID shake_sound_male_id = 0;
 
-@interface AppDelegate ()<BMKLocationServiceDelegate,JPUSHRegisterDelegate>{
-    BMKMapManager *  _mapManager  ;
-    //初始化BMKLocationService
-    BMKLocationService *  _locService ;
+@interface AppDelegate ()<AMapLocationManagerDelegate,JPUSHRegisterDelegate>{
+//    BMKMapManager *  _mapManager  ;
+//    //初始化BMKLocationService
+//    BMKLocationService *  _locService ;
     NSUserDefaults * UserDefaults;
-    
+    AMapLocationManager * _locationManager;
+
 }
 
 @end
@@ -56,12 +63,7 @@ static SystemSoundID shake_sound_male_id = 0;
     homeNav.tabBarItem = homeItem;
     [homeNav setNavigationBarHidden:YES];
     
-//    //xiaoxi
-//    UITabBarItem *messgeItem=[[UITabBarItem alloc]initWithTitle:@"消息" image:[[UIImage imageNamed:@"announced"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"announced-01"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//    [self unSelectedTapTabBarItems:messgeItem];
-//    [self selectedTapTabBarItems:messgeItem];
-    
-    
+ 
         UITabBarItem *ServiceItem=[[UITabBarItem alloc]initWithTitle:@"服务广场" image:[[UIImage imageNamed:@"bar_square_grey"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"bar_square"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [self unSelectedTapTabBarItems:ServiceItem];
         [self selectedTapTabBarItems:ServiceItem];
@@ -87,7 +89,7 @@ static SystemSoundID shake_sound_male_id = 0;
     
     
     //wode
-    UITabBarItem *MineItem=[[UITabBarItem alloc]initWithTitle:@"我的" image:[[UIImage imageNamed:@"inventory"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"inventory-01"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    UITabBarItem *MineItem=[[UITabBarItem alloc]initWithTitle:@"我的" image:[[UIImage imageNamed:@"bar_my_grey"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"bar_my"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [self unSelectedTapTabBarItems:MineItem];
     [self selectedTapTabBarItems:MineItem];
     
@@ -129,41 +131,98 @@ static SystemSoundID shake_sound_male_id = 0;
             //    UINavigationController *MainNavi =[[UINavigationController alloc]initWithRootViewController:Tab];
             self.window.rootViewController = _tabBarController;
         }else{
-            LoginViewController *view = [[LoginViewController alloc]init];
+//            LoginViewController *view = [[LoginViewController alloc]init];
+//            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+            LawLogionViewController *view = [LawLogionViewController new];
             UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+ 
             self.window.rootViewController = na;
         }
 }}
 
 - (void)loginStateChange:(NSNotification *)notification{
-    [_locService startUserLocationService];
-     self.window.rootViewController = _tabBarController;
-}
+//    [_locService startUserLocationService];
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
 
+    self.window.rootViewController = _tabBarController;
+}
 -(void)locationAction{
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+
     
-    [_locService startUserLocationService];
+//    [_locService startUserLocationService];
 
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //初始化BMKLocationService
-    _locService = [[BMKLocationService alloc]init];
-    _locService.delegate = self;
-    //启动LocationService
-    [_locService startUserLocationService];
+    [self getPhone];
+    [AMapServices sharedServices].apiKey =@"03007e10d3a5591475445e5b4ee45e64";
+//    [AMapLocationServices sharedServices].apiKey =@"03007e10d3a5591475445e5b4ee45e64";
+    _locationManager = [[AMapLocationManager alloc] init];
+    _locationManager.delegate = self;
+
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+
+    
+    [_locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        
+        if (error)
+        {
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            if (error.code == AMapLocationErrorLocateFailed)
+            {
+                return;
+            }
+        }
+        
+//        上传位置
+        if ([UserId length] > 0) {
+            NSString *locationstr  = [NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude];
+        NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+        NewGetLocation
+        
+        NSMutableDictionary * valueDic =[[NSMutableDictionary alloc]init];
+            [valueDic setValue:UserId forKey:@"lawyer_id"];
+            [valueDic setValue:locationstr forKey:@"position"];
+         NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
+        [dic setValue:baseStr forKey:@"value"];
+        
+        [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+            NSLog(@"%@",data);
+            
+           
+        } failure:^(NSError *error) {
+            
+        }];
+            
+    }
+
+        
+        NSLog(@"location:%@", location);
+        
+//        if (regeocode)
+//        {
+//            NSLog(@"reGeocode:%@", regeocode);
+//        }
+    }];
+    
+//    //初始化BMKLocationService
+//    _locService = [[BMKLocationService alloc]init];
+//    _locService.delegate = self;
+//    //启动LocationService
+//    [_locService startUserLocationService];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(locationAction) name:@"LOCATIONACTION" object:nil];
 
     UserDefaults = [NSUserDefaults standardUserDefaults];
     
-    NSLog(@"uuid = %@",[[[[UIDevice currentDevice] identifierForVendor] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""]);
-
-    _mapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"17OEhdYrbCtovNHqCjV8yBhHwmzd2Fyh"  generalDelegate:nil];
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
+ 
+//    _mapManager = [[BMKMapManager alloc]init];
+//    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+//    BOOL ret = [_mapManager start:@"17OEhdYrbCtovNHqCjV8yBhHwmzd2Fyh"  generalDelegate:nil];
+//    if (!ret) {
+//        NSLog(@"manager start failed!");
+//    }
   
    
     /* 打开调试日志 */
@@ -229,7 +288,7 @@ static SystemSoundID shake_sound_male_id = 0;
 {
     [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                         [UIFont fontWithName:@"Helvetica-Bold" size:10],
-                                        NSFontAttributeName,THEMECOLOR,NSForegroundColorAttributeName,
+                                        NSFontAttributeName,MAINCOLOR,NSForegroundColorAttributeName,
                                         nil] forState:UIControlStateSelected];
 }
 #pragma mark   更新位置
@@ -251,7 +310,7 @@ static SystemSoundID shake_sound_male_id = 0;
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f",userLocation.location.coordinate.longitude] forKey:@"longitude"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    [_locService stopUserLocationService];
+//    [_locService stopUserLocationService];
     [self SendLocation];
     //NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
 }
@@ -348,9 +407,12 @@ static SystemSoundID shake_sound_male_id = 0;
   }
 -(void)setalias{
 //    NSString * userid =[[NSUserDefaults standardUserDefaults] objectForKey:@"lawyer_id"];
-    NSString * UUid  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSString * UUid  =   [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
-     [JPUSHService setAlias:UUid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+  
+   UUid =  [UUid stringByAppendingString:UserPhone];
+
+    [JPUSHService setAlias:UUid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
         NSLog(@" iResCode = %ld, iAlias = %@  seq = %ld",(long)iResCode,iAlias,(long)seq);
     } seq:[UUid integerValue]];
 
@@ -469,9 +531,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的账号已在其他设备上登录！" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                LoginViewController *view = [LoginViewController new];
-                UINavigationController * nav =[[UINavigationController alloc]initWithRootViewController:view];
-                self.window.rootViewController = nav;
+                LawLogionViewController *view = [LawLogionViewController new];
+                UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+                
+                self.window.rootViewController = na;
                 NSLog(@"OK Action");
             }];
             [alertController addAction:okAction];
@@ -560,6 +623,25 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+-(void)getPhone{
+    
+   
+    NSMutableDictionary  *dic =[[NSMutableDictionary alloc]init] ;
+    NewGetPhone ;
+    
+    [UserDefaults  setObject:@"400-6400-661" forKey:@"400Phone"];
+    [UserDefaults synchronize];
 
+     [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        // 处理数据
+         if ([responseObjeck[@"status"] integerValue] == 0){
+            [UserDefaults  setObject:[NSString stringWithFormat:@"%@",responseObjeck[@"data"][@"tel"]] forKey:@"400Phone"];
+
+            [UserDefaults synchronize];
+        }
+        
+     } failure:^(NSError *error) {
+     }];
+}
 
 @end

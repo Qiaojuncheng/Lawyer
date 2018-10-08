@@ -8,8 +8,7 @@
 
 #import "PublicMethod.h"
 #import "XVersionModel.h"
-//#import "LoginViewController.h"
-
+ 
 @interface PublicMethod ()<UIAlertViewDelegate>
 
 @property (nonatomic, copy) void(^cancelBlock)(void);

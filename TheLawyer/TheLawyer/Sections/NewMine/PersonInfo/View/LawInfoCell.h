@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ConcentLB;
 @property (weak, nonatomic) IBOutlet UIView *LineView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *RightImg;
 
 
 

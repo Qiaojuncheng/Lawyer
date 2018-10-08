@@ -23,7 +23,7 @@
     [self addCenterLabelWithTitle:@"常见问题" titleColor:[UIColor whiteColor]];
     
     webView =[[UIWebView alloc]initWithFrame:CGRectMake(0, NavStatusBarHeight, ConentViewWidth, ConentViewHeight )];
-    NSURL * urlStr =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@/type/app.html",Image_URL,INFODETAIL,self.infoId]];
+    NSURL * urlStr =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@.html",Image_URL,NewPublicQuestionDetail,self.infoId]];
     NSURLRequest * request =[[NSURLRequest alloc]initWithURL:urlStr];
     [webView loadRequest:request];
     [self.view addSubview:webView];

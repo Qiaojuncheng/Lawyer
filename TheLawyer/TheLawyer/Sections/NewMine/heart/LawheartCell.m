@@ -15,7 +15,15 @@
     [Utile makeCorner:self.PeronImage.height/2 view:self.PeronImage];
     // Initialization code
 }
-
+-(void)setModel:(LawNewHeaterModel *)model{
+    _model = model;
+    [self.PeronImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,model.user_avatar]] placeholderImage:nil];
+    self.PersonName.text = model.user_name;
+    self.TimeLb.text = [NSString timeWithTimeIntervalString:model.create_time];
+    self.PriceLB.text = model.money;
+    
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

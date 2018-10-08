@@ -12,9 +12,15 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.PriceTextField.delegate = self ;
+     // Initialization code
 }
-
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (self.textFieldBlock) {
+        self.textFieldBlock(textField.text);
+    }
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

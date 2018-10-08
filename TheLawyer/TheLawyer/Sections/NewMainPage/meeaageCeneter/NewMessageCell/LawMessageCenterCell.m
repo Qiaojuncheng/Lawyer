@@ -15,20 +15,39 @@
     [Utile makeCorner:self.RedView.width/2 view:self.RedView];
     // Initialization code
 }
--(void)setModel:(LawMessageModel *)model{
+-(void)setModel:(LawNewMessageMM *)model{
     _model = model;
-    
-    if ([_model.showRed isEqualToString:@"1"]) {
+//
+    if ([_model.status isEqualToString:@"0"]) {
         self.RedView.hidden = NO;
     }else{
         self.RedView.hidden = YES;
 
     }
-    if ([_model.showBtn isEqualToString:@"1"]) {
-        self.SeeBtn.hidden =  NO;
-    }else{
-        self.SeeBtn.hidden = YES;
+    self.TimeLB.text =[NSString timeWithTimeIntervalString:model.time];
+    self.ConcentLB.text = model.title;
+    if([model.type isEqualToString:@"1"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_telephone"];
+    }else if([model.type isEqualToString:@"2"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_examination"];
+    }else if([model.type isEqualToString:@"3"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_consult"];
+    }else if([model.type isEqualToString:@"4"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_write"];
+    }else if([model.type isEqualToString:@"5"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_heart"];
+    }else if([model.type isEqualToString:@"6"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_authentication"];
+    }else if([model.type isEqualToString:@"7"]){
+        self.MeeageImage.image =[UIImage imageNamed:@"news_system"];
     }
+    
+//    self.UIImageView
+//    if ([_model.showBtn isEqualToString:@"1"]) {
+//        self.SeeBtn.hidden =  NO;
+//    }else{
+//        self.SeeBtn.hidden = YES;
+//    }
     
     
 }

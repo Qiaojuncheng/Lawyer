@@ -13,7 +13,7 @@ typedef void (^Blockacs)(NSString * sexStr);
 @property (weak, nonatomic) IBOutlet UIButton *manBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *WomanBtn;
-
+@property (copy, nonatomic) NSString * sex;
 
 - (IBAction)BtnSelect:(UIButton *)sender;
 

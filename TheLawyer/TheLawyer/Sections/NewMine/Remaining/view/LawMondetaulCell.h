@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LawMoneyDetailModel.h"
 @interface LawMondetaulCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *deteailtitle;
 @property (weak, nonatomic) IBOutlet UILabel *DetaileNum;
 
 @property (weak, nonatomic) IBOutlet UILabel *DetailTime;
 
+@property (strong, nonatomic) LawMoneyDetailModel * modle ;
 
 
 @end

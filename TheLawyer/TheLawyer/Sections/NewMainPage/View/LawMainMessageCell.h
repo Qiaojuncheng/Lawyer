@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface LawMainMessageCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *messageImage;
+@property (weak, nonatomic) IBOutlet UIImageView *MeeageImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *MessageLb;
 
 @property (weak, nonatomic) IBOutlet UIView *RedView;
 
+@property (weak, nonatomic) IBOutlet UILabel *TimeLB;
 
 
 @end

@@ -29,7 +29,9 @@
 {
     CALayer *layer = view.layer;
     layer.borderColor = color.CGColor;
-    layer.borderWidth = corner;
+    layer.borderWidth = 1;
+    layer.cornerRadius = corner;
+    layer.masksToBounds = YES;
 }
 +(void)setFourSides:(UIView *)view direction:(NSString *)direction sizeW:(CGFloat)width color:(UIColor *)color
 {

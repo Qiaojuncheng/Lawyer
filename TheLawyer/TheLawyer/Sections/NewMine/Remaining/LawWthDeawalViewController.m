@@ -18,6 +18,8 @@
     [super viewDidLoad];
     [self  addCenterLabelWithTitle:@"结果详情" titleColor:nil];
     [self.SuccessBtn createBordersWithColor:[UIColor colorWithHex:0x3181FE] withCornerRadius:self.SuccessBtn.height/2 andWidth:1];
+    self.PriceLB.text = [NSString stringWithFormat:@"￥ %@",self.price];
+    self.CardNaem.text = self.cardName;
     // Do any additional setup after loading the view from its nib.
 }
 

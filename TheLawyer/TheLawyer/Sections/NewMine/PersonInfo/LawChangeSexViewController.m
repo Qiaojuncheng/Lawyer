@@ -22,6 +22,16 @@
     [self addRightButtonWithTitle:@"完成" titleColor:[UIColor colorWithHex:0x3181FE] actionBlock:^{
         
     }];
+    if ( [self.sex isEqualToString:@"1"]) {
+        self.manBtn.selected = YES;
+        self.WomanBtn.selected = NO ;
+    }else{
+        
+        self.manBtn.selected = NO ;
+        self.WomanBtn.selected =YES ;
+        
+    }
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -48,10 +58,11 @@
     
 //     先提交信息，在返回
     if (sender == self.manBtn) {
-        self.SexBlock(@"男");
+        self.SexBlock(@"1");
     }else{
-        self.SexBlock(@"女");
+        self.SexBlock(@"2");
         
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

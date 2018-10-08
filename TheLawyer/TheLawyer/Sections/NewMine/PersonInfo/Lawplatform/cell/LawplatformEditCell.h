@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LawplatformEditCell : UITableViewCell
+typedef void (^moneyBlock) (NSString * money);
+@interface LawplatformEditCell : UITableViewCell<UITextFieldDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UILabel *TitleLB;
@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *PriceTextField;
 
-
+@property (copy ,nonatomic) moneyBlock textFieldBlock;
 
 
 

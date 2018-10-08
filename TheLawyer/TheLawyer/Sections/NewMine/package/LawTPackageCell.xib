@@ -33,7 +33,7 @@
                         <color key="textColor" red="0.19215686274509802" green="0.50588235294117645" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ticket_service" translatesAutoresizingMaskIntoConstraints="NO" id="PdA-Xt-Qin">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ticket_order" translatesAutoresizingMaskIntoConstraints="NO" id="PdA-Xt-Qin">
                         <rect key="frame" x="28" y="28" width="36" height="36"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -52,12 +52,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOA-JW-ABy">
-                        <rect key="frame" x="292" y="49" width="68" height="22"/>
+                        <rect key="frame" x="276" y="49" width="68" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="ticket_botton"/>
+                        <state key="selected" image="ticket_botton2"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥664.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SfG-e6-GZt">
-                        <rect key="frame" x="275" y="20" width="100" height="21"/>
+                        <rect key="frame" x="259" y="20" width="100" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,13 +67,23 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="DUihuanBtn" destination="DOA-JW-ABy" id="rWn-ws-v03"/>
+                <outlet property="NameLB" destination="1jn-jo-Qlm" id="H6o-T9-cV1"/>
+                <outlet property="PriceLB" destination="SfG-e6-GZt" id="yeu-Xf-dFV"/>
+                <outlet property="TimeLB" destination="TFm-7P-elt" id="vti-6K-Aqd"/>
+                <outlet property="TopTypeLB" destination="Fre-79-ZTd" id="qv7-QZ-JtW"/>
+                <outlet property="TypeImage" destination="PdA-Xt-Qin" id="0EV-KF-jAY"/>
+                <outlet property="ticket_backImage" destination="8i7-lb-Cff" id="jtt-bs-a3g"/>
+            </connections>
             <point key="canvasLocation" x="33.5" y="98.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ticket_botton" width="73" height="27"/>
+        <image name="ticket_botton2" width="73" height="27"/>
         <image name="ticket_label" width="58" height="19"/>
-        <image name="ticket_service" width="36" height="36"/>
-        <image name="tickets_bg" width="304" height="92"/>
+        <image name="ticket_order" width="36" height="36"/>
+        <image name="tickets_bg" width="324" height="92"/>
     </resources>
 </document>

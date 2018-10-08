@@ -11,23 +11,29 @@
 #import "LawMineTopView.h"
 #import "LawNewSettingViewController.h"
 #import "LoginViewController.h"
+#import "LawLogionViewController.h"
 #import "LawRemainingViewController.h"
 
 #import "LawConSultViewController.h"
 #import "LawMeetingViewController.h"
 #import "LawSquarSrviceViewController.h"
-
+#import "LawNewHeZuoViewController.h"
 
 #import "LawHeartViewController.h"
 #import "LawPackageViewController.h"
 #import "LawCollectViewController.h"
 #import "LawPersonInfoViewController.h"
+
+#import "QJAboutAppViewController.h"
+#import "LawIWantPublicVC.h"
 @interface LawMineVc ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     NSMutableArray * CollectitemArray;
     NSMutableArray * CollectitemImageArray;
 
     CGFloat Topheight;// Top View 的高度
     CGFloat CollectSpace; // 左侧的距离
+    
+    BOOL showHud; //第一次显示加载框 其他都不显示了
     
 }
 @property (strong ,nonatomic) UICollectionView * collectionView;
@@ -40,7 +46,8 @@
     [super viewDidLoad];
     CollectSpace =  0;
     Topheight = 172;
-    CollectitemArray = [[NSMutableArray alloc]initWithArray:@[@[@"咨询",@"电话预约",@"见面预约",@"法律服务"],@[@"收藏",@"我的发布",@"客服中心",@"关于汇融法",@"我要合作"]]];
+    showHud = YES;
+    CollectitemArray = [[NSMutableArray alloc]initWithArray:@[@[@"咨询",@"电话预约",@"见面预约",@"法律服务"],@[@"收藏",@"我要发布",@"客服中心",@"关于汇融法",@"我要合作"]]];
    
     CollectitemImageArray = [[NSMutableArray alloc]initWithArray:@[@[@"main_consult",@"main_telephone",@"main_order",@"main_service"],@[@"my_collect",@"my_release",@"my_customeservice",@"my_about",@"my_cooperation"]]];
     
@@ -62,10 +69,19 @@
      NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *uid =[user objectForKey:@"userid"];//userID
     if (uid.length == 0) {
-        //        self.tableView.hidden = YES;
-        LoginViewController *view = [LoginViewController new];
+
+//        self.tableView.hidden = YES;
+//        LoginViewController *view = [LoginViewController new];
+//        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+    
+        LawLogionViewController *view = [LawLogionViewController new];
         UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
         [UIApplication sharedApplication].delegate.window.rootViewController = na;
+        
+        
+        
+        
         
     }else{
         
@@ -74,34 +90,31 @@
 }
 - (void)requestData {
     
-    
+ 
     MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:self.view];
+    if (showHud) {
+
     [self.view addSubview:hud];
     [self.view bringSubviewToFront:hud];
     hud.labelText = @"拼命加载中";
     hud.removeFromSuperViewOnHide = YES;
+
     [hud show:YES];
+        showHud = NO ;
+    }
     
     //action、value
-    NSDictionary *dic = @{
-                          @"user_id":UserId,
+    NSDictionary *valuedic = @{
+                          @"lawyer_id":UserId,
                           };
-    NSError *dataError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingOptions)0 error:&dataError];
-    NSString *body = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    DLog(@"%@",body);
-    NSData *data = [body dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *base64String = [data base64EncodedStringWithOptions:0];
-    DLog(@"%@",base64String);
     
-    NSDictionary *parameter= @{
-                               @"action":[NSString stringWithFormat:@"App/Lawyer/ziliao"],
-                               @"value":base64String
-                               };
-    
-    DLog(@"%@",parameter);
-    WS(ws);
-    [AFManagerHelp POST:BASE_URL parameters:parameter success:^(id responseObjeck) {
+   NSString * base64String =[NSString getBase64StringWithArray:valuedic];
+ 
+    NSMutableDictionary  *dic =[[NSMutableDictionary alloc]init] ;
+    NewGetInfor ;
+    [dic setValue:base64String forKey:@"value"];
+     WS(ws);
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
         // 处理数据
         DLog(@" %@",responseObjeck);
         [hud hide:YES];
@@ -111,6 +124,8 @@
         }else{
             [ShowHUD showWYBTextOnly:responseObjeck[@"msg"] duration:2 inView:ws.view];
         }
+        
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
         [hud hide:YES];
@@ -163,6 +178,8 @@
                 if(index == 41){
                     
                     LawPersonInfoViewController * lawrevc =  [[LawPersonInfoViewController alloc]init];
+//                  lawrevc.infoModel  =  weakSelf.infoModel ;
+                    
                     [weakSelf.navigationController pushViewController:lawrevc animated:YES];
                 }
                 else if (index ==42) {
@@ -291,10 +308,21 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         if (  indexPath.row == 0) {
             LawCollectViewController *  collec =[[LawCollectViewController alloc]init];
             [self.navigationController pushViewController:collec animated:YES];
+        }else  if (  indexPath.row == 1) {
+            LawIWantPublicVC * about= [[LawIWantPublicVC alloc] initWithNibName:@"LawIWantPublicVC" bundle:[NSBundle mainBundle]];
+            [self.navigationController pushViewController:about animated:YES];
         }
        else  if (  indexPath.row == 2) {
             [self Callkefu];
-        }
+       }else if(indexPath.row == 3){
+           QJAboutAppViewController * about= [[QJAboutAppViewController alloc] initWithNibName:@"QJAboutAppViewController" bundle:[NSBundle mainBundle]];
+           [self.navigationController pushViewController:about animated:YES];
+           
+
+       }else if (indexPath.row ==4){
+           LawNewHeZuoViewController * hezuo  =[[LawNewHeZuoViewController alloc]init];
+           [self.navigationController pushViewController:hezuo animated:YES];
+       }
         
     }
     

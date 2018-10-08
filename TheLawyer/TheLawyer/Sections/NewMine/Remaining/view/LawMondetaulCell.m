@@ -12,9 +12,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.DetailTime.text = @"2018-06-09 10:22:06";
-    self.deteailtitle.text = @"吃喝嫖赌";
-    self.DetaileNum.text = @"-500.00";
+   
+}
+-(void)setModle:(LawMoneyDetailModel *)modle{
+    _modle = modle;
+    self.DetailTime.text = [NSString timeWithTimeIntervalString:modle.time];
+    self.deteailtitle.text =[NSString stringWithFormat:@"%@",modle.remark];
+    if ([modle.type integerValue] == 1) {
+        self.DetaileNum.text =[NSString stringWithFormat:@"+%@",modle.money];
+
+    }else{
+        self.DetaileNum.text =[NSString stringWithFormat:@"-%@",modle.money];
+
+    }
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

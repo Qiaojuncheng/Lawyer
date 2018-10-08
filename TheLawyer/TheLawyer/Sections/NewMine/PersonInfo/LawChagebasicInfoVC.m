@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ChangeTextField.placeholder = self.placherStr;
     [self addCenterLabelWithTitle:self.titleStr titleColor:nil];
     MJWeakSelf
     [self addRightButtonWithTitle:@"保存" titleColor:[UIColor colorWithHex:0x3181FE] actionBlock:^{
@@ -27,10 +28,9 @@
 }
 -(void)SaveAction{
     
-    
     //     先提交信息，在返回
-    NSLog(@"%@",self.ChangeTextField.text);
-    self.ChangValue(self.ChangeTextField.text);
+     self.ChangValue(self.ChangeTextField.text);
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (void)didReceiveMemoryWarning {

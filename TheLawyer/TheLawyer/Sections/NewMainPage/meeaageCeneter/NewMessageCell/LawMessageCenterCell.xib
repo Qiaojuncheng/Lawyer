@@ -60,7 +60,7 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37V-e8-s7f">
-                        <rect key="frame" x="298" y="26" width="8" height="8"/>
+                        <rect key="frame" x="305" y="26" width="8" height="8"/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.32156862745098036" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="PKC-vp-U2m"/>
@@ -70,14 +70,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="5UR-MK-SSd" secondAttribute="bottom" constant="5.5" id="2KF-IE-HLb"/>
-                    <constraint firstItem="37V-e8-s7f" firstAttribute="leading" secondItem="j8s-cl-Gai" secondAttribute="trailing" constant="234" id="2jg-Tr-BrN"/>
                     <constraint firstItem="5UR-MK-SSd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Che-xV-80t"/>
                     <constraint firstItem="3NE-H9-vG1" firstAttribute="leading" secondItem="j8s-cl-Gai" secondAttribute="trailing" constant="37" id="D4j-Oz-5Ok"/>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="37V-e8-s7f" secondAttribute="trailing" constant="20" id="Dhg-lR-smB"/>
                     <constraint firstItem="j8s-cl-Gai" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JT1-7W-9mc"/>
+                    <constraint firstItem="37V-e8-s7f" firstAttribute="leading" secondItem="3NE-H9-vG1" secondAttribute="trailing" constant="5" id="Kv5-Zu-s8R"/>
+                    <constraint firstItem="37V-e8-s7f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="Um2-aS-Bxp"/>
                     <constraint firstItem="nCu-cp-5Al" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="85" id="VUW-CH-0a5"/>
                     <constraint firstItem="3NE-H9-vG1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="12" id="a8f-ug-FBN"/>
-                    <constraint firstItem="37V-e8-s7f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="dCi-vQ-gQz"/>
                     <constraint firstAttribute="trailing" secondItem="5UR-MK-SSd" secondAttribute="trailing" constant="18" id="eqf-qS-kyf"/>
                     <constraint firstItem="j8s-cl-Gai" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="myG-JS-6NE"/>
                     <constraint firstItem="5UR-MK-SSd" firstAttribute="leading" secondItem="j8s-cl-Gai" secondAttribute="trailing" constant="13" id="npg-xI-Nxk"/>
@@ -86,6 +85,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="ConcentLB" destination="3NE-H9-vG1" id="i6n-DM-eNW"/>
+                <outlet property="MeeageImage" destination="j8s-cl-Gai" id="GyM-18-hTr"/>
                 <outlet property="RedView" destination="37V-e8-s7f" id="OWW-0r-PdW"/>
                 <outlet property="SeeBtn" destination="D1G-fl-EYx" id="ZGr-57-qia"/>
                 <outlet property="TimeLB" destination="nCu-cp-5Al" id="6OE-uz-hRH"/>

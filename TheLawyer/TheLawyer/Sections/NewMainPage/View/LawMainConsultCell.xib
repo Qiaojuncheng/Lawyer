@@ -53,13 +53,15 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="adopt" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-W3-fYt">
-                        <rect key="frame" x="236" y="0.0" width="70" height="58"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adopt" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-W3-fYt">
+                        <rect key="frame" x="199" y="0.0" width="70" height="58"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="58" id="9cv-ue-ssm"/>
+                            <constraint firstAttribute="width" constant="70" id="m76-gO-97Y"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="身份证被被人拿走了如何规避风险？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCS-WS-ibl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证被被人拿走了如何规避风险？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCS-WS-ibl">
                         <rect key="frame" x="15" y="67" width="290" height="18"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -81,24 +83,53 @@
                             <constraint firstAttribute="height" constant="8" id="jNu-C2-tqo"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已回答" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEj-qg-59V">
-                        <rect key="frame" x="237" y="90" width="69" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 38" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alb-9I-QG9">
+                        <rect key="frame" x="284" y="19" width="31" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="9WZ-tH-q2b"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.26666666666666666" green="0.51372549019607838" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.92156862745098034" green="0.46666666666666667" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiF-QJ-r2u">
+                        <rect key="frame" x="243" y="91" width="72" height="30"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="CAt-6U-n3a"/>
+                            <constraint firstAttribute="width" constant="72" id="jso-H4-9Np"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="已回答">
+                            <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="selected" title="  回答" image="btn_answer1">
+                            <color key="titleColor" red="0.26666666666666666" green="0.51372549019607838" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="AnswerBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P9O-LX-6yu"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="LiF-QJ-r2u" secondAttribute="bottom" constant="2.5" id="6Df-oY-lVe"/>
                     <constraint firstItem="ccp-NC-yB6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="9qc-Bg-2D1"/>
+                    <constraint firstItem="alb-9I-QG9" firstAttribute="leading" secondItem="hcA-W3-fYt" secondAttribute="trailing" constant="15" id="Fjw-Bk-f2b"/>
+                    <constraint firstItem="hcA-W3-fYt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GQP-iX-iiD"/>
                     <constraint firstItem="Tza-6F-JV1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="O0V-Xd-CUn"/>
                     <constraint firstItem="ccp-NC-yB6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="O8m-mr-S5m"/>
+                    <constraint firstItem="TCS-WS-ibl" firstAttribute="top" secondItem="ccp-NC-yB6" secondAttribute="bottom" constant="7" id="Oly-Ql-3qb"/>
                     <constraint firstItem="hIe-S5-RET" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="Pxc-fI-RSf"/>
                     <constraint firstItem="aRk-3e-uda" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="QCV-7D-JAN"/>
+                    <constraint firstAttribute="trailing" secondItem="LiF-QJ-r2u" secondAttribute="trailing" constant="5" id="R9Z-oY-JrT"/>
                     <constraint firstAttribute="bottomMargin" secondItem="xXe-aJ-UhZ" secondAttribute="bottom" constant="5" id="SQo-cp-irE"/>
+                    <constraint firstAttribute="trailing" secondItem="alb-9I-QG9" secondAttribute="trailing" constant="5" id="TAc-Gq-UC2"/>
                     <constraint firstItem="Tza-6F-JV1" firstAttribute="leading" secondItem="ccp-NC-yB6" secondAttribute="trailing" constant="8" id="Uku-5t-2q7"/>
+                    <constraint firstItem="alb-9I-QG9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="YvU-az-LvO"/>
                     <constraint firstItem="hIe-S5-RET" firstAttribute="leading" secondItem="Tza-6F-JV1" secondAttribute="trailing" constant="8" id="i9C-bw-N0B"/>
+                    <constraint firstAttribute="trailing" secondItem="TCS-WS-ibl" secondAttribute="trailing" constant="15" id="nmC-bZ-jjr"/>
+                    <constraint firstItem="LiF-QJ-r2u" firstAttribute="top" secondItem="TCS-WS-ibl" secondAttribute="bottom" constant="6" id="nvu-3F-YEv"/>
+                    <constraint firstItem="TCS-WS-ibl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="pxR-fT-Zak"/>
                     <constraint firstItem="xXe-aJ-UhZ" firstAttribute="leading" secondItem="aRk-3e-uda" secondAttribute="trailing" constant="9.5" id="r7y-wR-L7v"/>
                     <constraint firstItem="aRk-3e-uda" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="t7J-kf-XiV"/>
                 </constraints>
@@ -109,14 +140,16 @@
                 <outlet property="PersonImage" destination="ccp-NC-yB6" id="AEp-kq-CYv"/>
                 <outlet property="PersonName" destination="Tza-6F-JV1" id="But-ji-7jb"/>
                 <outlet property="PersonTypeLB" destination="hIe-S5-RET" id="GOh-Fv-MD1"/>
+                <outlet property="PriceLB" destination="alb-9I-QG9" id="ryL-CA-FiH"/>
                 <outlet property="RedView" destination="xXe-aJ-UhZ" id="XfT-L9-0yC"/>
                 <outlet property="TimeLB" destination="aRk-3e-uda" id="BCx-nR-7DD"/>
                 <outlet property="adopt" destination="hcA-W3-fYt" id="AwH-nv-4Re"/>
-                <outlet property="answerLB" destination="ZEj-qg-59V" id="7Be-J8-Dvz"/>
+                <outlet property="answBtn" destination="LiF-QJ-r2u" id="HzA-kf-Unp"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
         <image name="adopt" width="69" height="58"/>
+        <image name="btn_answer1" width="14" height="14"/>
     </resources>
 </document>

@@ -7,10 +7,12 @@
 //
 
 #import "BaseViewController.h"
-
+#import "LawCaseNewModel.h"
+typedef void (^changBlock) (NSString * iscollect);
 @interface LawCaseAppreciateDetail : BaseViewController
 
-@property (strong , nonatomic) NSString * urlStr;
-@property (strong , nonatomic) NSString * titleStr;
+ 
+@property (strong , nonatomic) LawCaseNewModel * model;
+@property (copy , nonatomic) changBlock  ChangCollectStatus;
 
 @end

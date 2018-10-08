@@ -12,19 +12,28 @@
 #import "JSDropDownMenu.h"
 #import "LawConsultDetailViewController.h"
 
+#import "LawAddressModel.h"
+#import "LawConsultTypeModel.h"
+
 #import "LawMeetingCell.h"
 #import  "LawSquarSrviceViewDetailController.h"
 
 
 @interface LawMeetingViewController ()<UITableViewDataSource,UITableViewDelegate,JSDropDownMenuDelegate,JSDropDownMenuDataSource>{
     JSDropDownMenu *menu;
-    
-    NSArray * data1;
-    NSArray * data2;
+   
+    NSMutableArray * data1;
+    NSMutableArray * data2;
     NSArray * data3;
     
     NSMutableArray * dataArrray ;
     UITableView * _tableView;
+    
+    NSString * cate_id;// 案件的id
+    NSString *area;// 区域id
+    NSString *order ;   // 默认 @""    正序 正序 1
+    
+    NSInteger page ;
 }
 
 
@@ -37,8 +46,14 @@
     [super viewDidLoad];
     [self addCenterLabelWithTitle:self.meetTing titleColor:nil];
     
-    data2 = @[@"案件类型",@"",@"",@"",@"",@"",@""];
-    data3 = @[@"",@"",@"",@"",@"",@"",@""];
+    dataArrray   =[[NSMutableArray alloc]init];
+    order = @"";
+    cate_id = @"";
+    area = @"";
+    page =1 ;
+    
+    [self makeAddreeData];
+
     [self makedata];
     [self makemenu];
     [self addView ];
@@ -54,30 +69,71 @@
     menu.backgroundColor =[UIColor whiteColor];
     [self.view addSubview:menu];
     
-}
--(BOOL)haveRightTableViewInColumn:(NSInteger)column{
-    
-    if (column == 0) {
-        return  YES;
+    menu.SelectArray =[[NSMutableArray alloc]init];
+    NSArray * numbe = @[@3,@2,@1];
+    for(int i = 0 ;i<3 ;i++){
+        
+        NSMutableArray * nsmutable =[[NSMutableArray alloc]init];
+        NSInteger  haveRightTableView = [numbe[i] intValue];
+        for (int j = 0; j< haveRightTableView ; j++) {
+            NSInteger number = 0;
+            [nsmutable addObject:@(number)];
+        }
+        
+        [menu.SelectArray addObject:nsmutable];
     }
-    return NO;
+    
+
+    
+}
+
+-(NSInteger )haveRightTableViewInColumn:(NSInteger)column{
+    //    0 一个  1 两个    2 三个
+    if (column == 0) {
+        return  2;
+    }else if(column== 1){
+        return 1;
+    }
+    return 0;
 }
 -(NSInteger)menu:(JSDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column leftOrRight:(NSInteger)leftOrRight leftRow:(NSInteger)leftRow{
+    
+    NSMutableArray * ColumnlectDataArray    =[[NSMutableArray alloc]initWithArray:menu.SelectArray[column]];
+    
     if (column == 0) {
-        if(leftOrRight){//  0 左侧  1 右侧
-            return 5;
-        }else{
-            return 30;
+        if(leftOrRight == 0){//  0 左侧  1 中间  2 右侧
+            return data1.count;
+        }else if(leftOrRight == 1){
+            LawAddressModel * proModel = data1[[ColumnlectDataArray[0] integerValue]];
+            return proModel.child.count;
+        }else if(leftOrRight == 2){
+            
+            LawAddressModel * proModel = data1[[ColumnlectDataArray[0] integerValue]];
+            LawAddressModel * cityModel = proModel.child[[ColumnlectDataArray[1] integerValue]];
+            
+            return cityModel.child.count;
+            
         }
-    }else if(column == 1){
-        return 5;
         
+    }else if(column == 1){
+        if(leftOrRight == 0){//  0 左侧  1 中间  2 右侧
+            return data2.count;
+        }else if(leftOrRight == 1){
+            
+            LawConsultTypeModel * TypeModel = data2[[ColumnlectDataArray[0] integerValue]];
+            
+            
+            
+            return TypeModel.second_child.count;
+            
+            
+        }
     }else if(column == 2){
-        return 8;
+        return data3.count;
         
     }
     
-    return 5;
+    return 0;
 }
 -(NSInteger)numberOfColumnsInMenu:(JSDropDownMenu *)menu{
     return 3;
@@ -103,21 +159,50 @@
 }
 -(NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath{
     
+    NSMutableArray * ColumnlectDataArray    =[[NSMutableArray alloc]initWithArray:menu.SelectArray[indexPath.column]];
+    
+    
     
     switch (indexPath.column) {
         case 0:
-            if (indexPath.leftOrRight) {
-                return [NSString stringWithFormat:@"第%ld个市",indexPath.row]; //_data1[indexPath.row][@"cat_name"] ;
+            
+            
+            if (indexPath.leftOrRight == 0) {
+                LawAddressModel * Promodle =   data1[indexPath.row];
+                return [NSString stringWithFormat:@"%@",Promodle.name];
+            }else if (indexPath.leftOrRight == 1){
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                LawAddressModel * proModel = data1[[leftSelectNumber  integerValue]];
+                LawAddressModel * Citymodle =   proModel.child[indexPath.row];
+                return [NSString stringWithFormat:@"%@",Citymodle.name]; //_data1[indexPath.row][@"cat_name"] ;
                 
             }else{
-                return [NSString stringWithFormat:@"第%ld个省份",indexPath.row]; //_data1[indexPath.row][@"cat_name"] ;
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                NSNumber * rightSelectNumber =   ColumnlectDataArray[1];
+                LawAddressModel * proModel = data1[[leftSelectNumber integerValue] ];
+                LawAddressModel * Citymodle =   proModel.child[[rightSelectNumber integerValue]];
+                LawAddressModel * Areamodel =   Citymodle.child[indexPath.row];
                 
+                return [NSString stringWithFormat:@"%@",Areamodel.name]; //
             }
             break;
             //        case 1: return _data2[0];
-        case 1:return [NSString stringWithFormat:@"第%ld个案件类型",indexPath.row];//@"dasdfa";//_data2[indexPath.row][@"level_name"];
+        case 1:
+            if (indexPath.leftOrRight == 0) {
+                LawConsultTypeModel * typeOne = data2[indexPath.row];
+                return typeOne.name;
+                
+            }else{
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                LawConsultTypeModel * typeOne = data2[[leftSelectNumber integerValue]];
+                LawConsultTypeModel * typtwo = typeOne.second_child[indexPath.row];
+                
+                return typtwo.name;
+                
+            }
             break;
-        case 2: return  [NSString stringWithFormat:@"时间%ld",indexPath.row];//_data3[indexPath.row];
+        case 2:
+            return  data3[indexPath.row];
             break;
         default:
             return nil;
@@ -125,15 +210,15 @@
     }
 }
 
-- (NSInteger)currentLeftSelectedRow:(NSInteger)column {
-    return 5;
-}
-
-
+//-(NSInteger)currentLeftSelectedRow:(NSInteger)column {
+//
+//}
 - (CGFloat)widthRatioOfLeftColumn:(NSInteger)column {
     if (column ==0) {
-        return  .5f;
+        return  .33333f;
         
+    }else if(column ==1){
+        return  0.5;
     }else{
         return  1;
         
@@ -142,15 +227,43 @@
 
 -(void)menu:(JSDropDownMenu *)menu didSelectRowAtIndexPath:(JSIndexPath *)indexPath{
     
+    NSMutableArray * ColumnlectDataArray =menu.SelectArray[indexPath.column];
     switch (indexPath.column) {
         case 0:
-            
-            
+            if(indexPath.leftOrRight ==2){
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                NSNumber * rightSelectNumber =   ColumnlectDataArray[1];
+                LawAddressModel * proModel = data1[[leftSelectNumber integerValue] ];
+                LawAddressModel * Citymodle =   proModel.child[[rightSelectNumber integerValue]];
+                LawAddressModel * Areamodel =   Citymodle.child[indexPath.row];
+                area = Areamodel.id;
+                NSLog(@"first %@ = id= %@",Areamodel.name ,Areamodel.id);
+                page = 1;
+                [self makedata];
+                
+            }
             break;
         case 1:
-            
+            if (indexPath.leftOrRight == 1) {
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                LawConsultTypeModel * typeOne = data2[[leftSelectNumber integerValue]];
+                LawConsultTypeModel * typtwo = typeOne.second_child[indexPath.row];
+                cate_id = typtwo.id;
+                NSLog(@" third = %@ ，name = %@  ",typtwo.id,typtwo.name);
+                page = 1;
+                [self makedata];
+                
+            }
             break;
         case 2:
+            if (indexPath.row == 0) {
+                order = @"";
+            }else{
+                order = @"1";
+            }
+            page = 1;
+            [self makedata];
+            
             
             break;
         default:
@@ -158,18 +271,62 @@
     }
     
 }
-
 -(void)makedata{
     
-    dataArrray   =[[NSMutableArray alloc]init];
-    for (int i = 0 ; i<10; i++) {
-        LawMessageModel * model =[[LawMessageModel alloc]init];
-        model.showBtn = [NSString stringWithFormat:@"%d",rand()%2];
-        model.showRed = [NSString stringWithFormat:@"%d",rand()%2];
-        
-        [dataArrray addObject:model];
+    
+    
+    NSMutableDictionary * dic  =[[NSMutableDictionary alloc]init];
+    NewMeetGetyuYue
+    NSMutableDictionary *   valueDic =[[NSMutableDictionary alloc]init];
+    [valueDic setObject:UserId forKey:@"lawyer_id" ];
+    if ([self.meetTing isEqualToString:@"电话预约"]) {
+        [valueDic setObject:@"1" forKey:@"type" ];
+    }else{
+        [valueDic setObject:@"2" forKey:@"type" ];
     }
     
+    [valueDic setObject:[NSString stringWithFormat:@"%ld",page ] forKey:@"p" ];
+    [valueDic setObject:order forKey:@"order" ];
+    [valueDic setObject:cate_id  forKey:@"cate_id" ];
+    [valueDic setObject:area forKey:@"area" ];
+    if(self.mid){
+        [valueDic setObject:self.mid forKey:@"mid" ];
+        [valueDic setObject:self.tid forKey:@"tid" ];
+        
+    }
+    NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
+    [dic setValue:baseStr forKey:@"value"];
+    NSLog(@"dic = %@",dic);
+    [self showHudInView:self.view hint:nil];
+    
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSLog(@"%@",data);
+    
+        if (page ==1) {
+            [dataArrray removeAllObjects];
+        }
+        NSString * codeStr =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([codeStr isEqualToString:@"0"]) {
+            
+            for (NSDictionary * dics in data[@"data"]) {
+                LawMessageModel * model =  [LawMessageModel yy_modelWithDictionary:dics];
+                [dataArrray addObject:model];
+                
+            }
+            
+            [_tableView reloadData];
+        }
+        [self hideHud];
+        [_tableView.mj_footer  endRefreshing];
+        [_tableView.mj_header  endRefreshing];
+        
+    } failure:^(NSError *error) {
+        [self hideHud];
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+    }];
+    
+   
 }
 -(void)addView{
     
@@ -179,6 +336,15 @@
     _tableView.separatorInset = UIEdgeInsetsMake(0,SCREENWIDTH, 0, 0);
     _tableView.backgroundColor =[UIColor whiteColor];
     _tableView.tableFooterView = [[UIView alloc]init];
+    _tableView.mj_header  = [MJRefreshNormalHeader  headerWithRefreshingBlock:^{
+        page = 1;
+        [self makedata];
+    }];
+    _tableView.mj_footer =[MJRefreshBackNormalFooter   footerWithRefreshingBlock:^{
+        page += 1;
+        [self makedata];
+        
+    }];
     [self.view addSubview:_tableView];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -192,18 +358,125 @@
     if (cell == nil) {
         cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawMeetingCell" owner:self options:nil]lastObject];
     }
-    //    cell.model = dataArrray[indexPath.row];
+    cell.model = dataArrray[indexPath.row];
+    cell.ChangeStatusBlock = ^(NSInteger index, NSString *meetid) {
+        
+        [self changeStautsWithIndex:index AndId:meetid];
+   
+    };
+    if ( [self.meetTing isEqualToString:@"电话预约"]) {
+        cell.MeetTimeL.hidden = YES;
+        cell.ConTainViewHeight.constant = 63;
+
+    }else{
+        cell.MeetTimeL.hidden = NO;
+        cell.ConTainViewHeight.constant = 78;
+
+     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LawSquarSrviceViewDetailController * detail =[[LawSquarSrviceViewDetailController alloc]init];
-    [self.navigationController pushViewController:detail animated:YES];
+//    LawSquarSrviceViewDetailController * detail =[[LawSquarSrviceViewDetailController alloc]init];
+//    [self.navigationController pushViewController:detail animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 175;
+   
+    if ( [self.meetTing isEqualToString:@"电话预约"]) {
+        return 160;
+
+    }else{
+        return 175;
+    }
     
 }
+-(void)changeStautsWithIndex:(NSInteger )index AndId:(NSString *)messageID{
+  
+ 
+    //     30 拒绝 31 同意   32 完成
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NSMutableDictionary * valuedic =[[NSMutableDictionary alloc]init];
+    [valuedic setValue:messageID forKey:@"id"];
+    
+    if (index == 30) {
+        NewMeetYuYueStatus
+        [valuedic setValue:UserId forKey:@"lawyer_id"];
+        [valuedic setValue:@"3" forKey:@"status"];
+
+    }else if(index ==31){
+        NewMeetYuYueStatus
+        [valuedic setValue:UserId forKey:@"lawyer_id"];
+        [valuedic setValue:@"2" forKey:@"status"];
+
+    }else if(index ==32){
+        NewMeetyuYueOver
+ 
+    }
+    
+    NSString * baseStr = [NSString getBase64StringWithArray:valuedic];
+    [dic setValue:baseStr forKey:@"value"];
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        // 处理数据
+        DLog(@"%@",responseObjeck);
+  
+        [self hideHud];
+         if ([responseObjeck[@"status"] integerValue] == 0) {
+            
+             [_tableView.mj_header beginRefreshing];
+        }else{
+            [self showHint:responseObjeck[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [self hideHud];
+        [self showHint:@"操作失败"];
+
+    }];
+    
+}
+-(void)makeAddreeData{
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"AreaData" ofType:@"plist"];
+    NSArray *   plistData = [NSMutableArray arrayWithContentsOfFile:path];
+    data1 =[[NSMutableArray alloc]init];
+    for (NSDictionary * proDic in plistData) {
+        //省
+        LawAddressModel * proModel =[LawAddressModel yy_modelWithJSON:proDic];
+        [data1 addObject:proModel];
+        
+    }
+    
+    data3 = @[@"时间↓",@"时间↑"];
+    
+    
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NewConsultGetType
+    
+    
+    //    获取分类
+    
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        // 处理数据
+        DLog(@"%@",responseObjeck);
+        [self hideHud];
+        data2 =[[NSMutableArray alloc]init];
+        if ([responseObjeck[@"status"] integerValue] == 0) {
+            for (NSDictionary * proDic in responseObjeck[@"data"]) {
+                
+                LawConsultTypeModel * TypeModel =[LawConsultTypeModel yy_modelWithJSON:proDic];
+                [data2 addObject:TypeModel];
+                
+            }
+            
+        }else{
+        }
+    } failure:^(NSError *error) {
+        [self hideHud];
+    }];
+}
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

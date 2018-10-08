@@ -15,6 +15,7 @@
     // Initialization code
     [Utile makeCorner:4 view:self.LeftImaeg];
     [Utile makeCorner:4 view:self.RightImage];
+    self.LeftImaeg.userInteractionEnabled = YES ;
     self.ImageHeight.constant  = 375/SCREENWIDTH * 84;
 }
 

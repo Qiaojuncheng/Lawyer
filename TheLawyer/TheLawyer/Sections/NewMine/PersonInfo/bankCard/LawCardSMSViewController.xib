@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LawCardSMSViewController">
             <connections>
+                <outlet property="AddCarBtn" destination="tvc-Vo-48v" id="jHI-Tg-Cdb"/>
                 <outlet property="CardTextField" destination="XQd-4r-Uo4" id="1xR-mc-jRC"/>
                 <outlet property="ConcentLB" destination="oxg-n1-Wa9" id="09b-Ro-GAc"/>
                 <outlet property="GetCardBtn" destination="XyZ-rK-aT3" id="vE9-VE-6oV"/>
@@ -70,6 +71,18 @@
                     </state>
                     <connections>
                         <action selector="notReviceBtnAction:" destination="-1" eventType="touchUpInside" id="tsZ-rM-qFe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvc-Vo-48v">
+                    <rect key="frame" x="15" y="280" width="347" height="49"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.19215686274509802" green="0.50588235294117645" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="验证信息">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="AddbtnAction:" destination="-1" eventType="touchUpInside" id="quc-Kq-0WM"/>
                     </connections>
                 </button>
             </subviews>

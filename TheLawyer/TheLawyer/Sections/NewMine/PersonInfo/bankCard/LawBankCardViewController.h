@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^selectDic) (NSDictionary * BandDic);
 @interface LawBankCardViewController : BaseViewController
-
+@property (copy ,nonatomic) selectDic  selectBankCarDic;
 @end

@@ -12,12 +12,22 @@
 #import "LawCaseAppreciateDetail.h"
 #import "LawSelectTypeofCaseView.h"
 #import "LawChagebasicInfoVC.h"
+#import "LawConsultTypeModel.h"
 #import "LawplatformEditCell.h"
-@interface LawPlatformAuthViewController () <UITableViewDataSource,UITableViewDelegate>{
+#import "LawChangInfoIntroductVC.h"
+#import "LawJCImageSelect.h"
+@interface LawPlatformAuthViewController () <UITableViewDataSource,UITableViewDelegate,selectImagedelegate>{
     NSMutableArray * dataArrray ;
     UITableView * _tableView;
     NSArray * titleArray;
     NSArray * contentArray;
+    NSMutableDictionary * renzhengDic;
+    NSString *   cate_id; //擅长类型 1_2_3 最多选3个
+    NSString *   cate_name; //擅长类型 1_2_3 最多选3个
+    NSMutableArray * seleTypeArray; // 选中的擅长类型
+   
+    UIImage *  SelfselectImage ; //选中的图片
+    
 }
 @property (strong , nonatomic) UIView * bottomView;
 @property (strong , nonatomic) LawSelectTypeofCaseView * selectCaseTypeView;
@@ -29,10 +39,22 @@
          [super viewDidLoad];
         [self addCenterLabelWithTitle:@"平台认证" titleColor:nil];
         titleArray = @[@"律所",@"擅长类型",@"电话咨询",@"预约面谈",@"执业证号",@"简介"];
-        contentArray = @[@"江南皮革律所",@"婚姻家庭",@"200",@"300",@"10909321u3i435oi",@"我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介我的简介"];
+        contentArray = @[@"江南皮革律所",@"婚姻家庭",@"200",@"300",@"10909321u3i435",@""];
         self.view.backgroundColor  =   BackViewColor;
-        
-        [self addView];
+ 
+    
+    
+    seleTypeArray = [[NSMutableArray alloc]initWithArray:self.model.cate];
+     NSMutableArray * idArray =[[NSMutableArray alloc]init];
+    NSMutableArray * nameArray =[[NSMutableArray alloc]init];
+    for ( LawConsultTypeModel * model  in seleTypeArray) {
+        [idArray addObject:model.id];
+        [nameArray addObject:model.name];
+    }
+    
+    cate_id = [idArray componentsJoinedByString:@"_"];
+    cate_name = [nameArray componentsJoinedByString:@","];
+    [self addView];
     [self.view addSubview:self.selectCaseTypeView];
 
         // Do any additional setup after loading the view.
@@ -40,9 +62,26 @@
 -(LawSelectTypeofCaseView *)selectCaseTypeView{
     if (!_selectCaseTypeView) {
         _selectCaseTypeView  =[[LawSelectTypeofCaseView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
-        _selectCaseTypeView.dataArray = [[NSMutableArray alloc]initWithArray: @[@"2",@"sd"]];
-        _selectCaseTypeView.hidden = YES;
+        LawSelectTypeofCaseView *extractedExpr = _selectCaseTypeView;
+       
+        extractedExpr.dataArray = [[NSMutableArray alloc]initWithArray: self.model.cate];
         
+        _selectCaseTypeView.hidden = YES;
+        MJWeakSelf
+        __weak typeof(_tableView) Weaktable = _tableView;
+        _selectCaseTypeView.selectBlock = ^(NSArray *seleArray) {
+            NSMutableArray * idArray =[[NSMutableArray alloc]init];
+            NSMutableArray * nameArray =[[NSMutableArray alloc]init];
+            for ( LawConsultTypeModel * model  in seleArray) {
+                [idArray addObject:model.id];
+                [nameArray addObject:model.name];
+            }
+            seleTypeArray = [[NSMutableArray alloc]initWithArray:seleArray];
+            cate_id = [idArray componentsJoinedByString:@"_"];
+            cate_name = [nameArray componentsJoinedByString:@","];
+            
+            [Weaktable reloadData];
+        };
     }
     return _selectCaseTypeView;
 }
@@ -76,8 +115,21 @@
                 if (cell == nil) {
                     cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawplatformEditCell" owner:self options:nil]lastObject];
                 }
+                if (!self.CanEidt) {
+                    cell.PriceTextField.userInteractionEnabled = NO ;
+                }
                 cell.TitleLB.text =[NSString stringWithFormat:@"%@",titleArray[indexPath.row]];
-                cell.PriceTextField.text =[NSString stringWithFormat:@"%@",contentArray[indexPath.row]];
+                if (indexPath.row ==2) {
+                    cell.PriceTextField.text =[NSString stringWithFormat:@"%@",self.model.phone_money?self.model.phone_money:@""];
+                    cell.textFieldBlock = ^(NSString *money) {
+                        self.model.phone_money = money;
+                    };
+                }else{
+                    cell.PriceTextField.text =[NSString stringWithFormat:@"%@",self.model.meet_money?self.model.meet_money:@""];
+                    cell.textFieldBlock = ^(NSString *money) {
+                        self.model.meet_money = money;
+                    };
+                }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.LineView.hidden = NO;
                  return  cell ;
@@ -88,8 +140,16 @@
                     cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawInfoCell" owner:self options:nil]lastObject];
                 }
                 cell.TypeLB.text =[NSString stringWithFormat:@"%@",titleArray[indexPath.row]];
-                cell.ConcentLB.text =[NSString stringWithFormat:@"%@",contentArray[indexPath.row]];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (indexPath.row == 0) {
+                cell.ConcentLB.text =self.model.company?self.model.company:@"未填写";
+                
+            }else if (indexPath.row ==1){
+                
+               cell.ConcentLB.text =cate_name?cate_name:@"未填写";
+            }else if (indexPath.row ==4){
+                cell.ConcentLB.text= self.model.lawyer_code?self.model.lawyer_code:@"未填写";
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.LineView.hidden = NO;
                 if (indexPath.row == titleArray.count -1) {
                     cell.LineView.hidden = YES;
@@ -101,36 +161,65 @@
             if (cell == nil) {
                 cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawIntroducionCell" owner:self options:nil]lastObject];
             }
-             cell.ConcentLB.text =[NSString stringWithFormat:@"%@",contentArray[indexPath.row]];
+            cell.ConcentLB.text =[NSString stringWithFormat:@"%@",self.model.instru?self.model.instru:@""];
+            if (SelfselectImage) {
+                cell.LeftImaeg.image = SelfselectImage;
+            }else{
+                [cell.LeftImaeg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Image_URL,self.model.certificate]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                   SelfselectImage = image;
+
+                }] ;
+            }
+            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-             return  cell ;
+      
+            if (self.CanEidt) {
+            
+            [cell.LeftImaeg whenTapped:^{
+                LawJCImageSelect * selectImage =[LawJCImageSelect defaultSelectImage];
+                selectImage.delegate = self;
+                [ selectImage showInViewController:self];
+            }];
+            }
+            SelfselectImage = cell.LeftImaeg.image;
+              return  cell ;
         }
     }
     
     -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+        if (!self.CanEidt ) {
+            return ;
+        }
         if (indexPath.row == 0) {
             LawChagebasicInfoVC * changeName =[[LawChagebasicInfoVC alloc]init];
             changeName.titleStr =@"律所名称";
-            changeName.ChangeTextField.placeholder = @"请填写您所在的律所名称";
+            changeName.placherStr =self.model.company?self.model.company:@"请填写您所在的律所名称";
             changeName.ChangValue = ^(NSString *changeValueStr) {
-                
+                self.model.company = changeValueStr;
                 [_tableView reloadData];
             };
             [self.navigationController pushViewController:changeName animated:YES];
 
         }else if (indexPath.row == 1) {
             self.selectCaseTypeView.hidden = NO;
-        }else      if (indexPath.row == 4) {
+        }else   if (indexPath.row == 4) {
             LawChagebasicInfoVC * changeName =[[LawChagebasicInfoVC alloc]init];
             changeName.titleStr =@"执业证号";
-            changeName.ChangeTextField.placeholder = @"请填写您的执业证号";
+            changeName.placherStr =self.model.lawyer_code?self.model.lawyer_code:@"请填写您的执业证号";
             changeName.ChangValue = ^(NSString *changeValueStr) {
-                
+                self.model.lawyer_code = changeValueStr;
                 [_tableView reloadData];
             };
             [self.navigationController pushViewController:changeName animated:YES];
             
+        }else if (indexPath.row == 5){
+            LawChangInfoIntroductVC * changInfoVc =[[LawChangInfoIntroductVC alloc]init];
+            changInfoVc.instru  = self.model.instru ;
+            changInfoVc.ChangValue = ^(NSString *changeValueStr) {
+                self.model.instru = changeValueStr;
+                [_tableView reloadData];
+            };
+            [self.navigationController pushViewController:changInfoVc animated:YES];
         }
       
     }
@@ -160,9 +249,79 @@
     }
     return _bottomView;
 }
-
+#pragma mark  选择图片的代理
+-(void)seleWithImage:(UIImage *)selectImage{
+    
+    SelfselectImage = selectImage;
+    
+    [_tableView reloadData];
+}
+-(void)cancelSelecImage{
+    
+    
+}
 -(void)SubmitAction:(UIButton *)sender{
+    
+    if (!self.CanEidt ) {
+        [self showHint:@"正在审核，无法修改！"];
+
+        return ;
+    }
+    if(!self.model.company){
+        [self showHint:@"请输入您所在的律所名称！"];
+        return ;
+    }else if (!cate_id){
+        [self showHint:@"请选择您的擅长领域！"];
+      return ;
+    }else if (!self.model.phone_money){
+        [self showHint:@"请填写您电话预约价格！"];
+      return ;
+    }else if (!self.model.meet_money){
+        [self showHint:@"请填写您见面咨询价格！"];
+     return ;
+    }else if (!self.model.lawyer_code){
+        [self showHint:@"请填写您的执业证号！"];
+    return ;
+    }else if (!self.model.instru){
+        [self showHint:@"请输入您的简介！"];
+        return ;
+    }else if (!SelfselectImage){
+        [self showHint:@"请上传您的营业执照"];
+        return ;
+    }
+    
     NSLog(@"提交");
+    NSData  * imageData  = UIImageJPEGRepresentation(SelfselectImage, 0.01);
+    
+    NSMutableDictionary *valuedic =[[NSMutableDictionary alloc]init];
+    [valuedic setValue:UserId forKey:@"lawyer_id"];
+    [valuedic setValue:self.model.company forKey:@"company"];
+    [valuedic setValue:cate_id forKey:@"cate_id"];
+    [valuedic setValue:self.model.phone_money forKey:@"phone_money"];
+    [valuedic setValue:self.model.meet_money forKey:@"meet_money"];
+    [valuedic setValue:self.model.lawyer_code forKey:@"lawyer_code"];
+    [valuedic setValue:self.model.instru forKey:@"instru"];
+ 
+    NSString * base64String =[NSString getBase64StringWithArray:valuedic];
+    NSLog(@"cate_id  = %@ ",cate_id);
+    NSMutableDictionary  *dic =[[NSMutableDictionary alloc]init] ;
+    NewMyInforRen ;
+    [dic setValue:base64String forKey:@"value"];
+    [AFManagerHelp   asyncUploadFileWithData:imageData name:@"certificate" fileName:@"certificate.jpg" mimeType:@"image/jpeg" parameters:dic success:^(id responseObject) {
+        
+        if ([responseObject[@"status"] integerValue] == 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }else{
+      
+        }
+
+        [self showHint:responseObject[@"msg"]];
+        [self hideHud];
+    } failture:^(NSError *error) {
+        [self hideHud];
+        
+    }];
     
 }
 

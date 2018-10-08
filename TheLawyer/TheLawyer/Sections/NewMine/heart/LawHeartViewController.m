@@ -8,10 +8,12 @@
 
 #import "LawHeartViewController.h"
 #import "LawheartCell.h"
+#import "LawNewHeaterModel.h"
 @interface LawHeartViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray * dataArrray ;
     UITableView * _tableView;
+    NSInteger Page;
 }
 
 @end
@@ -20,22 +22,77 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    Page = 1;
+    dataArrray = [[NSMutableArray alloc]init];
     [self addCenterLabelWithTitle:@"收到的心意" titleColor:nil];
     [self addView];
+    [self makeData];
     // Do any additional setup after loading the view from its nib.
 }
+-(void)makeData{
+    NSDictionary * dic  =[[NSMutableDictionary alloc]init];
+    NewHetermind
+    if( [UserId length] < 1){
+        return ;
+    }
+    NSDictionary * valudic ;
+    if(self.mid){
+        valudic = @{@"lawyer_id":UserId,@"p":[NSString stringWithFormat:@"%ld",Page],@"mid":self.mid};
+    }else{
+         valudic = @{@"lawyer_id":UserId,@"p":[NSString stringWithFormat:@"%ld",Page]};
+    }
+ 
+    NSString * baseStr = [NSString getBase64StringWithArray:valudic];
+    [dic setValue:baseStr forKey:@"value"];
+    
+    [self showHudInView:self.view hint:nil];
+    
+    
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([str isEqualToString:@"0"]) {
+            if (Page == 1) {
+                [dataArrray removeAllObjects];
+            }
+            for (NSDictionary * dicc in data[@"data"]) {
+                LawNewHeaterModel * model = [LawNewHeaterModel yy_modelWithJSON:dicc];
+                [dataArrray addObject:model];
+            }
+            [_tableView reloadData];
+        }
+        [self hideHud];
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+    } failure:^(NSError *error) {
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+        [self hideHud];
+        NSLog(@"%@",error);
+    }];
+    
+}
+
 -(void)addView{
     
     _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,  NavStatusBarHeight , SCREENWIDTH, SCREENHEIGHT  -  NavStatusBarHeight ) style:UITableViewStylePlain];
     _tableView.delegate=  self;
     _tableView.dataSource = self;
-    _tableView.separatorInset = UIEdgeInsetsMake(0,SCREENWIDTH, 0, 0);
+//    _tableView.separatorInset = UIEdgeInsetsMake(0,SCREENWIDTH, 0, 0);
     _tableView.backgroundColor =[UIColor whiteColor];
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        Page =1;
+        [self makeData];
+    }];
+    _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+        Page ++;
+        [self makeData];
+
+    }];
     _tableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:_tableView];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10; //dataArrray.count;
+    return dataArrray.count;
     
 }
 
@@ -45,7 +102,7 @@
     if (cell == nil) {
         cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawheartCell" owner:self options:nil]lastObject];
     }
-    //    cell.model = dataArrray[indexPath.row];
+    cell.model = dataArrray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell ;
 }

@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *TimeLB;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *adoptImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *ReplayLB;
+
 
 
 @property (strong , nonatomic) LawConsultDetailReplayModel * model;

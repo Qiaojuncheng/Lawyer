@@ -27,38 +27,41 @@
     // Do any additional setup after loading the view.
 }
 -(void)addView{
-    backScreeView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,NavStatusBarHeight +  48, SCREENWIDTH, SCREENHEIGHT  - NavStatusBarHeight- 48 )];
+//    backScreeView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,NavStatusBarHeight +  48, SCREENWIDTH, SCREENHEIGHT  - NavStatusBarHeight- 48 )];
+    backScreeView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,NavStatusBarHeight, SCREENWIDTH, SCREENHEIGHT  - NavStatusBarHeight )];
+
     backScreeView.pagingEnabled = YES;
-    backScreeView.contentSize = CGSizeMake(SCREENWIDTH * 2, backScreeView.height);
+//    backScreeView.contentSize = CGSizeMake(SCREENWIDTH * 2, backScreeView.height);
  
     
     linview  = [[UIView alloc]initWithFrame:CGRectMake(0,NavStatusBarHeight+ 46, 60, 2)];
+    linview.hidden = YES;
     linview.backgroundColor = [UIColor colorWithHex:0x4483F6];
     [self.view addSubview:linview];
     
     [self.view addSubview:backScreeView];
-    for (int i = 0; i< 2; i++) {
-//        button
-        UIButton * ItemBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        ItemBtn.frame = CGRectMake(SCREENWIDTH/2 * i, NavStatusBarHeight, SCREENWIDTH/2, 46);
-        if (i== 0) {
-            [ItemBtn setTitle:@"订单服务提醒" forState:UIControlStateNormal];
-            selectBtn = ItemBtn;
-             linview.centerX= selectBtn.centerX;
-        }else{
-            [ItemBtn setTitle:@"系统消息" forState:UIControlStateNormal];
-            ItemBtn.titleLabel.font   = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
-
-        }
-        ItemBtn.tag = 20+i;
-        selectBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-        [ItemBtn addTarget:self action:@selector(selectionAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [ItemBtn setTitleColor:ShallowTintColor forState:UIControlStateNormal];
-        [ItemBtn setTitleColor:ShallowTintColor forState:UIControlStateSelected];
-
-        [self.view addSubview:ItemBtn];
-//        line
+    for (int i = 0; i< 1; i++) {
+////        button
+//        UIButton * ItemBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+//        ItemBtn.frame = CGRectMake(SCREENWIDTH/2 * i, NavStatusBarHeight, SCREENWIDTH/2, 46);
+//        if (i== 0) {
+//            [ItemBtn setTitle:@"订单服务提醒" forState:UIControlStateNormal];
+//            selectBtn = ItemBtn;
+//             linview.centerX= selectBtn.centerX;
+//        }else{
+//            [ItemBtn setTitle:@"系统消息" forState:UIControlStateNormal];
+//            ItemBtn.titleLabel.font   = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+//
+//        }
+//        ItemBtn.tag = 20+i;
+//        selectBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+//        [ItemBtn addTarget:self action:@selector(selectionAction:) forControlEvents:UIControlEventTouchUpInside];
+//
+//        [ItemBtn setTitleColor:ShallowTintColor forState:UIControlStateNormal];
+//        [ItemBtn setTitleColor:ShallowTintColor forState:UIControlStateSelected];
+//
+//        [self.view addSubview:ItemBtn];
+////        line
         
         LawMianPageMessageList * listView  =[[LawMianPageMessageList alloc]init];
          listView.view.frame = CGRectMake(SCREENWIDTH * i, 0, SCREENWIDTH, backScreeView.height);

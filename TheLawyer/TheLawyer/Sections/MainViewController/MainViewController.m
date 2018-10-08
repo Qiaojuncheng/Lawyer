@@ -11,6 +11,7 @@
 #import "GrabModel.h"
  #import "MainDetailViewController.h"
 #import "LoginViewController.h"
+#import "LawLogionViewController.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>{
     
@@ -130,9 +131,14 @@
  
         }else if([status isEqualToString:@"1003"]){
              [ShowHUD showWYBTextOnly:@"登陆已失效请重新登陆！" duration:2 inView:ws.view];
-            LoginViewController *view = [LoginViewController new];
+            
+            LawLogionViewController *view = [LawLogionViewController new];
             UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
-        [UIApplication sharedApplication].delegate.window.rootViewController  = na;
+            [UIApplication sharedApplication].delegate.window.rootViewController = na;
+            
+//            LoginViewController *view = [LoginViewController new];
+//            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//        [UIApplication sharedApplication].delegate.window.rootViewController  = na;
         }else{
             [ShowHUD showWYBTextOnly:responseObjeck[@"msg"] duration:2 inView:ws.view];
 

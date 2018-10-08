@@ -7,7 +7,7 @@
 //
 
 #import "LawMainTopView.h"
-
+#import "LawNewHeaterModel.h"
 @implementation LawMainTopView 
 
 -(void)makeDataWithScrollLBArray:(NSArray * )titleArray{
@@ -29,8 +29,12 @@
     textAttachment.bounds = CGRectMake(0, -4, 15, 15);
     NSAttributedString *attachmentAttrStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
     [attrStr insertAttributedString:attachmentAttrStr atIndex:attrStr.length];
+    NSMutableArray * titArray =[[NSMutableArray alloc]init];
+    for (LawNewHeaterModel * model  in titleArray) {
+        [titArray addObject:[NSString stringWithFormat:@"%@律师细心解答，收到心意%@元",model.lawyer_name,model.money]];
+    }
     
-    _scrollTextView.textDataArr = @[@"这是一条数据：000000",@"这是一条数据：111111",@"这是一条数据：222222",@"这是一条数据：333333",@"这是一条数据：444444",@"这是一条数据：555555",attrStr];
+    _scrollTextView.textDataArr =titArray;
     
     
     [_scrollTextView startScrollBottomToTopWithNoSpace];

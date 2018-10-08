@@ -18,6 +18,8 @@
 		1F1BA000212413CF0069E1CD /* LawAnnouncementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B9FFF212413CF0069E1CD /* LawAnnouncementViewController.m */; };
 		1F1BA005212416CC0069E1CD /* LawMainADCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1BA003212416CC0069E1CD /* LawMainADCell.m */; };
 		1F1BA006212416CC0069E1CD /* LawMainADCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1BA004212416CC0069E1CD /* LawMainADCell.xib */; };
+		1F278AFC215229E900D76F48 /* LawChangInfoIntroductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F278AFA215229E900D76F48 /* LawChangInfoIntroductVC.m */; };
+		1F278AFD215229E900D76F48 /* LawChangInfoIntroductVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F278AFB215229E900D76F48 /* LawChangInfoIntroductVC.xib */; };
 		1F3286431FCCF7F0008FB50F /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3286291FCCF7F0008FB50F /* libSocialQQ.a */; };
 		1F3286441FCCF7F0008FB50F /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F32862B1FCCF7F0008FB50F /* TencentOpenAPI.framework */; };
 		1F3286451FCCF7F0008FB50F /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F32862C1FCCF7F0008FB50F /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -34,6 +36,7 @@
 		1F33947B204E94170037A316 /* in.caf in Resources */ = {isa = PBXBuildFile; fileRef = 1F33947A204E94170037A316 /* in.caf */; };
 		1F39A4431FB293C800D6DF0C /* QJCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F39A4411FB293C800D6DF0C /* QJCIntroCell.m */; };
 		1F39A4441FB293C800D6DF0C /* QJCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F39A4421FB293C800D6DF0C /* QJCIntroCell.xib */; };
+		1F3E63FE215282DB001D47AC /* LawPlatformModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E63FD215282DB001D47AC /* LawPlatformModel.m */; };
 		1F4086AC1FBD1BA8008DD059 /* QJFAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4086AB1FBD1BA8008DD059 /* QJFAQViewController.m */; };
 		1F4086AF1FBD1BB3008DD059 /* QJNewMessageTX.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4086AE1FBD1BB2008DD059 /* QJNewMessageTX.m */; };
 		1F4086B21FBD1C06008DD059 /* QJCJQuestionSubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4086B01FBD1C05008DD059 /* QJCJQuestionSubModel.m */; };
@@ -52,6 +55,7 @@
 		1F514240212ADEC8001F1095 /* LawheartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F51423E212ADEC8001F1095 /* LawheartCell.xib */; };
 		1F514244212ADEEC001F1095 /* LawHeartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F514242212ADEEC001F1095 /* LawHeartViewController.m */; };
 		1F514245212ADEEC001F1095 /* LawHeartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F514243212ADEEC001F1095 /* LawHeartViewController.xib */; };
+		1F53A6AD214793AB008D5A6A /* LawConsultTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F53A6AC214793AB008D5A6A /* LawConsultTypeModel.m */; };
 		1F57CDA32127CCE70082E6BD /* LawMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CDA22127CCE70082E6BD /* LawMeetingViewController.m */; };
 		1F57CDA82127F1D70082E6BD /* LawMeetingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CDA62127F1D70082E6BD /* LawMeetingCell.m */; };
 		1F57CDA92127F1D70082E6BD /* LawMeetingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F57CDA72127F1D70082E6BD /* LawMeetingCell.xib */; };
@@ -77,6 +81,8 @@
 		1F5C5A90212D02A000186A3B /* LawIntroducionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C5A8E212D02A000186A3B /* LawIntroducionCell.xib */; };
 		1F5D7DE721364C8A00829258 /* LawMainConsultCellMoldel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5D7DE621364C8A00829258 /* LawMainConsultCellMoldel.m */; };
 		1F5D7DEA2136A24600829258 /* LawConsultDetailReplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5D7DE92136A24500829258 /* LawConsultDetailReplayModel.m */; };
+		1F622765216052A6006FEF6C /* LawIWantPublicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F622763216052A6006FEF6C /* LawIWantPublicVC.m */; };
+		1F622766216052A6006FEF6C /* LawIWantPublicVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F622764216052A6006FEF6C /* LawIWantPublicVC.xib */; };
 		1F62882F1FB2BFC00043EA33 /* RPWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F62882D1FB2BFC00043EA33 /* RPWordController.xib */; };
 		1F6288301FB2BFC00043EA33 /* RPWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62882E1FB2BFC00043EA33 /* RPWordController.m */; };
 		1F70A93421216EBD0053898D /* LawNewSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F70A93321216EBD0053898D /* LawNewSettingViewController.m */; };
@@ -124,11 +130,18 @@
 		1F7F90CE21353C6200DEE9F8 /* LawCardSMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7F90CC21353C6200DEE9F8 /* LawCardSMSViewController.m */; };
 		1F7F90CF21353C6200DEE9F8 /* LawCardSMSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F7F90CD21353C6200DEE9F8 /* LawCardSMSViewController.xib */; };
 		1F7F90D3213540C500DEE9F8 /* CountButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7F90D1213540C400DEE9F8 /* CountButton.m */; };
+		1F7FD5DA215B29C500B6872F /* LawCaseNewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5D9215B29C500B6872F /* LawCaseNewModel.m */; };
+		1F7FD5DE215BB2F300B6872F /* LawNewHeZuoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5DD215BB2F300B6872F /* LawNewHeZuoViewController.m */; };
+		1F7FD5E1215BBA4800B6872F /* LawMoneyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5E0215BBA4800B6872F /* LawMoneyDetailModel.m */; };
+		1F7FD5E4215BC13700B6872F /* LawNewHeaterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5E3215BC13700B6872F /* LawNewHeaterModel.m */; };
+		1F7FD5E7215BC49600B6872F /* LawMyTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5E6215BC49600B6872F /* LawMyTicketModel.m */; };
 		1F913F062133E8E90058453E /* LawJCImageSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F913F052133E8E90058453E /* LawJCImageSelect.m */; };
 		1F9C84E21FB1963D00FBD026 /* QJTiXianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C84E01FB1963C00FBD026 /* QJTiXianViewController.m */; };
 		1F9C84E31FB1963D00FBD026 /* QJTiXianViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C84E11FB1963C00FBD026 /* QJTiXianViewController.xib */; };
 		1F9C84E91FB288E800FBD026 /* QJCperfectsexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C84E71FB288E800FBD026 /* QJCperfectsexCell.m */; };
 		1F9C84EA1FB288E800FBD026 /* QJCperfectsexCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C84E81FB288E800FBD026 /* QJCperfectsexCell.xib */; };
+		1FA289762142181D00281AD1 /* LawLogionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA289742142181D00281AD1 /* LawLogionViewController.m */; };
+		1FA289772142181D00281AD1 /* LawLogionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA289752142181D00281AD1 /* LawLogionViewController.xib */; };
 		1FA3BCF2212BAF5300D77FB9 /* LawCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3BCF1212BAF5300D77FB9 /* LawCollectViewController.m */; };
 		1FA3BCF6212BB53F00D77FB9 /* LawPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3BCF5212BB53F00D77FB9 /* LawPersonInfoViewController.m */; };
 		1FA3BCFA212BB6B700D77FB9 /* LawInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3BCF8212BB6B700D77FB9 /* LawInfoCell.m */; };
@@ -160,6 +173,7 @@
 		1FA5B5AE1FAC5F9100BB2543 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5B5A21FAC5F9100BB2543 /* README.md */; };
 		1FA5B5B11FAC692900BB2543 /* QJSelectArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5B5B01FAC692900BB2543 /* QJSelectArea.m */; };
 		1FA5B5B31FAC6B1100BB2543 /* lot.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5B5B21FAC6B1100BB2543 /* lot.plist */; };
+		1FB01DAC215A73060052CC27 /* LawAppreSelectCaseTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB01DAB215A73060052CC27 /* LawAppreSelectCaseTypeView.m */; };
 		1FB627661FAAC1A5006B64A4 /* UIColor+XPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB627641FAAC1A5006B64A4 /* UIColor+XPKit.m */; };
 		1FB627681FAAC542006B64A4 /* GrabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB627671FAAC542006B64A4 /* GrabCell.xib */; };
 		1FB6276B1FAAED6D006B64A4 /* NSString+XPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB6276A1FAAED6D006B64A4 /* NSString+XPKit.m */; };
@@ -169,6 +183,7 @@
 		1FB627791FAAF896006B64A4 /* UIView+XPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB627781FAAF896006B64A4 /* UIView+XPKit.m */; };
 		1FB627821FAB1C3B006B64A4 /* QJMessageCellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB627801FAB1C3B006B64A4 /* QJMessageCellCell.m */; };
 		1FB627831FAB1C3B006B64A4 /* QJMessageCellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB627811FAB1C3B006B64A4 /* QJMessageCellCell.xib */; };
+		1FB7E67F2140CAC300DE5745 /* AreaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7E67E2140CAC100DE5745 /* AreaData.plist */; };
 		1FBB4F171FB2E8B800E62EA4 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F161FB2E8B800E62EA4 /* libsqlite3.0.tbd */; };
 		1FBB4F1A1FB2E8CC00E62EA4 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F191FB2E8CC00E62EA4 /* libstdc++.6.0.9.tbd */; };
 		1FBB4F1B1FB2EA2900E62EA4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F131FB2E88A00E62EA4 /* CoreLocation.framework */; };
@@ -187,6 +202,8 @@
 		1FBF61CA211ECAD200EDBD24 /* LawMineTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBF61C9211ECAD200EDBD24 /* LawMineTopView.xib */; };
 		1FBF61CE211ECCEB00EDBD24 /* LawMineCollectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF61CC211ECCEB00EDBD24 /* LawMineCollectCell.m */; };
 		1FBF61CF211ECCEB00EDBD24 /* LawMineCollectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBF61CD211ECCEB00EDBD24 /* LawMineCollectCell.xib */; };
+		1FC0A6B5213CE6940021C345 /* LawAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0A6B4213CE6940021C345 /* LawAddressModel.m */; };
+		1FC25F4E215E06D600D408EF /* LawNewMessageMM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC25F4D215E06D600D408EF /* LawNewMessageMM.m */; };
 		1FC3B7F11FBE760200E7FFD6 /* QJCScanHeTong.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3B7F01FBE760200E7FFD6 /* QJCScanHeTong.m */; };
 		1FF75F671FAD890700A3F46C /* MessageDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF75F651FAD890700A3F46C /* MessageDetailController.m */; };
 		1FF75F681FAD890700A3F46C /* MessageDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF75F661FAD890700A3F46C /* MessageDetailController.xib */; };
@@ -373,6 +390,9 @@
 		1F1BA002212416CC0069E1CD /* LawMainADCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMainADCell.h; sourceTree = "<group>"; };
 		1F1BA003212416CC0069E1CD /* LawMainADCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMainADCell.m; sourceTree = "<group>"; };
 		1F1BA004212416CC0069E1CD /* LawMainADCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawMainADCell.xib; sourceTree = "<group>"; };
+		1F278AF9215229E900D76F48 /* LawChangInfoIntroductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawChangInfoIntroductVC.h; sourceTree = "<group>"; };
+		1F278AFA215229E900D76F48 /* LawChangInfoIntroductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawChangInfoIntroductVC.m; sourceTree = "<group>"; };
+		1F278AFB215229E900D76F48 /* LawChangInfoIntroductVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawChangInfoIntroductVC.xib; sourceTree = "<group>"; };
 		1F3286291FCCF7F0008FB50F /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
 		1F32862B1FCCF7F0008FB50F /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		1F32862C1FCCF7F0008FB50F /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -396,6 +416,8 @@
 		1F39A4401FB293C800D6DF0C /* QJCIntroCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QJCIntroCell.h; sourceTree = "<group>"; };
 		1F39A4411FB293C800D6DF0C /* QJCIntroCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QJCIntroCell.m; sourceTree = "<group>"; };
 		1F39A4421FB293C800D6DF0C /* QJCIntroCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QJCIntroCell.xib; sourceTree = "<group>"; };
+		1F3E63FC215282DB001D47AC /* LawPlatformModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawPlatformModel.h; sourceTree = "<group>"; };
+		1F3E63FD215282DB001D47AC /* LawPlatformModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawPlatformModel.m; sourceTree = "<group>"; };
 		1F4086AA1FBD1BA8008DD059 /* QJFAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFAQViewController.h; sourceTree = "<group>"; };
 		1F4086AB1FBD1BA8008DD059 /* QJFAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFAQViewController.m; sourceTree = "<group>"; };
 		1F4086AD1FBD1BB2008DD059 /* QJNewMessageTX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJNewMessageTX.h; sourceTree = "<group>"; };
@@ -426,6 +448,8 @@
 		1F514241212ADEEC001F1095 /* LawHeartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawHeartViewController.h; sourceTree = "<group>"; };
 		1F514242212ADEEC001F1095 /* LawHeartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawHeartViewController.m; sourceTree = "<group>"; };
 		1F514243212ADEEC001F1095 /* LawHeartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawHeartViewController.xib; sourceTree = "<group>"; };
+		1F53A6AB214793AB008D5A6A /* LawConsultTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawConsultTypeModel.h; sourceTree = "<group>"; };
+		1F53A6AC214793AB008D5A6A /* LawConsultTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawConsultTypeModel.m; sourceTree = "<group>"; };
 		1F57CDA12127CCE70082E6BD /* LawMeetingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMeetingViewController.h; sourceTree = "<group>"; };
 		1F57CDA22127CCE70082E6BD /* LawMeetingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMeetingViewController.m; sourceTree = "<group>"; };
 		1F57CDA52127F1D70082E6BD /* LawMeetingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMeetingCell.h; sourceTree = "<group>"; };
@@ -468,6 +492,9 @@
 		1F5D7DE621364C8A00829258 /* LawMainConsultCellMoldel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMainConsultCellMoldel.m; sourceTree = "<group>"; };
 		1F5D7DE82136A24500829258 /* LawConsultDetailReplayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawConsultDetailReplayModel.h; sourceTree = "<group>"; };
 		1F5D7DE92136A24500829258 /* LawConsultDetailReplayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawConsultDetailReplayModel.m; sourceTree = "<group>"; };
+		1F622762216052A6006FEF6C /* LawIWantPublicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawIWantPublicVC.h; sourceTree = "<group>"; };
+		1F622763216052A6006FEF6C /* LawIWantPublicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawIWantPublicVC.m; sourceTree = "<group>"; };
+		1F622764216052A6006FEF6C /* LawIWantPublicVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawIWantPublicVC.xib; sourceTree = "<group>"; };
 		1F62882C1FB2BFBF0043EA33 /* RPWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPWordController.h; sourceTree = "<group>"; };
 		1F62882D1FB2BFC00043EA33 /* RPWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RPWordController.xib; sourceTree = "<group>"; };
 		1F62882E1FB2BFC00043EA33 /* RPWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPWordController.m; sourceTree = "<group>"; };
@@ -548,6 +575,16 @@
 		1F7F90CD21353C6200DEE9F8 /* LawCardSMSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawCardSMSViewController.xib; sourceTree = "<group>"; };
 		1F7F90D1213540C400DEE9F8 /* CountButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountButton.m; sourceTree = "<group>"; };
 		1F7F90D2213540C400DEE9F8 /* CountButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountButton.h; sourceTree = "<group>"; };
+		1F7FD5D8215B29C500B6872F /* LawCaseNewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawCaseNewModel.h; sourceTree = "<group>"; };
+		1F7FD5D9215B29C500B6872F /* LawCaseNewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawCaseNewModel.m; sourceTree = "<group>"; };
+		1F7FD5DC215BB2F300B6872F /* LawNewHeZuoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawNewHeZuoViewController.h; sourceTree = "<group>"; };
+		1F7FD5DD215BB2F300B6872F /* LawNewHeZuoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawNewHeZuoViewController.m; sourceTree = "<group>"; };
+		1F7FD5DF215BBA4800B6872F /* LawMoneyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMoneyDetailModel.h; sourceTree = "<group>"; };
+		1F7FD5E0215BBA4800B6872F /* LawMoneyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMoneyDetailModel.m; sourceTree = "<group>"; };
+		1F7FD5E2215BC13700B6872F /* LawNewHeaterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawNewHeaterModel.h; sourceTree = "<group>"; };
+		1F7FD5E3215BC13700B6872F /* LawNewHeaterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawNewHeaterModel.m; sourceTree = "<group>"; };
+		1F7FD5E5215BC49600B6872F /* LawMyTicketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMyTicketModel.h; sourceTree = "<group>"; };
+		1F7FD5E6215BC49600B6872F /* LawMyTicketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMyTicketModel.m; sourceTree = "<group>"; };
 		1F913F042133E8E90058453E /* LawJCImageSelect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawJCImageSelect.h; sourceTree = "<group>"; };
 		1F913F052133E8E90058453E /* LawJCImageSelect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawJCImageSelect.m; sourceTree = "<group>"; };
 		1F9C84DF1FB1963C00FBD026 /* QJTiXianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJTiXianViewController.h; sourceTree = "<group>"; };
@@ -556,6 +593,9 @@
 		1F9C84E61FB288E800FBD026 /* QJCperfectsexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QJCperfectsexCell.h; sourceTree = "<group>"; };
 		1F9C84E71FB288E800FBD026 /* QJCperfectsexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QJCperfectsexCell.m; sourceTree = "<group>"; };
 		1F9C84E81FB288E800FBD026 /* QJCperfectsexCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QJCperfectsexCell.xib; sourceTree = "<group>"; };
+		1FA289732142181D00281AD1 /* LawLogionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawLogionViewController.h; sourceTree = "<group>"; };
+		1FA289742142181D00281AD1 /* LawLogionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawLogionViewController.m; sourceTree = "<group>"; };
+		1FA289752142181D00281AD1 /* LawLogionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawLogionViewController.xib; sourceTree = "<group>"; };
 		1FA3BCF0212BAF5300D77FB9 /* LawCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawCollectViewController.h; sourceTree = "<group>"; };
 		1FA3BCF1212BAF5300D77FB9 /* LawCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawCollectViewController.m; sourceTree = "<group>"; };
 		1FA3BCF4212BB53F00D77FB9 /* LawPersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawPersonInfoViewController.h; sourceTree = "<group>"; };
@@ -610,6 +650,8 @@
 		1FA5B5AF1FAC692800BB2543 /* QJSelectArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJSelectArea.h; sourceTree = "<group>"; };
 		1FA5B5B01FAC692900BB2543 /* QJSelectArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJSelectArea.m; sourceTree = "<group>"; };
 		1FA5B5B21FAC6B1100BB2543 /* lot.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lot.plist; sourceTree = "<group>"; };
+		1FB01DAA215A73060052CC27 /* LawAppreSelectCaseTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawAppreSelectCaseTypeView.h; sourceTree = "<group>"; };
+		1FB01DAB215A73060052CC27 /* LawAppreSelectCaseTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawAppreSelectCaseTypeView.m; sourceTree = "<group>"; };
 		1FB627641FAAC1A5006B64A4 /* UIColor+XPKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+XPKit.m"; sourceTree = "<group>"; };
 		1FB627651FAAC1A5006B64A4 /* UIColor+XPKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+XPKit.h"; sourceTree = "<group>"; };
 		1FB627671FAAC542006B64A4 /* GrabCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GrabCell.xib; sourceTree = "<group>"; };
@@ -627,6 +669,7 @@
 		1FB6277F1FAB1C3B006B64A4 /* QJMessageCellCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QJMessageCellCell.h; sourceTree = "<group>"; };
 		1FB627801FAB1C3B006B64A4 /* QJMessageCellCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QJMessageCellCell.m; sourceTree = "<group>"; };
 		1FB627811FAB1C3B006B64A4 /* QJMessageCellCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QJMessageCellCell.xib; sourceTree = "<group>"; };
+		1FB7E67E2140CAC100DE5745 /* AreaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AreaData.plist; sourceTree = "<group>"; };
 		1FBB4F131FB2E88A00E62EA4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1FBB4F141FB2E89500E62EA4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1FBB4F151FB2E89E00E62EA4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -649,6 +692,10 @@
 		1FBF61CB211ECCEB00EDBD24 /* LawMineCollectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMineCollectCell.h; sourceTree = "<group>"; };
 		1FBF61CC211ECCEB00EDBD24 /* LawMineCollectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMineCollectCell.m; sourceTree = "<group>"; };
 		1FBF61CD211ECCEB00EDBD24 /* LawMineCollectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawMineCollectCell.xib; sourceTree = "<group>"; };
+		1FC0A6B3213CE6940021C345 /* LawAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawAddressModel.h; sourceTree = "<group>"; };
+		1FC0A6B4213CE6940021C345 /* LawAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawAddressModel.m; sourceTree = "<group>"; };
+		1FC25F4C215E06D600D408EF /* LawNewMessageMM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawNewMessageMM.h; sourceTree = "<group>"; };
+		1FC25F4D215E06D600D408EF /* LawNewMessageMM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawNewMessageMM.m; sourceTree = "<group>"; };
 		1FC3B7EF1FBE760200E7FFD6 /* QJCScanHeTong.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QJCScanHeTong.h; sourceTree = "<group>"; };
 		1FC3B7F01FBE760200E7FFD6 /* QJCScanHeTong.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QJCScanHeTong.m; sourceTree = "<group>"; };
 		1FF75F641FAD890700A3F46C /* MessageDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailController.h; sourceTree = "<group>"; };
@@ -1082,6 +1129,15 @@
 			path = UMSocialUI;
 			sourceTree = "<group>";
 		};
+		1F3E63FB215282A6001D47AC /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1F3E63FC215282DB001D47AC /* LawPlatformModel.h */,
+				1F3E63FD215282DB001D47AC /* LawPlatformModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		1F4086BE1FBD20C9008DD059 /* MyConsult */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1164,8 @@
 				1F514238212ADE9F001F1095 /* LawTPackageCell.xib */,
 				1F514233212ADE79001F1095 /* LawPackageViewController.h */,
 				1F514234212ADE79001F1095 /* LawPackageViewController.m */,
+				1F7FD5E5215BC49600B6872F /* LawMyTicketModel.h */,
+				1F7FD5E6215BC49600B6872F /* LawMyTicketModel.m */,
 			);
 			path = package;
 			sourceTree = "<group>";
@@ -1121,6 +1179,8 @@
 				1F514241212ADEEC001F1095 /* LawHeartViewController.h */,
 				1F514242212ADEEC001F1095 /* LawHeartViewController.m */,
 				1F514243212ADEEC001F1095 /* LawHeartViewController.xib */,
+				1F7FD5E2215BC13700B6872F /* LawNewHeaterModel.h */,
+				1F7FD5E3215BC13700B6872F /* LawNewHeaterModel.m */,
 			);
 			path = heart;
 			sourceTree = "<group>";
@@ -1148,11 +1208,14 @@
 		1F57CDAA21280D870082E6BD /* Case appreciate */ = {
 			isa = PBXGroup;
 			children = (
+				1F7FD5D7215B299300B6872F /* model */,
 				1F57CDAE21280DD60082E6BD /* View */,
 				1F57CDAB21280DAA0082E6BD /* LawCaseAppreciateViewController.h */,
 				1F57CDAC21280DAA0082E6BD /* LawCaseAppreciateViewController.m */,
 				1F57CDAF21280E080082E6BD /* LawCaseAppreciateDetail.h */,
 				1F57CDB021280E080082E6BD /* LawCaseAppreciateDetail.m */,
+				1FB01DAA215A73060052CC27 /* LawAppreSelectCaseTypeView.h */,
+				1FB01DAB215A73060052CC27 /* LawAppreSelectCaseTypeView.m */,
 			);
 			path = "Case appreciate";
 			sourceTree = "<group>";
@@ -1187,6 +1250,8 @@
 				1F51422D212AD7C3001F1095 /* LawWthDeawalViewController.h */,
 				1F51422E212AD7C3001F1095 /* LawWthDeawalViewController.m */,
 				1F51422F212AD7C3001F1095 /* LawWthDeawalViewController.xib */,
+				1F7FD5DF215BBA4800B6872F /* LawMoneyDetailModel.h */,
+				1F7FD5E0215BBA4800B6872F /* LawMoneyDetailModel.m */,
 			);
 			path = Remaining;
 			sourceTree = "<group>";
@@ -1210,6 +1275,16 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		1F6227612160526E006FEF6C /* public我要发布 */ = {
+			isa = PBXGroup;
+			children = (
+				1F622762216052A6006FEF6C /* LawIWantPublicVC.h */,
+				1F622763216052A6006FEF6C /* LawIWantPublicVC.m */,
+				1F622764216052A6006FEF6C /* LawIWantPublicVC.xib */,
+			);
+			path = "public我要发布";
+			sourceTree = "<group>";
+		};
 		1F70A93121216E940053898D /* Newsetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1222,13 +1297,13 @@
 		1F70A9352121943C0053898D /* XYTableViewNoDataView */ = {
 			isa = PBXGroup;
 			children = (
-				1F70A9362121943C0053898D /* XYNoDataView.h */,
+				1F70A93C2121943C0053898D /* UICollectionView+XY.h */,
 				1F70A9372121943C0053898D /* UICollectionView+XY.m */,
 				1F70A9392121943C0053898D /* TBNotData.png */,
 				1F70A93A2121943C0053898D /* XYNoDataView.m */,
+				1F70A9362121943C0053898D /* XYNoDataView.h */,
 				1F70A9382121943C0053898D /* UITableView+XY.h */,
 				1F70A93B2121943C0053898D /* UITableView+XY.m */,
-				1F70A93C2121943C0053898D /* UICollectionView+XY.h */,
 			);
 			path = XYTableViewNoDataView;
 			sourceTree = "<group>";
@@ -1236,6 +1311,7 @@
 		1F718B25212517EC00F46901 /* meeaageCeneter */ = {
 			isa = PBXGroup;
 			children = (
+				1FC25F4B215E06B800D408EF /* model */,
 				1F718B322125565700F46901 /* meessageModel */,
 				1F718B2C21254FA500F46901 /* NewMessageCell */,
 				1F718B262125181A00F46901 /* LawMianPageMessageCenter.h */,
@@ -1284,9 +1360,14 @@
 		1F718B3A2125603600F46901 /* JSDropDownMenu */ = {
 			isa = PBXGroup;
 			children = (
+				1FB7E67E2140CAC100DE5745 /* AreaData.plist */,
+				1F718B3D2125603600F46901 /* JSDropDownMenu.h */,
 				1F718B3B2125603600F46901 /* JSDropDownMenu.m */,
 				1F718B3C2125603600F46901 /* ico_make.png */,
-				1F718B3D2125603600F46901 /* JSDropDownMenu.h */,
+				1FC0A6B3213CE6940021C345 /* LawAddressModel.h */,
+				1FC0A6B4213CE6940021C345 /* LawAddressModel.m */,
+				1F53A6AB214793AB008D5A6A /* LawConsultTypeModel.h */,
+				1F53A6AC214793AB008D5A6A /* LawConsultTypeModel.m */,
 			);
 			path = JSDropDownMenu;
 			sourceTree = "<group>";
@@ -1320,6 +1401,9 @@
 				1F7F028E212FEA63004E1A5A /* cell */,
 				1F5C5A84212CF90000186A3B /* LawPlatformAuthViewController.h */,
 				1F5C5A85212CF90000186A3B /* LawPlatformAuthViewController.m */,
+				1F278AF9215229E900D76F48 /* LawChangInfoIntroductVC.h */,
+				1F278AFA215229E900D76F48 /* LawChangInfoIntroductVC.m */,
+				1F278AFB215229E900D76F48 /* LawChangInfoIntroductVC.xib */,
 			);
 			path = Lawplatform;
 			sourceTree = "<group>";
@@ -1414,6 +1498,24 @@
 			path = TimerBtn;
 			sourceTree = "<group>";
 		};
+		1F7FD5D7215B299300B6872F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1F7FD5D8215B29C500B6872F /* LawCaseNewModel.h */,
+				1F7FD5D9215B29C500B6872F /* LawCaseNewModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		1F7FD5DB215BB2CF00B6872F /* hezuo */ = {
+			isa = PBXGroup;
+			children = (
+				1F7FD5DC215BB2F300B6872F /* LawNewHeZuoViewController.h */,
+				1F7FD5DD215BB2F300B6872F /* LawNewHeZuoViewController.m */,
+			);
+			path = hezuo;
+			sourceTree = "<group>";
+		};
 		1F913F032133E8AD0058453E /* JCImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1443,6 +1545,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1FA28972214217C200281AD1 /* NewLogin */ = {
+			isa = PBXGroup;
+			children = (
+				1FA289732142181D00281AD1 /* LawLogionViewController.h */,
+				1FA289742142181D00281AD1 /* LawLogionViewController.m */,
+				1FA289752142181D00281AD1 /* LawLogionViewController.xib */,
+			);
+			path = NewLogin;
+			sourceTree = "<group>";
+		};
 		1FA3BCEF212BAEDF00D77FB9 /* Collect */ = {
 			isa = PBXGroup;
 			children = (
@@ -1455,6 +1567,7 @@
 		1FA3BCF3212BB51700D77FB9 /* PersonInfo */ = {
 			isa = PBXGroup;
 			children = (
+				1F3E63FB215282A6001D47AC /* model */,
 				1F7F028F212FEA82004E1A5A /* bankCard */,
 				1F7381DB212EC0F3003B189C /* Lawplatform */,
 				1F7381C9212E53F2003B189C /* SelectTypeofcase */,
@@ -1580,6 +1693,8 @@
 		1FBF61BF211EC0B100EDBD24 /* NewMine */ = {
 			isa = PBXGroup;
 			children = (
+				1F6227612160526E006FEF6C /* public我要发布 */,
+				1F7FD5DB215BB2CF00B6872F /* hezuo */,
 				1FA3BCF3212BB51700D77FB9 /* PersonInfo */,
 				1FA3BCEF212BAEDF00D77FB9 /* Collect */,
 				1F51423B212ADEA5001F1095 /* heart */,
@@ -1604,6 +1719,15 @@
 				1FBF61CD211ECCEB00EDBD24 /* LawMineCollectCell.xib */,
 			);
 			path = MineTopViewAndCell;
+			sourceTree = "<group>";
+		};
+		1FC25F4B215E06B800D408EF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1FC25F4C215E06D600D408EF /* LawNewMessageMM.h */,
+				1FC25F4D215E06D600D408EF /* LawNewMessageMM.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		1FF75F6C1FADB36800A3F46C /* LPlaceholderTextView */ = {
@@ -1685,6 +1809,7 @@
 				1F57CDAA21280D870082E6BD /* Case appreciate */,
 				1F7AEEDC21266C6F00CACC0F /* Square service */,
 				1F1B9FE62123B7FA0069E1CD /* NewMainPage */,
+				1FA28972214217C200281AD1 /* NewLogin */,
 				1FBF61BF211EC0B100EDBD24 /* NewMine */,
 				2290D21F1F33018300B4257D /* login */,
 				2280627E1F2590A80094E483 /* Guide */,
@@ -2193,7 +2318,6 @@
 				22BDE3031F1E050600D824AC /* Sources */,
 				22BDE3041F1E050600D824AC /* Frameworks */,
 				22BDE3051F1E050600D824AC /* Resources */,
-				4C17D830E8416AB1435AEF48 /* [CP] Embed Pods Frameworks */,
 				415C86E28C07CCF785BAB6AA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -2283,10 +2407,12 @@
 				1F51423A212ADE9F001F1095 /* LawTPackageCell.xib in Resources */,
 				1F3286491FCCF7F0008FB50F /* README.txt in Resources */,
 				1F1BA006212416CC0069E1CD /* LawMainADCell.xib in Resources */,
+				1FA289772142181D00281AD1 /* LawLogionViewController.xib in Resources */,
 				225795751F34107300BDF1CB /* 感叹号@2x.png in Resources */,
 				22A6BC091F2B31E600FDE7B2 /* 历史记录@2x.png in Resources */,
 				22A6BC041F2B31E600FDE7B2 /* 关于汇融法@3x.png in Resources */,
 				225346461F2A010700CF38FE /* yindao_d1@2x.png in Resources */,
+				1F278AFD215229E900D76F48 /* LawChangInfoIntroductVC.xib in Resources */,
 				1F57CDB621280E2F0082E6BD /* LawCaseTypeCell.xib in Resources */,
 				2290D2381F332CD500B4257D /* logo@2x.png in Resources */,
 				1FB627681FAAC542006B64A4 /* GrabCell.xib in Resources */,
@@ -2308,6 +2434,7 @@
 				22A6BC0D1F2B31E600FDE7B2 /* 设置@2x.png in Resources */,
 				22A6BC071F2B31E600FDE7B2 /* 箭头@2x.png in Resources */,
 				22A6BC231F2B36F900FDE7B2 /* 组-11@3x.png in Resources */,
+				1F622766216052A6006FEF6C /* LawIWantPublicVC.xib in Resources */,
 				1F7F0298212FEAFD004E1A5A /* LawBankCardCell.xib in Resources */,
 				1FA5B5701FABFF9F00BB2543 /* HeaderCell.xib in Resources */,
 				225795761F34107300BDF1CB /* 感叹号@3x.png in Resources */,
@@ -2389,6 +2516,7 @@
 				22A6BC171F2B348200FDE7B2 /* 我的消息@3x.png in Resources */,
 				22A6BC0A1F2B31E600FDE7B2 /* 历史记录@3x.png in Resources */,
 				2253463D1F2A010700CF38FE /* kaishi-01@3x.png in Resources */,
+				1FB7E67F2140CAC300DE5745 /* AreaData.plist in Resources */,
 				1F5AF26E2122A9EE000B48EE /* LawRemainingViewController.xib in Resources */,
 				22A6BC051F2B31E600FDE7B2 /* 好评积分@2x.png in Resources */,
 				1FBF61C4211EC6D600EDBD24 /* Assets.xcassets in Resources */,
@@ -2405,28 +2533,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TheLawyer/Pods-TheLawyer-resources.sh",
+				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mapapi.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheLawyer/Pods-TheLawyer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4C17D830E8416AB1435AEF48 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheLawyer/Pods-TheLawyer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4B388B637306C814FA6F013 /* [CP] Check Pods Manifest.lock */ = {
@@ -2435,13 +2555,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TheLawyer-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2452,6 +2575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FBB4F401FB4431900E62EA4 /* AppDelegate.h in Sources */,
+				1F7FD5DA215B29C500B6872F /* LawCaseNewModel.m in Sources */,
 				1FB627791FAAF896006B64A4 /* UIView+XPKit.m in Sources */,
 				1F7381CC212E5431003B189C /* LawSelectTypeofCaseView.m in Sources */,
 				1FA3BCF2212BAF5300D77FB9 /* LawCollectViewController.m in Sources */,
@@ -2507,6 +2631,7 @@
 				1FA5B5A41FAC5F9100BB2543 /* NSCalendar+PGCurrent.m in Sources */,
 				1F7AEED82126558E00CACC0F /* QZTopTextView.m in Sources */,
 				1F57CDB521280E2F0082E6BD /* LawCaseTypeCell.m in Sources */,
+				1F278AFC215229E900D76F48 /* LawChangInfoIntroductVC.m in Sources */,
 				1F7AEEF02126A58C00CACC0F /* LawSquarServiceFootView.m in Sources */,
 				22A6BC531F2B6EB000FDE7B2 /* GrabModel.m in Sources */,
 				1F7F0292212FEAC6004E1A5A /* LawBankCardViewController.m in Sources */,
@@ -2522,6 +2647,7 @@
 				22A6BC5E1F2B7AB900FDE7B2 /* IntegralViewController.m in Sources */,
 				228F6EFF1F2C3D9400137445 /* AppointmentCell.m in Sources */,
 				22BDE30F1F1E050600D824AC /* AppDelegate.mm in Sources */,
+				1FA289762142181D00281AD1 /* LawLogionViewController.m in Sources */,
 				226690D91F1E1E140059A610 /* ZYTabBarButton.m in Sources */,
 				2280627A1F258E830094E483 /* MineViewController.m in Sources */,
 				1F57CDA82127F1D70082E6BD /* LawMeetingCell.m in Sources */,
@@ -2535,6 +2661,7 @@
 				1F7381DF212EC291003B189C /* LawplatformEditCell.m in Sources */,
 				225346751F2A07CE00CF38FE /* MidddleCell.m in Sources */,
 				1F913F062133E8E90058453E /* LawJCImageSelect.m in Sources */,
+				1F3E63FE215282DB001D47AC /* LawPlatformModel.m in Sources */,
 				1F1B9FF32123C4AD0069E1CD /* LMJScrollTextView2.m in Sources */,
 				1F7AEEE32126702600CACC0F /* LawSquarServiceCell.m in Sources */,
 				1F514244212ADEEC001F1095 /* LawHeartViewController.m in Sources */,
@@ -2548,6 +2675,7 @@
 				1FA5B5A71FAC5F9100BB2543 /* PGDatePickerView.m in Sources */,
 				1FBF61C8211ECABD00EDBD24 /* LawMineTopView.m in Sources */,
 				1FF75F741FADB6FD00A3F46C /* QJCappointmentVC.m in Sources */,
+				1FB01DAC215A73060052CC27 /* LawAppreSelectCaseTypeView.m in Sources */,
 				225346C61F2A20B100CF38FE /* UIView+UIViewExt.m in Sources */,
 				1F1B9FFC2123CDDB0069E1CD /* LawMainConsultCell.m in Sources */,
 				22A6BC7D1F2B8CE400FDE7B2 /* RecoudCell.m in Sources */,
@@ -2563,6 +2691,7 @@
 				1F514235212ADE79001F1095 /* LawPackageViewController.m in Sources */,
 				1F4086B81FBD1C80008DD059 /* QJInfoDetailVC.m in Sources */,
 				1F57CDAD21280DAA0082E6BD /* LawCaseAppreciateViewController.m in Sources */,
+				1F7FD5E7215BC49600B6872F /* LawMyTicketModel.m in Sources */,
 				225346931F2A0AC100CF38FE /* ConsultingViewController.m in Sources */,
 				1FA3BCF6212BB53F00D77FB9 /* LawPersonInfoViewController.m in Sources */,
 				225346BA1F2A18FF00CF38FE /* ZYrepeatLableView.m in Sources */,
@@ -2576,15 +2705,18 @@
 				1FF75F7C1FADB7A700A3F46C /* QJCAppointModel.m in Sources */,
 				226690E01F1E1EB10059A610 /* UIView+Frame.m in Sources */,
 				1F57CDB121280E080082E6BD /* LawCaseAppreciateDetail.m in Sources */,
+				1F7FD5DE215BB2F300B6872F /* LawNewHeZuoViewController.m in Sources */,
 				225346C91F2A2A0A00CF38FE /* TopUpViewController.m in Sources */,
 				225346B41F2A181F00CF38FE /* ShowHUD.m in Sources */,
 				2253467B1F2A08D500CF38FE /* RecordViewController.m in Sources */,
+				1F7FD5E4215BC13700B6872F /* LawNewHeaterModel.m in Sources */,
 				1FB627761FAAF1CB006B64A4 /* Utile.m in Sources */,
 				1F718B3021254FF200F46901 /* LawMessageCenterCell.m in Sources */,
 				2290D2231F33025B00B4257D /* LoginViewController.m in Sources */,
 				1F51423F212ADEC8001F1095 /* LawheartCell.m in Sources */,
 				1F7AEEDF21266EC700CACC0F /* LawSquarSrviceViewController.m in Sources */,
 				228062871F25936E0094E483 /* UIImage+Helper.m in Sources */,
+				1F622765216052A6006FEF6C /* LawIWantPublicVC.m in Sources */,
 				226690CB1F1E18970059A610 /* BaseTableView.m in Sources */,
 				1FC3B7F11FBE760200E7FFD6 /* QJCScanHeTong.m in Sources */,
 				1F1B9FE92123B8300069E1CD /* LawMainPageViewController.m in Sources */,
@@ -2598,7 +2730,9 @@
 				226690E61F1E21630059A610 /* UILabel+ZYLable.m in Sources */,
 				22DD9A261F2D74A10012FCBC /* XSetVCModel.m in Sources */,
 				1FB627661FAAC1A5006B64A4 /* UIColor+XPKit.m in Sources */,
+				1F53A6AD214793AB008D5A6A /* LawConsultTypeModel.m in Sources */,
 				1F4086B21FBD1C06008DD059 /* QJCJQuestionSubModel.m in Sources */,
+				1F7FD5E1215BBA4800B6872F /* LawMoneyDetailModel.m in Sources */,
 				2253469F1F2A100000CF38FE /* MyAccountViewController.m in Sources */,
 				1FF75F781FADB78F00A3F46C /* QJCAppointCell.m in Sources */,
 				226690D31F1E1CAB0059A610 /* ZYMainTabBarController.m in Sources */,
@@ -2621,6 +2755,7 @@
 				2290D2281F33027A00B4257D /* RegisteredViewController.m in Sources */,
 				1F718B4D2125846A00F46901 /* LawConsultDetailTwoCell.m in Sources */,
 				1F70A93421216EBD0053898D /* LawNewSettingViewController.m in Sources */,
+				1FC0A6B5213CE6940021C345 /* LawAddressModel.m in Sources */,
 				1F7F0297212FEAFD004E1A5A /* LawBankCardCell.m in Sources */,
 				226690AD1F1E183C0059A610 /* XVersionModel.m in Sources */,
 				225346B11F2A128800CF38FE /* XMyAccountCell.m in Sources */,
@@ -2633,6 +2768,7 @@
 				22A6BC3E1F2B4CF500FDE7B2 /* MessageModel.m in Sources */,
 				1F5AF2722122B289000B48EE /* LawMoneyDetailViewController.m in Sources */,
 				1F7F90CE21353C6200DEE9F8 /* LawCardSMSViewController.m in Sources */,
+				1FC25F4E215E06D600D408EF /* LawNewMessageMM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LawMyTicketModel.h"
 @interface LawTPackageCell : UITableViewCell
+@property (strong, nonatomic) LawMyTicketModel * model;
+@property (weak, nonatomic) IBOutlet UILabel *TopTypeLB;
+@property (weak, nonatomic) IBOutlet UILabel *NameLB;
+@property (weak, nonatomic) IBOutlet UILabel *TimeLB;
+
+@property (weak, nonatomic) IBOutlet UILabel *PriceLB;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ticket_backImage;
+@property (weak, nonatomic) IBOutlet UIImageView *TypeImage;
+
+@property (weak, nonatomic) IBOutlet UIButton *DUihuanBtn;
+
+
+
+
 
 @end

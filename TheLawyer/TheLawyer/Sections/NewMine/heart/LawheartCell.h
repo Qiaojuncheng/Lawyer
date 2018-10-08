@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LawNewHeaterModel.h"
 @interface LawheartCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *PeronImage;
 
@@ -16,6 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *PriceLB;
 
-
+@property (strong , nonatomic )LawNewHeaterModel * model ;
 
 @end

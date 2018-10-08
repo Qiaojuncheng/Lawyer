@@ -159,15 +159,7 @@
 
 -(void)makedata{
     
-    dataArrray   =[[NSMutableArray alloc]init];
-    for (int i = 0 ; i<10; i++) {
-        LawMessageModel * model =[[LawMessageModel alloc]init];
-        model.showBtn = [NSString stringWithFormat:@"%d",rand()%2];
-        model.showRed = [NSString stringWithFormat:@"%d",rand()%2];
-        
-        [dataArrray addObject:model];
-    }
-    
+     
 }
 -(void)addView{
     

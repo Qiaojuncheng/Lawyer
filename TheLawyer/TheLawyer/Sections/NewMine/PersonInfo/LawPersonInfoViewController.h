@@ -9,5 +9,7 @@
 #import "BaseViewController.h"
 
 @interface LawPersonInfoViewController : BaseViewController
+@property(nonatomic,strong) MyInfoModel *infoModel;
+@property(nonatomic,strong) NSString *mid;
 
 @end
