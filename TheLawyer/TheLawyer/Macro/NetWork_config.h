@@ -28,10 +28,12 @@
 #define BASE_WEBURL @""
 
 #endif
-#define  UserId [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"]
-#define  APPPhone [[NSUserDefaults standardUserDefaults] objectForKey:@"400Phone"]
+#define  UserId [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"]?[[NSUserDefaults standardUserDefaults] objectForKey:@"userid"]:@""
+#define IsLogin [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"]?YES:NO
 
-#define  UserPhone [[NSUserDefaults standardUserDefaults] objectForKey:@"phone"]
+#define  APPPhone [[NSUserDefaults standardUserDefaults] objectForKey:@"400Phone"]?[[NSUserDefaults standardUserDefaults] objectForKey:@"400Phone"]:@""
+
+#define  UserPhone [[NSUserDefaults standardUserDefaults] objectForKey:@"phone"]?[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"]:@""
 
 
 #pragma mark ----------- 接口
@@ -120,6 +122,12 @@
 #define NewConsultGetRegion  [dic setValue:@"App/Public/getRegion" forKey:@"action"];
 //案件类型
 #define NewConsultGetType  [dic setValue:@"App/Public/getCategory" forKey:@"action"];
+//法律服务类型
+#define NewSquarGetType  [dic setValue:@"App/Lawyer/suitType" forKey:@"action"];
+// 法律服务列表
+
+#define NewSquarList  [dic setValue:@"App/Lawyer/service" forKey:@"action"];
+
 //电话或者见面预约
 #define NewMeetGetyuYue  [dic setValue:@"App/Lawyer/yuYue" forKey:@"action"];
 // 预约服务结束

@@ -39,12 +39,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     dataArrray   =[[NSMutableArray alloc]init];
     order = @"";
     cate_id = @"";
     area = @"";
     page =1 ;
     [self addCenterLabelWithTitle:@"咨询" titleColor:nil];
+    MJWeakSelf;
+    [self addRightButtonWithTitle:@"全部" titleColor: [UIColor blackColor] actionBlock:^{
+        order = @"";
+        cate_id = @"";
+        area = @"";
+        page =1 ;
+        [weakSelf makedata];
+    }];
+
     [self makeAddreeData];
     [self makedata];
     [self makemenu];
@@ -135,7 +145,7 @@
     
     switch (column) {
         case 0:
-            return @"省份" ;
+            return @"区域" ;
             break;
             //        case 1: return _data2[0];
         case 1:
@@ -281,8 +291,10 @@
     NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
     [dic setValue:baseStr forKey:@"value"];
     NSLog(@"dic = %@",dic);
-    [self showHudInView:self.view hint:nil];
-    
+    if(page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSLog(@"%@",data);
         if (page ==1) {
@@ -322,12 +334,14 @@
         page = 1;
         [self makedata];
     }];
-    _tableView.mj_footer =[MJRefreshBackNormalFooter   footerWithRefreshingBlock:^{
+    _tableView.mj_footer =[MJRefreshAutoFooter   footerWithRefreshingBlock:^{
         page += 1;
         [self makedata];
 
     }];
-    
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -352,9 +366,13 @@
     LawMainConsultCellMoldel *model = dataArrray[indexPath.row];
     model.is_read =@"0"; // 去掉红点
     [dataArrray replaceObjectAtIndex:indexPath.row withObject:model];
+
 //    detail.model =  model;
     detail.constultId = model.id;
     detail.reloadBlock = ^{
+        
+        model.answered = @"2";
+        [dataArrray replaceObjectAtIndex:indexPath.row withObject:model];
         [_tableView reloadData];
 //        page = 1;
 //        [self makedata];
@@ -368,6 +386,10 @@
 
     return 124;
 
+}
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

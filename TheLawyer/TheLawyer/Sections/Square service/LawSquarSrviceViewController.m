@@ -8,6 +8,10 @@
 
 
 #import "LawSquarSrviceViewController.h"
+#import "LawAddressModel.h"
+#import "LawSquareService.h"
+
+#import "LawSquaremodel.h"
 
 #import "LawMessageModel.h"
 #import "LawMainConsultCell.h"
@@ -16,12 +20,20 @@
 
 #import "LawSquarServiceCell.h"
 #import  "LawSquarSrviceViewDetailController.h"
+#import "LawLogionViewController.h"
 @interface LawSquarSrviceViewController ()<UITableViewDataSource,UITableViewDelegate,JSDropDownMenuDelegate,JSDropDownMenuDataSource>{
     JSDropDownMenu *menu;
     
-    NSArray * data1;
-    NSArray * data2;
-    NSArray * data3;
+    NSMutableArray * data1;
+    NSMutableArray * data2;
+    NSMutableArray * data3;
+    
+   
+    NSString * cate_id;// 案件的id
+    NSString *area;// 区域id
+    NSString *order ;   // 默认 @""    正序 正序 1
+    
+    NSInteger page ;
     
     NSMutableArray * dataArrray ;
     UITableView * _tableView;
@@ -33,15 +45,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addCenterLabelWithTitle:self.ServiceTitle titleColor:nil];
+     NSUserDefaults * UserDefaults =[ NSUserDefaults standardUserDefaults];
+    [UserDefaults setBool:YES  forKey:@"servicN"];
+    [UserDefaults synchronize];
     
-    data2 = @[@"案件类型",@"",@"",@"",@"",@"",@""];
-    data3 = @[@"",@"",@"",@"",@"",@"",@""];
-     [self makedata];
+    order = @"";
+    cate_id = @"";
+    area = @"";
+    page =1 ;
+    dataArrray = [[NSMutableArray alloc]init];
+    [self addCenterLabelWithTitle:self.ServiceTitle titleColor:nil];
+  
+    MJWeakSelf;
+    [self addRightButtonWithTitle:@"全部" titleColor: [UIColor blackColor] actionBlock:^{
+        order = @"";
+        cate_id = @"";
+        area = @"";
+        page =1 ;
+        [weakSelf makedata];
+    }];
+    
+    [self makedata];
     [self makemenu];
+    [self  makeAddreeData];
     [self addView ];
     // Do any additional setup after loading the view.
 }
+
 -(void)makemenu{
     menu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, NavStatusBarHeight) andHeight:46];
     menu.indicatorColor = [UIColor   grayColor];
@@ -52,30 +82,62 @@
     menu.backgroundColor =[UIColor whiteColor];
     [self.view addSubview:menu];
     
-}
--(BOOL)haveRightTableViewInColumn:(NSInteger)column{
     
-    if (column == 0) {
-        return  YES;
+    menu.SelectArray =[[NSMutableArray alloc]init];
+    NSArray * numbe = @[@3,@2,@1];
+    for(int i = 0 ;i<3 ;i++){
+        
+        NSMutableArray * nsmutable =[[NSMutableArray alloc]init];
+        NSInteger  haveRightTableView = [numbe[i] intValue];
+        for (int j = 0; j< haveRightTableView ; j++) {
+            NSInteger number = 0;
+            [nsmutable addObject:@(number)];
+        }
+        
+        [menu.SelectArray addObject:nsmutable];
     }
-    return NO;
+    
+    
+    
+}
+
+-(NSInteger )haveRightTableViewInColumn:(NSInteger)column{
+    //    0 一个  1 两个    2 三个
+    if (column == 0) {
+        return  2;
+    }else if(column== 1){
+        return 0;
+    }
+    return 0;
 }
 -(NSInteger)menu:(JSDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column leftOrRight:(NSInteger)leftOrRight leftRow:(NSInteger)leftRow{
+    
+    NSMutableArray * ColumnlectDataArray    =[[NSMutableArray alloc]initWithArray:menu.SelectArray[column]];
+    
     if (column == 0) {
-        if(leftOrRight){//  0 左侧  1 右侧
-            return 5;
-        }else{
-            return 30;
+        if(leftOrRight == 0){//  0 左侧  1 中间  2 右侧
+            return data1.count;
+        }else if(leftOrRight == 1){
+            LawAddressModel * proModel = data1[[ColumnlectDataArray[0] integerValue]];
+            return proModel.child.count;
+        }else if(leftOrRight == 2){
+            
+            LawAddressModel * proModel = data1[[ColumnlectDataArray[0] integerValue]];
+            LawAddressModel * cityModel = proModel.child[[ColumnlectDataArray[1] integerValue]];
+            
+            return cityModel.child.count;
+            
         }
-    }else if(column == 1){
-        return 5;
         
+    }else if(column == 1){
+             return data2.count;
+         
     }else if(column == 2){
-        return 8;
+        return data3.count;
         
     }
     
-    return 5;
+    return 0;
 }
 -(NSInteger)numberOfColumnsInMenu:(JSDropDownMenu *)menu{
     return 3;
@@ -84,7 +146,7 @@
     
     switch (column) {
         case 0:
-            return @"省份" ;
+            return @"区域" ;
             break;
             //        case 1: return _data2[0];
         case 1:
@@ -101,21 +163,42 @@
 }
 -(NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath{
     
+    NSMutableArray * ColumnlectDataArray    =[[NSMutableArray alloc]initWithArray:menu.SelectArray[indexPath.column]];
+    
+    
     
     switch (indexPath.column) {
         case 0:
-            if (indexPath.leftOrRight) {
-                return [NSString stringWithFormat:@"第%ld个市",indexPath.row]; //_data1[indexPath.row][@"cat_name"] ;
+            
+            
+            if (indexPath.leftOrRight == 0) {
+                LawAddressModel * Promodle =   data1[indexPath.row];
+                return [NSString stringWithFormat:@"%@",Promodle.name];
+            }else if (indexPath.leftOrRight == 1){
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                LawAddressModel * proModel = data1[[leftSelectNumber  integerValue]];
+                LawAddressModel * Citymodle =   proModel.child[indexPath.row];
+                return [NSString stringWithFormat:@"%@",Citymodle.name]; //_data1[indexPath.row][@"cat_name"] ;
                 
             }else{
-                return [NSString stringWithFormat:@"第%ld个省份",indexPath.row]; //_data1[indexPath.row][@"cat_name"] ;
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                NSNumber * rightSelectNumber =   ColumnlectDataArray[1];
+                LawAddressModel * proModel = data1[[leftSelectNumber integerValue] ];
+                LawAddressModel * Citymodle =   proModel.child[[rightSelectNumber integerValue]];
+                LawAddressModel * Areamodel =   Citymodle.child[indexPath.row];
                 
+                return [NSString stringWithFormat:@"%@",Areamodel.name]; //
             }
             break;
             //        case 1: return _data2[0];
-        case 1:return [NSString stringWithFormat:@"第%ld个案件类型",indexPath.row];//@"dasdfa";//_data2[indexPath.row][@"level_name"];
-            break;
-        case 2: return  [NSString stringWithFormat:@"时间%ld",indexPath.row];//_data3[indexPath.row];
+        case 1:{
+           
+             LawSquareService * typemodel  =     data2[indexPath.row];
+            return typemodel.name ;
+        }
+             break;
+         case 2:
+            return  data3[indexPath.row];
             break;
         default:
             return nil;
@@ -123,15 +206,15 @@
     }
 }
 
-- (NSInteger)currentLeftSelectedRow:(NSInteger)column {
-    return 5;
-}
-
-
+//-(NSInteger)currentLeftSelectedRow:(NSInteger)column {
+//
+//}
 - (CGFloat)widthRatioOfLeftColumn:(NSInteger)column {
     if (column ==0) {
-        return  .5f;
+        return  .33333f;
         
+    }else if(column ==1){
+        return  1;
     }else{
         return  1;
         
@@ -140,15 +223,38 @@
 
 -(void)menu:(JSDropDownMenu *)menu didSelectRowAtIndexPath:(JSIndexPath *)indexPath{
     
+    NSMutableArray * ColumnlectDataArray =menu.SelectArray[indexPath.column];
     switch (indexPath.column) {
         case 0:
-            
-            
+            if(indexPath.leftOrRight ==2){
+                NSNumber * leftSelectNumber =   ColumnlectDataArray[0];
+                NSNumber * rightSelectNumber =   ColumnlectDataArray[1];
+                LawAddressModel * proModel = data1[[leftSelectNumber integerValue] ];
+                LawAddressModel * Citymodle =   proModel.child[[rightSelectNumber integerValue]];
+                LawAddressModel * Areamodel =   Citymodle.child[indexPath.row];
+                area = Areamodel.id;
+                NSLog(@"first %@ = id= %@",Areamodel.name ,Areamodel.id);
+                page = 1;
+                [self makedata];
+                
+            }
             break;
-        case 1:
-            
+        case 1:{
+              LawSquareService * typetwo = data2[indexPath.row];
+                 cate_id = typetwo.id;
+                 page = 1;
+                [self makedata];
+        }
             break;
         case 2:
+            if (indexPath.row == 0) {
+                order = @"";
+            }else{
+                order = @"1";
+            }
+            page = 1;
+            [self makedata];
+            
             
             break;
         default:
@@ -159,6 +265,44 @@
 
 -(void)makedata{
     
+    NSMutableDictionary * dic  =[[NSMutableDictionary alloc]init];
+    NewSquarList
+    NSMutableDictionary *   valueDic =[[NSMutableDictionary alloc]init];
+    [valueDic setObject:[NSString stringWithFormat:@"%ld",page ] forKey:@"p" ];
+    [valueDic setObject:order forKey:@"order" ];
+    [valueDic setObject:cate_id  forKey:@"suit_type" ];
+    [valueDic setObject:area forKey:@"area" ];
+    
+    NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
+    [dic setValue:baseStr forKey:@"value"];
+    NSLog(@"dic = %@",dic);
+    if(page==1){
+        [self showHudInView:self.view hint:nil];
+     }
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSLog(@"%@",data);
+        if (page ==1) {
+            [dataArrray removeAllObjects];
+        }
+        NSString * codeStr =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([codeStr isEqualToString:@"0"]) {
+            
+            for (NSDictionary * dics in data[@"data"]) {
+                LawSquaremodel * model =  [LawSquaremodel yy_modelWithDictionary:dics];
+                [dataArrray addObject:model];
+                
+            }
+            
+            [_tableView reloadData];
+        }
+        [self hideHud];
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+    } failure:^(NSError *error) {
+        [self hideHud];
+        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+    }];
      
 }
 -(void)addView{
@@ -169,6 +313,20 @@
     _tableView.separatorInset = UIEdgeInsetsMake(0,SCREENWIDTH, 0, 0);
     _tableView.backgroundColor =[UIColor whiteColor];
     _tableView.tableFooterView = [[UIView alloc]init];
+    _tableView.mj_header  = [MJRefreshNormalHeader  headerWithRefreshingBlock:^{
+        page = 1;
+        [self makedata];
+    }];
+    _tableView.mj_footer =[MJRefreshAutoFooter   footerWithRefreshingBlock:^{
+        page += 1;
+        [self makedata];
+        
+    }];
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+    
+    
     [self.view addSubview:_tableView];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -182,17 +340,71 @@
     if (cell == nil) {
         cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawSquarServiceCell" owner:self options:nil]lastObject];
     }
-    //    cell.model = dataArrray[indexPath.row];
+     cell.modle = dataArrray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LawSquarSrviceViewDetailController * detail =[[LawSquarSrviceViewDetailController alloc]init];
-    [self.navigationController pushViewController:detail animated:YES];
+    
+//    LawSquarSrviceViewDetailController * detail =[[LawSquarSrviceViewDetailController alloc]init];
+//    [self.navigationController pushViewController:detail animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
          return 178;
    
+}
+-(void)viewWillAppear:(BOOL)animated{
+//    if(!IsLogin){
+//        LawLogionViewController *view = [LawLogionViewController new];
+//        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+//        return ;
+//    }
+
+}
+
+
+
+-(void)makeAddreeData{
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"AreaData" ofType:@"plist"];
+    NSArray *   plistData = [NSMutableArray arrayWithContentsOfFile:path];
+    data1 =[[NSMutableArray alloc]init];
+    for (NSDictionary * proDic in plistData) {
+        //省
+        LawAddressModel * proModel =[LawAddressModel yy_modelWithJSON:proDic];
+        [data1 addObject:proModel];
+        
+    }
+    
+    data3 = @[@"时间↓",@"时间↑"];
+    
+    
+    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    NewSquarGetType
+    
+    //    获取分类
+    
+    [AFManagerHelp POST:BASE_URL parameters:dic success:^(id responseObjeck) {
+        // 处理数据
+        DLog(@"%@",responseObjeck);
+        [self hideHud];
+        data2 =[[NSMutableArray alloc]init];
+        if ([responseObjeck[@"status"] integerValue] == 0) {
+            for (NSDictionary * proDic in responseObjeck[@"data"]) {
+                
+                LawSquareService * TypeModel =[LawSquareService yy_modelWithJSON:proDic];
+                [data2 addObject:TypeModel];
+                
+            }
+            
+        }else{
+        }
+    } failure:^(NSError *error) {
+        [self hideHud];
+    }];
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [Utile makeCorner:self.RedView.width/2 view:self.RedView];
+    self.SeeBtn.userInteractionEnabled = NO ;
     // Initialization code
 }
 -(void)setModel:(LawNewMessageMM *)model{

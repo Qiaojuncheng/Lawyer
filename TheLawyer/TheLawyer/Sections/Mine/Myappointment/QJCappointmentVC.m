@@ -49,8 +49,13 @@
    [headerView addSubview:titileLB];
     
     _Tv.tableHeaderView = headerView;
+    _Tv.estimatedRowHeight = 0;
+    _Tv.estimatedSectionHeaderHeight= 0;
+    _Tv.estimatedSectionFooterHeight= 0;
     
-    _Tv.mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    
+
+    _Tv.mj_footer =[MJRefreshAutoFooter footerWithRefreshingBlock:^{
         Page ++;
         [self makeData];
     }];
@@ -103,7 +108,10 @@
     NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
     [dic setValue:baseStr forKey:@"value"];
     
-    [self showHudInView:self.view hint:nil];
+    if(Page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSLog(@"%@",data);
         if(Page == 1){

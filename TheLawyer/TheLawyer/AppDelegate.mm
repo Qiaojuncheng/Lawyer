@@ -120,24 +120,30 @@ static SystemSoundID shake_sound_male_id = 0;
 #pragma    mark   判断是不是 第一次登陆
     BOOL  isFirst =  YES;
     isFirst =( BOOL )[[NSUserDefaults standardUserDefaults]  boolForKey:@"MMIsFirst"];
-    NSLog(@" ++  %d",isFirst);
-    
+ 
     if (!isFirst) {
+        
+             [UserDefaults setBool:YES forKey:@"constultN"];
+             [UserDefaults setBool:YES  forKey:@"headerN"];
+             [UserDefaults setBool:YES  forKey:@"phoneN"];
+             [UserDefaults setBool:YES  forKey:@"meetN"];
+             [UserDefaults setBool:YES  forKey:@"servicN"];
+        [UserDefaults synchronize];
         GuideViewController * gvc =[[GuideViewController alloc]init];
         self.window.rootViewController  = gvc;
     }else{
-        if ([UserId length] > 0) {
+//        if (IsLogin) {
 //            MtabBatrC *Tab =[[MtabBatrC alloc]init];
             //    UINavigationController *MainNavi =[[UINavigationController alloc]initWithRootViewController:Tab];
             self.window.rootViewController = _tabBarController;
-        }else{
-//            LoginViewController *view = [[LoginViewController alloc]init];
+//        }else{
+////            LoginViewController *view = [[LoginViewController alloc]init];
+////            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//            LawLogionViewController *view = [LawLogionViewController new];
 //            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
-            LawLogionViewController *view = [LawLogionViewController new];
-            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
- 
-            self.window.rootViewController = na;
-        }
+// 
+//            self.window.rootViewController = na;
+//        }
 }}
 
 - (void)loginStateChange:(NSNotification *)notification{
@@ -155,8 +161,17 @@ static SystemSoundID shake_sound_male_id = 0;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+   
+    NSString * UUid  =   [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    UUid =  [UUid stringByAppendingString:UserPhone];
+    [JPUSHService getAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        NSLog(@"-- iAlias = %@ ",iAlias);
+    } seq:[UUid integerValue]];
+    
     [self getPhone];
-    [AMapServices sharedServices].apiKey =@"03007e10d3a5591475445e5b4ee45e64";
+    [AMapServices sharedServices].apiKey =@"f30884433ae0b3dad45ee35344d0c73f";
 //    [AMapLocationServices sharedServices].apiKey =@"03007e10d3a5591475445e5b4ee45e64";
     _locationManager = [[AMapLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -392,7 +407,7 @@ static SystemSoundID shake_sound_male_id = 0;
     // init Push
     // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
-//    abcb26fbb93db8c72d4d94ec
+//
     [JPUSHService setupWithOption:launchOptions appKey:@"91fc5b28394293faca504a18"
                           channel:@"123123"
                  apsForProduction:YES  // 0 (默认值)表示采用的是开发证书，1 表示采用生产证书发布应用。
@@ -405,17 +420,20 @@ static SystemSoundID shake_sound_male_id = 0;
     [defaultCenter addObserver:self selector:@selector(setalias) name:KNOTIFICATION_LOGINSUCCESS object:nil];
     
   }
+#pragma mark 设置别名
 -(void)setalias{
 //    NSString * userid =[[NSUserDefaults standardUserDefaults] objectForKey:@"lawyer_id"];
     NSString * UUid  =   [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
   
    UUid =  [UUid stringByAppendingString:UserPhone];
-
-    [JPUSHService setAlias:UUid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+    NSString * md5Str = [UUid MD5];
+ 
+     [JPUSHService setAlias:md5Str completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
         NSLog(@" iResCode = %ld, iAlias = %@  seq = %ld",(long)iResCode,iAlias,(long)seq);
     } seq:[UUid integerValue]];
-
+    
+ 
 }
 
 - (void)application:(UIApplication *)application
@@ -460,88 +478,112 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [self NOtificationWithDic:userInfo];
 
 }
-
+#pragma mark  极光通知处理
 -(void)NOtificationWithDic:(NSDictionary *)userInfo{
     NSString *customizeField1 = [userInfo valueForKey:@"stateNumber"]; //服务端传递的Extras附加字段，key是自己定义的
    
-    // 1 新的咨询通知 2 新的预约通知 3 服务推送通知 4 抢单
+    // 1 咨询回复被采纳 2 收到送心意 3 收到见面预约/电话咨询 4 审核
+
 
     
-    
-    
-    
-    if ([customizeField1 isEqualToString:@"1"])//
-    {
-        [UserDefaults setValue:@"yes" forKey:@"MyCounsment"];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
-    }else if ([customizeField1 isEqualToString:@"2"]){
-        [UserDefaults setValue:@"yes" forKey:@"MyAppoinment"];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
-    }else if ([customizeField1 isEqualToString:@"3"]){
-        [UserDefaults setValue:@"yes" forKey:@"MyService"];
-    }else if ([customizeField1 isEqualToString:@"4"]){
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPGARAT" object:nil];
-    }
-    [UserDefaults synchronize];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPMINEUI" object:nil];
-    
+// abcb26fbb93db8c72d4d94ec
+//
+//
+//    if ([customizeField1 isEqualToString:@"1"])//
+//    {
+//        [UserDefaults setValue:@"yes" forKey:@"MyCounsment"];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
+//    }else if ([customizeField1 isEqualToString:@"2"]){
+//        [UserDefaults setValue:@"yes" forKey:@"MyAppoinment"];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
+//    }else if ([customizeField1 isEqualToString:@"3"]){
+//        [UserDefaults setValue:@"yes" forKey:@"MyService"];
+//    }else if ([customizeField1 isEqualToString:@"4"]){
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPGARAT" object:nil];
+//    }
+//    [UserDefaults synchronize];
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPMINEUI" object:nil];
+//
     
 
     
 }
-
+#pragma mark  极光在线消息处理
 - (void)networkDidReceiveMessage:(NSNotification *)notification {
+//      437c6ef2430734aca42b27335eec6ae9
     NSDictionary * userInfo = [notification userInfo];
     //    NSString *content = [userInfo valueForKey:@"content"];
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
     NSString *customizeField1 = [extras valueForKey:@"stateNumber"]; //服务端传递的Extras附加字段，key是自己定义的
-    
-//  stateNumber   1 新的咨询通知 2 新的预约通知  3 服务推送通知 4 抢单     1001 其他设备登录
-    if ([customizeField1 isEqualToString:@"1"])//
-    {
-        [UserDefaults setValue:@"yes" forKey:@"MyCounsment"];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
-
-    }else if ([customizeField1 isEqualToString:@"2"]){
-        [UserDefaults setValue:@"yes" forKey:@"MyAppoinment"];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
-
-    }else if ([customizeField1 isEqualToString:@"3"]){
-        [UserDefaults setValue:@"yes" forKey:@"MyService"];
-    }
-    else if ([customizeField1 isEqualToString:@"4"]){
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPGARAT" object:nil];
-      }
-    [UserDefaults synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPMINEUI" object:nil];
-    
  
-        // 其他设备登录   先清除别名
-        if ([customizeField1 isEqualToString:@"1001"]) {
-            NSLog(@"其他设备登录请 清除别名清除本地数据退出登录");
-            NSUserDefaults * userdefa =[NSUserDefaults standardUserDefaults];
-            [userdefa removeObjectForKey:@"id"];
-            [userdefa removeObjectForKey:@"phone"];
-            [userdefa removeObjectForKey:@"avatar"];
-            [userdefa synchronize];
-            [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+    //  stateNumber    // 1 咨询回复被采纳 2 收到送心意  3 电话咨询  4 收到见面预约 5法律服务 6审核
+    if ([customizeField1 isEqualToString:@"1"]) {
+        [UserDefaults setBool:NO forKey:@"constultN"];
+    }else if ([customizeField1 isEqualToString:@"2"]){
+        [UserDefaults setBool:NO  forKey:@"headerN"];
+    }else if ([customizeField1 isEqualToString:@"3"]){
+        [UserDefaults setBool:NO  forKey:@"phoneN"];
+    }else if ([customizeField1 isEqualToString:@"4"]){
+        [UserDefaults setBool:NO  forKey:@"meetN"];
+    }else if ([customizeField1 isEqualToString:@"5"]){
+        [UserDefaults setBool:NO  forKey:@"servicN"];
+    }
     
-            } seq:[UserId integerValue]];
     
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的账号已在其他设备上登录！" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                LawLogionViewController *view = [LawLogionViewController new];
-                UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
-                
-                self.window.rootViewController = na;
-                NSLog(@"OK Action");
-            }];
-            [alertController addAction:okAction];
-            [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
-        }
+    [UserDefaults setValue:customizeField1 forKey:@"stateNumber"];
+    
+    [UserDefaults synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PushMessage" object:customizeField1];
+
     [self playSoundAndVibration];
-    NSLog(@"自定义消息  = %@",userInfo);
+
+    
+//   暂时不处理 1001 其他设备登录
+//    if ([customizeField1 isEqualToString:@"1"])//
+//    {
+//        [UserDefaults setValue:@"yes" forKey:@"MyCounsment"];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
+//
+//    }else if ([customizeField1 isEqualToString:@"2"]){
+//        [UserDefaults setValue:@"yes" forKey:@"MyAppoinment"];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPMESSAGEDATA" object:nil];
+//
+//    }else if ([customizeField1 isEqualToString:@"3"]){
+//        [UserDefaults setValue:@"yes" forKey:@"MyService"];
+//    }
+//    else if ([customizeField1 isEqualToString:@"4"]){
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"UPGARAT" object:nil];
+//      }
+//    [UserDefaults synchronize];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPMINEUI" object:nil];
+//
+//
+//        // 其他设备登录   先清除别名
+//        if ([customizeField1 isEqualToString:@"1001"]) {
+//            NSLog(@"其他设备登录请 清除别名清除本地数据退出登录");
+//            NSUserDefaults * userdefa =[NSUserDefaults standardUserDefaults];
+//            [userdefa removeObjectForKey:@"id"];
+//            [userdefa removeObjectForKey:@"phone"];
+//            [userdefa removeObjectForKey:@"avatar"];
+//            [userdefa synchronize];
+//            [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+//
+//            } seq:[UserId integerValue]];
+//
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的账号已在其他设备上登录！" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                LawLogionViewController *view = [LawLogionViewController new];
+//                UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//
+//                self.window.rootViewController = na;
+//                NSLog(@"OK Action");
+//            }];
+//            [alertController addAction:okAction];
+//            [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+//        }
+//    NSLog(@"自定义消息  = %@",userInfo);
 }
 
 

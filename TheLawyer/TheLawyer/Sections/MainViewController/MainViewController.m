@@ -55,8 +55,13 @@
              ws.currentPage = 1;
              [ws requestGrabData];
         }];
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight= 0;
+        _tableView.estimatedSectionFooterHeight= 0;
         
-        self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+
+        self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
             ws.currentPage ++;
             [ws requestGrabData];
         }];
@@ -90,13 +95,12 @@
     [self requestGrabData];
 }
  -(void)requestGrabData
-{
-    MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:self.view];
-    [self.view addSubview:hud];
-    [self.view bringSubviewToFront:hud];
-    hud.labelText = @"拼命加载中";
-    hud.removeFromSuperViewOnHide = YES;
-    [hud show:YES];
+{   if(self.currentPage==1){
+    [self showHudInView:self.view hint:nil];
+    
+}
+    
+
     //action、value
     
     NSDictionary *dic = @{
@@ -121,7 +125,7 @@
     [AFManagerHelp POST:BASE_URL parameters:parameter success:^(id responseObjeck) {
         // 处理数据
         DLog(@"%@",responseObjeck);
-        [hud hide:YES];
+        [self hideHud];
         NSString * status =[NSString stringWithFormat:@"%@",responseObjeck[@"status"]];
           if (self.currentPage == 1) {
             [ws.tempArray  removeAllObjects];
@@ -152,8 +156,8 @@
       [_tableView.mj_footer  endRefreshing];
         [_tableView.mj_header  endRefreshing];
      } failure:^(NSError *error) {
-        [hud hide:YES];
-        if (ws.tempArray.count == 0) {
+         [self hideHud];
+         if (ws.tempArray.count == 0) {
             [self ShowNoDataViewWithStr:@"数据访问失败" yOffset:0];
         }else{
                 [self hintNodataView];

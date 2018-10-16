@@ -10,7 +10,7 @@
 #import "LawAppreSelectCaseTypeView.h"
 #import "LawJCImageSelect.h"
 #import "LawConsultTypeModel.h"
-@interface LawIWantPublicVC ()<selectImagedelegate,UITextViewDelegate>{
+@interface LawIWantPublicVC ()<selectImagedelegate>{
     
     NSString * Cate_id;
     NSMutableArray * CaseTypeArray;
@@ -39,8 +39,21 @@
     }];
     
 
+    _TitleTextField.returnKeyType = UIKeyboardTypeTwitter;//改变为完成键，如果在项目中导入了YYText框架那么原生的就被替换掉了，变为returnKeyType = UIKeyboardTypeTwitter;
+    _TitleTextField.delegate = self;
+    _ContentTextView.returnKeyType = UIKeyboardTypeTwitter;
+    _ContentTextView.delegate = self;
     
     // Do any additional setup after loading the view from its nib.
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];//取消第一响应者
+    
+    return YES;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.view addSubview:self.caseSelectView];
@@ -70,6 +83,12 @@
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
    
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        [textView resignFirstResponder];
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
       if(textView.text.length > 500){
           if (text.length > 0) {
               return NO ;

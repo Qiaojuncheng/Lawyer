@@ -64,7 +64,9 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     _placeholderLabel.hidden = textView.text.length > 0;
-    _countLabel.text = textView.text.length > self.maxCount ? [NSString stringWithFormat:@"-%ld",textView.text.length - self.maxCount ] : [NSString stringWithFormat:@"%ld",textView.text.length];
+//    _countLabel.text = textView.text.length > self.maxCount ? [NSString stringWithFormat:@"-%ld",textView.text.length - self.maxCount ] : [NSString stringWithFormat:@"%ld",textView.text.length];
+//    _countLabel.frame = CGRectMake(self.bounds.size.width - 100 - 5, self.contentSize.height - 25, 100, 25);
+
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

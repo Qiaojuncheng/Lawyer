@@ -45,8 +45,11 @@
     NSString * baseStr = [NSString getBase64StringWithArray:valudic];
     [dic setValue:baseStr forKey:@"value"];
     
-    [self showHudInView:self.view hint:nil];
-    
+
+    if(Page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
     
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
@@ -83,7 +86,12 @@
         Page =1;
         [self makeData];
     }];
-    _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+    
+    
+    _tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         Page ++;
         [self makeData];
 

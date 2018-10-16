@@ -180,13 +180,16 @@
                 selectImage.delegate = self;
                 [ selectImage showInViewController:self];
             }];
+                [cell.RightImage whenTapped:^{
+                    
+                }];
             }
             SelfselectImage = cell.LeftImaeg.image;
               return  cell ;
         }
     }
     
-    -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         if (!self.CanEidt ) {
             return ;
         }
@@ -225,7 +228,7 @@
     }
     -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         if( indexPath.row == 5){
-            return 220;
+            return 200;
         }else{
             return 60;
         }

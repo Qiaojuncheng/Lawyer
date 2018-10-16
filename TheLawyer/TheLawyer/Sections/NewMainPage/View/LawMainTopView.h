@@ -16,6 +16,20 @@ typedef void (^selectItemBlock)(NSInteger index);
 @property (copy, nonatomic) selectAdsIndexBlock adsselectBlock;
 @property (copy, nonatomic) selectItemBlock ItemselectBlock;
 
+@property (weak, nonatomic) IBOutlet UIView *ConsultRed;
+
+@property (weak, nonatomic) IBOutlet UIView *PhoneRed;
+
+@property (weak, nonatomic) IBOutlet UIView *MeetRed;
+
+@property (weak, nonatomic) IBOutlet UIView *serviceRed;
+
+
+
+
+
+
+
 -(void)makeDataWithScrollLBArray:(NSArray * )titleArray;
 - (IBAction)TopBtnACtion:(UIButton *)sender;
 

@@ -32,7 +32,7 @@
     _TV.delegate = self;
     _TV.dataSource= self;
     _TV.tableFooterView = [[UIView alloc]init];
-    _TV.mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    _TV.mj_footer =[MJRefreshAutoFooter footerWithRefreshingBlock:^{
         Page ++;
         [self makeData];
     }];
@@ -40,6 +40,13 @@
         Page =1;
         [self makeData];
     }];
+    _TV.estimatedRowHeight = 0;
+    _TV.estimatedSectionHeaderHeight= 0;
+    _TV.estimatedSectionFooterHeight= 0;
+    
+    
+    
+
     [self.view addSubview:_TV];
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -128,7 +135,10 @@
      NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
     [dic setValue:baseStr forKey:@"value"];
     
-    [self showHudInView:self.view hint:nil];
+    if(Page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSLog(@"%@",data);
         if(Page == 1){

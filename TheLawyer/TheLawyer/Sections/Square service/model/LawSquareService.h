@@ -9,5 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface LawSquareService : NSObject
+/*
+ "id":"1",
+ "name":"案件委托"
+ */
+@property (strong ,nonatomic) NSString  * id ;
+@property (strong ,nonatomic) NSString  * name ;
+
 
 @end

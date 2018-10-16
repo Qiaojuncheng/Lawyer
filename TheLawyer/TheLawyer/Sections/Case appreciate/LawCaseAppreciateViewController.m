@@ -54,12 +54,15 @@
         page = 1;
         [self makeData];
     }];
-    _tableView.mj_footer  = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+    _tableView.tableFooterView = [[UIView alloc]init];
+    _tableView.mj_footer  = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         page ++;
         [self makeData];
     }];
-    _tableView.tableFooterView = [[UIView alloc]init];
-    [self.view addSubview:_tableView];
+     [self.view addSubview:_tableView];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return dataArrray.count;
@@ -117,8 +120,10 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)makeData{
-    [self showHudInView:self.view hint:nil];
-    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+    if(page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
     NewCaseNews
     NSMutableDictionary * valuedic =[[NSMutableDictionary alloc]init];
     if ([UserId length]> 0) {

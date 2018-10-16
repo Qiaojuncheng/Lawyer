@@ -68,12 +68,11 @@
 
 -(void)makeData
 {
-    MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:self.view];
-    [self.view addSubview:hud];
-    [self.view bringSubviewToFront:hud];
-    hud.labelText = @"拼命加载中";
-    hud.removeFromSuperViewOnHide = YES;
-    [hud show:YES];
+    if(PageNumber==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
+
     //action、value
     
     NSDictionary *dic = @{
@@ -99,8 +98,7 @@
     [AFManagerHelp POST:BASE_URL parameters:parameter success:^(id responseObjeck) {
         // 处理数据
         DLog(@"%@",responseObjeck);
-        [hud hide:YES];
-        if (PageNumber == 1) {
+        [self hideHud];        if (PageNumber == 1) {
             [ws.dataSource removeAllObjects];
         }
         if ([responseObjeck[@"status"] integerValue] == 0) {
@@ -116,7 +114,7 @@
         [ws.listTab.mj_footer endRefreshing];
         [ws.listTab.mj_header  endRefreshing];
     } failure:^(NSError *error) {
-        [hud hide:YES];
+      [self hideHud];
         [ws.listTab.mj_footer endRefreshing];
         [ws.listTab.mj_header  endRefreshing];
         [ShowHUD showWYBTextOnly:@"你的网络好像不太给力\n请稍后再试" duration:2 inView:ws.view];
@@ -138,10 +136,18 @@
         [self makeData];
 
     }];
-    self.listTab.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    
+    self.listTab.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         PageNumber ++;
         [self makeData];
     }];
+    self.listTab.estimatedRowHeight = 0;
+    self.listTab.estimatedSectionHeaderHeight= 0;
+    self.listTab.estimatedSectionFooterHeight= 0;
+    
+    
+    
+
     [self.view addSubview:self.listTab];
     [self.listTab  addSubview:self.nodataL];
 }

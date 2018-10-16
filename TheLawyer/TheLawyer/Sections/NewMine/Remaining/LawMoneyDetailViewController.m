@@ -39,8 +39,10 @@
     NSString * baseStr = [NSString getBase64StringWithArray:valudic];
     [dic setValue:baseStr forKey:@"value"];
     
-    [self showHudInView:self.view hint:nil];
-    
+    if(Page==1){
+        [self showHudInView:self.view hint:nil];
+     }
+
     MJWeakSelf
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
@@ -72,11 +74,14 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
 //    __weak typeof(self) weakSelf = self;
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
     self.tableView.mj_header  = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         Page = 1;
         [self makeData];
      }];
-    self.tableView.mj_footer =[MJRefreshBackFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer =[MJRefreshAutoFooter footerWithRefreshingBlock:^{
         Page ++;
         [self makeData];
     }];

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "LPlaceholderTextView.h"
-@interface LawIWantPublicVC : BaseViewController
+@interface LawIWantPublicVC : BaseViewController<UITextViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *TitleTextField;
 

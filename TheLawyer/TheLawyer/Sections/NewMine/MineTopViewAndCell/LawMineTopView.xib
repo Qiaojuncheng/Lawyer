@@ -15,9 +15,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yindao_btn.png" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-H4-IwA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-H4-IwA">
                     <rect key="frame" x="287" y="13" width="68" height="68"/>
-                    <color key="backgroundColor" red="0.40152644230000001" green="0.2219951923" blue="0.7686298077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="68" id="Ndn-XZ-81G"/>
                         <constraint firstAttribute="width" constant="68" id="RiM-B9-4Vt"/>
@@ -33,13 +33,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pF6-hm-iQV">
-                    <rect key="frame" x="139" y="18" width="55" height="21"/>
+                    <rect key="frame" x="139" y="17" width="55" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="d9f-JE-gjF"/>
                         <constraint firstAttribute="width" constant="55" id="jgK-OE-Fi1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.19215686274509802" green="0.50588235294117645" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tng-0Q-78b">
@@ -100,7 +100,7 @@
                 <constraint firstItem="hgw-F0-ty5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="Ipo-Re-8Ms"/>
                 <constraint firstItem="pF6-hm-iQV" firstAttribute="leading" secondItem="hgw-F0-ty5" secondAttribute="trailing" constant="10" id="Iso-cp-LRg"/>
                 <constraint firstItem="pF6-hm-iQV" firstAttribute="baseline" secondItem="hgw-F0-ty5" secondAttribute="baseline" id="cUg-9K-PBc"/>
-                <constraint firstItem="uHy-H4-IwA" firstAttribute="top" secondItem="pF6-hm-iQV" secondAttribute="top" constant="-5" id="sJH-9z-czX"/>
+                <constraint firstItem="uHy-H4-IwA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="z8e-1d-gmH"/>
                 <constraint firstAttribute="trailing" secondItem="uHy-H4-IwA" secondAttribute="trailing" constant="20" id="zPI-66-n4j"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -110,7 +110,9 @@
                 <outlet property="CertifiCon" destination="jgK-OE-Fi1" id="EYG-S6-JAg"/>
                 <outlet property="EditBtn" destination="Tng-0Q-78b" id="FCr-Ta-TyF"/>
                 <outlet property="HeaderImage" destination="uHy-H4-IwA" id="wTC-Ev-luR"/>
+                <outlet property="LeftConcent" destination="0yH-eD-egc" id="9ae-9S-qNL"/>
                 <outlet property="PhoneLb" destination="hgw-F0-ty5" id="KZq-ud-lKY"/>
+                <outlet property="TopConcent" destination="Ipo-Re-8Ms" id="8vn-wH-Vpr"/>
                 <outlet property="certifi" destination="pF6-hm-iQV" id="w0n-hU-yuK"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="-191"/>
@@ -121,6 +123,5 @@
         <image name="my_heart" width="32" height="32"/>
         <image name="my_money" width="32" height="32"/>
         <image name="my_ticket" width="32" height="32"/>
-        <image name="yindao_btn.png" width="184" height="43"/>
     </resources>
 </document>

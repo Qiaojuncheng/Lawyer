@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsE-6C-vvL">
-                    <rect key="frame" x="13" y="30" width="78" height="72"/>
+                    <rect key="frame" x="13" y="45" width="78" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="titleEdgeInsets" minX="-21" minY="57" maxX="24" maxY="0.0"/>
@@ -29,7 +29,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="42" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRV-y9-3eh">
-                    <rect key="frame" x="103" y="29" width="78" height="72"/>
+                    <rect key="frame" x="103" y="45" width="78" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="titleEdgeInsets" minX="-51" minY="57" maxX="0.0" maxY="0.0"/>
@@ -42,7 +42,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="43" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYI-IS-wIq">
-                    <rect key="frame" x="194" y="30" width="78" height="72"/>
+                    <rect key="frame" x="194" y="44" width="78" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="titleEdgeInsets" minX="-51" minY="57" maxX="0.0" maxY="0.0"/>
@@ -55,7 +55,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="44" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amE-cJ-x6b">
-                    <rect key="frame" x="284" y="30" width="78" height="72"/>
+                    <rect key="frame" x="284" y="45" width="78" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="titleEdgeInsets" minX="-51" minY="57" maxX="0.0" maxY="0.0"/>
@@ -81,15 +81,39 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRh-Y1-Spg">
+                    <rect key="frame" x="74" y="29" width="8" height="8"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M0S-pJ-tEs">
+                    <rect key="frame" x="252" y="29" width="8" height="8"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDb-Ia-AL8">
+                    <rect key="frame" x="343" y="29" width="8" height="8"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5AE-NO-hf9">
+                    <rect key="frame" x="162" y="29" width="8" height="8"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="ConsultRed" destination="GRh-Y1-Spg" id="teh-Pz-tsr"/>
+                <outlet property="MeetRed" destination="M0S-pJ-tEs" id="gFk-6I-fJq"/>
+                <outlet property="PhoneRed" destination="5AE-NO-hf9" id="dFS-lM-uei"/>
                 <outlet property="scrollTextView" destination="Qwf-d4-JwH" id="L5k-Rw-Zll"/>
+                <outlet property="serviceRed" destination="qDb-Ia-AL8" id="Dly-9E-Phn"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="158"/>
+            <point key="canvasLocation" x="26.5" y="158"/>
         </view>
     </objects>
     <resources>

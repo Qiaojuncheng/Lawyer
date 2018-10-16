@@ -46,7 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是律师的回答" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRM-MA-Otc">
-                        <rect key="frame" x="52" y="55" width="305" height="21"/>
+                        <rect key="frame" x="52" y="55" width="309" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="eRM-MA-Otc" secondAttribute="bottom" constant="5" id="6LW-jD-5r3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="eRM-MA-Otc" secondAttribute="bottom" id="6LW-jD-5r3"/>
                     <constraint firstAttribute="trailing" secondItem="O02-SI-9rv" secondAttribute="trailing" constant="12" id="9Hv-1Z-fEt"/>
                     <constraint firstItem="feT-h2-mpF" firstAttribute="leading" secondItem="15j-UO-rby" secondAttribute="trailing" constant="8" id="IwX-aF-tMN"/>
                     <constraint firstItem="15j-UO-rby" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="VRL-xu-gRg"/>
@@ -88,7 +88,7 @@
                     <constraint firstItem="qXw-Lr-wB0" firstAttribute="leading" secondItem="15j-UO-rby" secondAttribute="trailing" constant="8" id="hIz-ho-J2k"/>
                     <constraint firstItem="feT-h2-mpF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="olU-7G-dCf"/>
                     <constraint firstItem="MRf-91-S8D" firstAttribute="leading" secondItem="feT-h2-mpF" secondAttribute="trailing" constant="5" id="ooe-4t-otl"/>
-                    <constraint firstItem="eRM-MA-Otc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-2" id="reg-5W-kyz"/>
+                    <constraint firstItem="eRM-MA-Otc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="2" id="reg-5W-kyz"/>
                     <constraint firstItem="qXw-Lr-wB0" firstAttribute="top" secondItem="feT-h2-mpF" secondAttribute="bottom" constant="5" id="ryY-yj-AN5"/>
                     <constraint firstItem="eRM-MA-Otc" firstAttribute="top" secondItem="qXw-Lr-wB0" secondAttribute="bottom" constant="8" id="teS-Vk-aqv"/>
                 </constraints>

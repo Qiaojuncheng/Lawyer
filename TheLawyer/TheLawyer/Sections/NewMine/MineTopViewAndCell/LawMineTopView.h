@@ -17,6 +17,10 @@ typedef void (^BtnTouchActionBlock)(NSInteger index);
 @property (weak, nonatomic) IBOutlet UILabel *certifi;
 @property (weak, nonatomic) IBOutlet UIImageView *HeaderImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CertifiCon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *LeftConcent;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *TopConcent;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *EditBtn;
 @property (copy, nonatomic) BtnTouchActionBlock TouchBtnBlock;
 - (IBAction)BtnAction:(UIButton *)sender;

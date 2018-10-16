@@ -53,11 +53,19 @@
             [self requestMessageData];
         }];
                                  
-        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        _tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
             
             _currentPage++;
             [self requestMessageData];
         }];
+        
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight= 0;
+        _tableView.estimatedSectionFooterHeight= 0;
+        
+        
+        
+
         
     }
      return _tableView;
@@ -87,12 +95,9 @@
 }
 -(void)requestMessageData
 {
-    MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:self.view];
-    [self.view addSubview:hud];
-    [self.view bringSubviewToFront:hud];
-    hud.labelText = @"拼命加载中";
-    hud.removeFromSuperViewOnHide = YES;
-    [hud show:YES];
+    if(_currentPage==1){
+        [self showHudInView:self.view hint:nil];
+    }
     //action、value
     NSDictionary *dic = @{
                           @"user_id":UserId,
@@ -118,7 +123,7 @@
         if (_currentPage == 1) {
             [ws.dataSource removeAllObjects];
         }
-        [hud hide:YES];
+        [self hideHud];
         if ([responseObjeck[@"status"] integerValue] == 0) {
             _tableView.hidden = NO;
         [ws.dataSource  addObjectsFromArray:(NSMutableArray *)[MessageModel mj_objectArrayWithKeyValuesArray:responseObjeck[@"data"]]];
@@ -144,7 +149,7 @@
 
         [ws.tableView.mj_header endRefreshing];
          [ws.tableView.mj_footer endRefreshing];
-        [hud hide:YES];
+        [self hideHud];
         [ShowHUD showWYBTextOnly:@"你的网络好像不太给力\n请稍后再试" duration:2 inView:ws.view];
     }];
 }

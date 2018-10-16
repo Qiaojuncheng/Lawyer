@@ -32,8 +32,15 @@
     [self addCenterLabelWithTitle:@"咨询详情" titleColor:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     [self makedata];
-    [self addbottomView];
 
+    
+//     消息进来处理下 首页红点问题
+    NSUserDefaults * UserDefaults =[ NSUserDefaults standardUserDefaults];
+    [UserDefaults setBool:YES forKey:@"constultN"];
+    [UserDefaults synchronize];
+    
+
+    
     // Do any additional setup after loading the view.
 }
 -(void)makedata{
@@ -53,10 +60,10 @@
         }
         
     }else{
-        vadic  = @{@"id":self.constultId,@"type":self.type};
+        vadic  = @{@"id":self.constultId,@"type":self.type,@"lawyer_id":UserId};
 
     }
- 
+   
     NSString * baseString = [NSString getBase64StringWithArray:vadic];
     [dic setValue:baseString forKey:@"value"];
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
@@ -69,7 +76,7 @@
 
              for (NSDictionary * dics in data[@"data"][@"reply_list"]) {
                 LawConsultDetailReplayModel * model =  [LawConsultDetailReplayModel yy_modelWithDictionary:dics];
-                  model.cellHeight  = [NSString GetHeightWithMaxSize:CGSizeMake(SCREENHEIGHT - 75, MAXFLOAT) AndFont:[UIFont systemFontOfSize:16] AndText:model.content].height;
+                  model.cellHeight  = [NSString GetHeightWithMaxSize:CGSizeMake(SCREENHEIGHT - 87, MAXFLOAT) AndFont:[UIFont systemFontOfSize:18] AndText:model.content].height;
 
                 [dataArrray addObject:model];
 
@@ -88,14 +95,17 @@
     
     CGFloat _tableVeiwheight ;
     if ([self.model.answered isEqualToString:@"0"]) {
-//        未回复
-        _tableVeiwheight =     SCREENHEIGHT -  NavStatusBarHeight- 68 ;
-
+     //        未回复
+            _tableVeiwheight =     SCREENHEIGHT -  NavStatusBarHeight- 68 ;
+        
     }else{
         _tableVeiwheight =     SCREENHEIGHT -  NavStatusBarHeight;
-
     }
-    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,  NavStatusBarHeight, SCREENWIDTH,_tableVeiwheight ) style:UITableViewStylePlain];
+    if(!IsLogin){
+        _tableVeiwheight =     SCREENHEIGHT -  NavStatusBarHeight;
+    }
+
+     _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,  NavStatusBarHeight, SCREENWIDTH,_tableVeiwheight ) style:UITableViewStylePlain];
     
     _tableView.delegate=  self;
     _tableView.dataSource = self;
@@ -103,7 +113,35 @@
     _tableView.backgroundColor =[UIColor whiteColor];
     _tableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:_tableView];
+     if ([self.model.answered isEqualToString:@"0"]) {
+         if(IsLogin){
+         [self addbottomView];
+         }
+         
+     }
+
 }
+-(void)addbottomView{
+
+    UIView * bottom =[[UIView alloc]initWithFrame:CGRectMake(0, SCREENHEIGHT - 68, SCREENWIDTH, 68)];
+    bottom.backgroundColor =[UIColor whiteColor];
+    [self.view addSubview:bottom];
+    
+    UIButton* answerBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+    answerBtn.frame = CGRectMake(38, 12, SCREENWIDTH - 76,44 );
+    [answerBtn setImage:[UIImage imageNamed:@"botton_answer"] forState:UIControlStateNormal];
+    answerBtn.adjustsImageWhenHighlighted = NO;
+    [answerBtn setTitle:@"我要回答" forState:UIControlStateNormal];
+    [answerBtn addTarget:self action:@selector(amserBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [Utile makeCorner:answerBtn.height/2 view:answerBtn];
+    [answerBtn setBackgroundColor:[UIColor colorWithHex:0x4483F6]];
+    [bottom addSubview:answerBtn];
+    
+    _textView =[QZTopTextView topTextView];
+    _textView.delegate = self;
+    [self.view addSubview:_textView];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
@@ -131,6 +169,8 @@
             cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawMainConsultCell" owner:self options:nil]lastObject];
         }
         cell.model = self.model;
+        cell.adopt.hidden = YES;
+        cell.answBtn.hidden = YES;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return  cell ;
         
@@ -166,37 +206,24 @@
     }
 }
 
--(void)addbottomView{
-    
-   
-    
-    
-    UIView * bottom =[[UIView alloc]initWithFrame:CGRectMake(0, _tableView.bottom +1, SCREENWIDTH, 68)];
-    bottom.backgroundColor =[UIColor whiteColor];
-    [self.view addSubview:bottom];
-    
-    UIButton* answerBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    answerBtn.frame = CGRectMake(38, 12, SCREENWIDTH - 76,44 );
-    [answerBtn setImage:[UIImage imageNamed:@"botton_answer"] forState:UIControlStateNormal];
-    answerBtn.adjustsImageWhenHighlighted = NO;
-    [answerBtn setTitle:@"我要回答" forState:UIControlStateNormal];
-    [answerBtn addTarget:self action:@selector(amserBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [Utile makeCorner:answerBtn.height/2 view:answerBtn];
-    [answerBtn setBackgroundColor:[UIColor colorWithHex:0x4483F6]];
-    [bottom addSubview:answerBtn];
-    
-    _textView =[QZTopTextView topTextView];
-    _textView.delegate = self;
-    [self.view addSubview:_textView];
-    
-
-    
-}
 -(void)amserBtnAction{
     NSLog(@"评论");
+    if (!IsLogin) {
+        LawLogionViewController *view = [LawLogionViewController new];
+        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+    }else{
+        [_textView.countNumTextView becomeFirstResponder];
+    }
     
-    [_textView.countNumTextView becomeFirstResponder];
 
+}
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)sendComment
@@ -236,13 +263,12 @@
             if(self.reloadBlock){
                 self.reloadBlock();
             }
-            
-            [self makedata];
+                    [self makedata];
         }else{
  
         }
         [self showHint:data[@"msg"]];
-
+        _textView.countNumTextView.text = @"";
     } failure:^(NSError *error) {
         [self hideHud];
         [self showHint:@"回复失败"];

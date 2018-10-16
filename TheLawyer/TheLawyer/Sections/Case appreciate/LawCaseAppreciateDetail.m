@@ -83,12 +83,13 @@
    
 }
 -(void)makeCollect{
-    
-         [self showHudInView:self.view hint:nil];
+   
+    if (IsLogin) {
         NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
         NewCaseNewscollect
         NSMutableDictionary * valuedic =[[NSMutableDictionary alloc]init];
-        if ([UserId length]> 0) {
+            [self showHudInView:self.view hint:nil];
+
             [valuedic setValue:UserId forKey:@"id"];
             [valuedic setValue:@"1" forKey:@"type"];
             [valuedic setValue:@"2" forKey:@"role"];
@@ -119,8 +120,20 @@
             
         }];
             
+        }else{
+            
+            LawLogionViewController *view = [LawLogionViewController new];
+            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+            [UIApplication sharedApplication].delegate.window.rootViewController = na;
         }
  
+}
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

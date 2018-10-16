@@ -20,6 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addLeftButtonWithImage: @"nav_arrow" preImg:@"nav_arrow" actionBlock:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINSUCCESS object:@(YES)];
+
+    }];
     Type = YES;
     self.XieYiBtn.hidden = YES;
     self.XieLb.hidden =self.XieYiBtn.hidden;
@@ -90,8 +94,9 @@
         NSString * UUid  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
        UUid =  [UUid stringByAppendingString:self.PhoneTextField.text];
-        
-        vadic = @{@"type":@"2",@"phone":self.PhoneTextField.text,@"code":self.PassWorldTextField.text,@"device":UUid};
+        NSString * md5Str = [UUid MD5];
+
+        vadic = @{@"type":@"2",@"phone":self.PhoneTextField.text,@"code":self.PassWorldTextField.text,@"device":md5Str};
     }else{
         NewRegiste
          vadic = @{@"type":@"2",@"phone":self.PhoneTextField.text,@"code":self.PassWorldTextField.text};

@@ -43,15 +43,18 @@
     NSDictionary * valudic  = @{@"lawyer_id":UserId,@"p":[NSString stringWithFormat:@"%ld",page]};
     NSString * baseStr = [NSString getBase64StringWithArray:valudic];
     [dic setValue:baseStr forKey:@"value"];
-     [self showHudInView:self.view hint:nil];
- 
+    if(page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
+
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
         if ([str isEqualToString:@"0"]) {
              if (page == 1) {
                 [dataArrray removeAllObjects];
             }
-            for (NSDictionary * dicc in data[@"data"]) {
+            for (NSDictionary * dicc in data[@"data"][@"list"]) {
                 LawNewMessageMM * model = [LawNewMessageMM yy_modelWithJSON:dicc];
                 [dataArrray addObject:model];
             }
@@ -80,7 +83,14 @@
         page = 1;
         [self makedata];
     }];
-    _tableView.mj_footer =[MJRefreshBackFooter footerWithRefreshingBlock:^{
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+    
+    
+    
+
+    _tableView.mj_footer =[MJRefreshAutoFooter footerWithRefreshingBlock:^{
         page ++;
         [self makedata];
     }];

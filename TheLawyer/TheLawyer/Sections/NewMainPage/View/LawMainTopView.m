@@ -12,7 +12,19 @@
 
 -(void)makeDataWithScrollLBArray:(NSArray * )titleArray{
     
+    [Utile makeCorner:self.ConsultRed.width/2 view:self.ConsultRed];
+    [Utile makeCorner:self.ConsultRed.width/2 view:self.PhoneRed];
+    [Utile makeCorner:self.ConsultRed.width/2 view:self.MeetRed];
+    [Utile makeCorner:self.ConsultRed.width/2 view:self.serviceRed];
     
+    NSUserDefaults * UserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    self.ConsultRed.hidden =  [UserDefaults boolForKey:@"constultN"];
+    self.PhoneRed.hidden =  [UserDefaults boolForKey:@"phoneN"];
+    self.MeetRed.hidden =  [UserDefaults boolForKey:@"meetN"];
+    self.serviceRed.hidden =  [UserDefaults boolForKey:@"servicN"];
+
+ 
     _scrollTextView.delegate            = self;
     _scrollTextView.textStayTime        = 2;
     _scrollTextView.scrollAnimationTime = 1;

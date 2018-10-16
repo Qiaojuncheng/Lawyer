@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F08B2A7216C99EE00E0EEB6 /* LawSquareService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F08B2A6216C99EE00E0EEB6 /* LawSquareService.m */; };
+		1F08B2AA216CA85700E0EEB6 /* LawSquaremodel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F08B2A9216CA85700E0EEB6 /* LawSquaremodel.m */; };
 		1F1B9FE92123B8300069E1CD /* LawMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B9FE82123B8300069E1CD /* LawMainPageViewController.m */; };
 		1F1B9FED2123C0090069E1CD /* LawMainTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B9FEC2123C0090069E1CD /* LawMainTopView.m */; };
 		1F1B9FEF2123C0140069E1CD /* LawMainTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1B9FEE2123C0140069E1CD /* LawMainTopView.xib */; };
@@ -372,6 +374,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F08B2A5216C99EE00E0EEB6 /* LawSquareService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawSquareService.h; sourceTree = "<group>"; };
+		1F08B2A6216C99EE00E0EEB6 /* LawSquareService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawSquareService.m; sourceTree = "<group>"; };
+		1F08B2A8216CA85700E0EEB6 /* LawSquaremodel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawSquaremodel.h; sourceTree = "<group>"; };
+		1F08B2A9216CA85700E0EEB6 /* LawSquaremodel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawSquaremodel.m; sourceTree = "<group>"; };
 		1F1B9FE72123B8300069E1CD /* LawMainPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMainPageViewController.h; sourceTree = "<group>"; };
 		1F1B9FE82123B8300069E1CD /* LawMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMainPageViewController.m; sourceTree = "<group>"; };
 		1F1B9FEB2123C0090069E1CD /* LawMainTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMainTopView.h; sourceTree = "<group>"; };
@@ -977,6 +983,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F08B2A4216C99B900E0EEB6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1F08B2A5216C99EE00E0EEB6 /* LawSquareService.h */,
+				1F08B2A6216C99EE00E0EEB6 /* LawSquareService.m */,
+				1F08B2A8216CA85700E0EEB6 /* LawSquaremodel.h */,
+				1F08B2A9216CA85700E0EEB6 /* LawSquaremodel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		1F1B9FE62123B7FA0069E1CD /* NewMainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1425,6 +1442,7 @@
 		1F7AEEDC21266C6F00CACC0F /* Square service */ = {
 			isa = PBXGroup;
 			children = (
+				1F08B2A4216C99B900E0EEB6 /* model */,
 				1F7AEEED2126A54100CACC0F /* View */,
 				1F7AEEDD21266EC700CACC0F /* LawSquarSrviceViewController.h */,
 				1F7AEEDE21266EC700CACC0F /* LawSquarSrviceViewController.m */,
@@ -1898,8 +1916,8 @@
 			children = (
 				225346881F2A09C100CF38FE /* SuperTableViewCell.h */,
 				225346891F2A09C100CF38FE /* SuperTableViewCell.m */,
-				226690C21F1E18900059A610 /* BaseViewController.m */,
 				226690C31F1E18900059A610 /* BaseViewController.h */,
+				226690C21F1E18900059A610 /* BaseViewController.m */,
 				226690C41F1E18900059A610 /* BaseNavigationController.h */,
 				226690C51F1E18900059A610 /* BaseNavigationController.m */,
 			);
@@ -2745,6 +2763,7 @@
 				1F6288301FB2BFC00043EA33 /* RPWordController.m in Sources */,
 				22DD9A221F2D74740012FCBC /* FeedbackViewController.m in Sources */,
 				1F7F029C213001C0004E1A5A /* LawAddCardViewController.m in Sources */,
+				1F08B2A7216C99EE00E0EEB6 /* LawSquareService.m in Sources */,
 				1F70A93F2121943D0053898D /* XYNoDataView.m in Sources */,
 				1F591DFF212E403B006E56BA /* LawChagebasicInfoVC.m in Sources */,
 				1FA5B5A81FAC5F9100BB2543 /* UIColor+PGHex.m in Sources */,
@@ -2757,6 +2776,7 @@
 				1F70A93421216EBD0053898D /* LawNewSettingViewController.m in Sources */,
 				1FC0A6B5213CE6940021C345 /* LawAddressModel.m in Sources */,
 				1F7F0297212FEAFD004E1A5A /* LawBankCardCell.m in Sources */,
+				1F08B2AA216CA85700E0EEB6 /* LawSquaremodel.m in Sources */,
 				226690AD1F1E183C0059A610 /* XVersionModel.m in Sources */,
 				225346B11F2A128800CF38FE /* XMyAccountCell.m in Sources */,
 				1F4086BD1FBD1D7D008DD059 /* QJNewMessageTSCell.m in Sources */,

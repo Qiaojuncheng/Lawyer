@@ -13,13 +13,31 @@
     
     _infoModel = infoModel;
     [Utile makeCorner:5 view:self.EditBtn ];
-    [self.certifi createBordersWithColor:[UIColor colorWithHex:0x888888] withCornerRadius:self.certifi.height/2 andWidth:1];
+    [self.certifi createBordersWithColor:[UIColor colorWithHex:0x3181FE] withCornerRadius:self.certifi.height/2 andWidth:1];
     [Utile makeCorner:self.HeaderImage.height/2 view:self.HeaderImage];
     self.PhoneLb.text =[NSString stringWithFormat:@"%@律师",_infoModel.name];
     if([NSString changeNullString:_infoModel.name].length == 0){
-        self.PhoneLb.text =[NSString stringWithFormat:@"- - -"];
+        self.certifi.text  = @"";
+        self.certifi.hidden = YES;
+        self.EditBtn.hidden = YES ;
+        self.LeftConcent.constant = 70;
+        self.TopConcent.constant = 30;
+        self.PhoneLb.text =[NSString stringWithFormat:@"登录／注册"];
+        self.PhoneLb.textColor =[UIColor colorWithHex:0x3181FE];
+        [self.PhoneLb whenTapped:^{
+            if(self.TouchBtnBlock){
+                self.TouchBtnBlock(100);
+            }
+        }];
+    }else{
+        self.certifi.hidden = NO;
+        self.EditBtn.hidden = NO ;
+        self.LeftConcent.constant = 20;
+        self.TopConcent.constant = 13;
+        self.PhoneLb.textColor =[UIColor colorWithHex:0x333333];
+        self.certifi.text = [_infoModel.renzheng  isEqualToString:@"2"]?@"已认证":@"未认证";
+        
     }
-    self.certifi.text = [_infoModel.renzheng  isEqualToString:@"2"]?@"已认证":@"未认证";
     if ([_infoModel.renzheng isEqualToString:@"1"]) {
         self.certifi.text = @"审核中";
     }

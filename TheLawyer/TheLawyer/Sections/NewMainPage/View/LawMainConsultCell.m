@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+//    self.answBtn.enabled = NO ;
     [Utile makeCorner:self.RedView.width/2 view:self.RedView];
     [Utile makeCorner:self.PersonImage.width/2 view:self.PersonImage];
     [Utile makeCorner:13 view:self.answBtn];
@@ -42,11 +42,15 @@
     
     self.AdressLB.text =[NSString stringWithFormat:@"%@·%@",_model.province,_model.city];
     self.TimeLB.text = [NSString stringWithFormat:@"%@·%@人回答",_model.create_time,_model.reply_count];
-    self.answBtn.hidden = NO ;
+    self.answBtn.hidden = YES ;
+    
     if ([_model.answered isEqualToString:@"0" ]) {
+        self.answBtn.hidden = NO ;
+
         self.answBtn.selected  = YES;// = @"未回答";
-        self.answBtn.userInteractionEnabled  =YES ;
+        self.answBtn.userInteractionEnabled  =NO ;
     }else if ([_model.answered isEqualToString:@"1" ]) {
+        self.answBtn.hidden = NO ;
         //      已回答 或者已采纳的时候显示
         self.answBtn.selected = NO;// = @"已回答";
         self.answBtn.userInteractionEnabled  =NO ;
@@ -59,6 +63,8 @@
         self.RedView.hidden = YES  ;
     }
 }
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

@@ -45,7 +45,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addCenterLabelWithTitle:self.meetTing titleColor:nil];
-    
+    MJWeakSelf;
+    [self addRightButtonWithTitle:@"全部" titleColor: [UIColor blackColor] actionBlock:^{
+        order = @"";
+        cate_id = @"";
+        area = @"";
+        page =1 ;
+        [weakSelf makedata];
+    }];
+    if ([self.meetTing isEqualToString:@"电话预约"]) {
+        NSUserDefaults * UserDefaults =[ NSUserDefaults standardUserDefaults];
+        [UserDefaults setBool:YES  forKey:@"phoneN"];
+        [UserDefaults synchronize];
+        
+    }else{
+        NSUserDefaults * UserDefaults =[ NSUserDefaults standardUserDefaults];
+        [UserDefaults setBool:YES  forKey:@"meetN"];
+        [UserDefaults synchronize];
+        
+    }
+
+
     dataArrray   =[[NSMutableArray alloc]init];
     order = @"";
     cate_id = @"";
@@ -142,7 +162,7 @@
     
     switch (column) {
         case 0:
-            return @"省份" ;
+            return @"区域" ;
             break;
             //        case 1: return _data2[0];
         case 1:
@@ -297,8 +317,10 @@
     NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
     [dic setValue:baseStr forKey:@"value"];
     NSLog(@"dic = %@",dic);
-    [self showHudInView:self.view hint:nil];
-    
+    if(page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
     [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
         NSLog(@"%@",data);
     
@@ -340,7 +362,11 @@
         page = 1;
         [self makedata];
     }];
-    _tableView.mj_footer =[MJRefreshBackNormalFooter   footerWithRefreshingBlock:^{
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+
+    _tableView.mj_footer =[MJRefreshAutoFooter   footerWithRefreshingBlock:^{
         page += 1;
         [self makedata];
         
@@ -422,7 +448,9 @@
         [self hideHud];
          if ([responseObjeck[@"status"] integerValue] == 0) {
             
-             [_tableView.mj_header beginRefreshing];
+             page = 1;
+             [self makedata];
+//             [_tableView.mj_header beginRefreshing];
         }else{
             [self showHint:responseObjeck[@"msg"]];
         }
@@ -441,6 +469,7 @@
     for (NSDictionary * proDic in plistData) {
         //省
         LawAddressModel * proModel =[LawAddressModel yy_modelWithJSON:proDic];
+
         [data1 addObject:proModel];
         
     }

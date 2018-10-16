@@ -21,6 +21,7 @@
 #import "LawHeartViewController.h"
 #import "LawPersonInfoViewController.h"
 #import "LawNewHeaterModel.h"
+#import "LawLogionViewController.h"
 @interface LawMainPageViewController ()<UITableViewDataSource,UITableViewDelegate>{
     
     NSMutableArray * dataArrray ;
@@ -48,19 +49,49 @@
     HearDataArray =[[NSMutableArray alloc]init];
     [self addView];
     page = 1;
-     [self addCenterLabelWithTitle:@"汇融法" titleColor:nil];
-    [self addLeftButtonWithImage:@"nav_phone" preTitle:@"客服"];
-    [self addRightButtonWithImage:@"nav_news"];
+    [self addCenterLabelWithTitle:@"汇融法" titleColor:nil];
+    [self addLeftButtonWithImage:@"nav_phone_blue" preTitle:@"客服"];
+    [self addRightButtonWithImage:@"nav_news_blue"];
     [self getData];//资讯列表数据
     [self makemessagedata];// 消息数据
     [self heatData];//收到的心意
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PushAction:) name:@"PushMessage" object:nil];
+
+}
+-(void)PushAction:(NSNotification *)nofi{
+    NSLog(@"%@ === ", nofi.object);
+    if (nofi){
+        // 1 咨询回复被采纳 2 收到送心意  3电话咨询 4 收到见面预约  5法律服务 6审核
+
+        NSString * statuNumber = [NSString stringWithFormat:@"%@",nofi.object];
+        tipView.hidden= NO ;
+
+    }
+    
+    
+    NSUserDefaults * UserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    self.topHeaderView.ConsultRed.hidden =  [UserDefaults boolForKey:@"constultN"];
+    self.topHeaderView.PhoneRed.hidden =  [UserDefaults boolForKey:@"phoneN"]  ;
+     self.topHeaderView.MeetRed.hidden =  [UserDefaults boolForKey:@"meetN"];
+    self.topHeaderView.serviceRed.hidden =  [UserDefaults boolForKey:@"servicN"];
+ 
+ 
+    [self makemessagedata];// 消息数据
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self PushAction:nil];
 }
  -(void)getData{
-   
-    [self showHudInView:self.view hint:nil];
-    NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
-    NewConsult
+     if(page==1){
+         [self showHudInView:self.view hint:nil];
+         
+     }
+
+     NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+     NewConsult
      
      NSMutableDictionary * valueDic =[[NSMutableDictionary alloc]init];
      [valueDic setValue:@"1" forKey:@"type"];
@@ -102,7 +133,10 @@
     _tableView.delegate=  self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
-    _tableView.mj_footer = [MJRefreshBackNormalFooter  footerWithRefreshingBlock:^{
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+    _tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         page++ ;
         [self getData ];
     }];
@@ -117,29 +151,56 @@
     if (!_topHeaderView) {
         _topHeaderView = [[[NSBundle mainBundle]loadNibNamed:@"LawMainTopView" owner:self options:nil] lastObject];
     }
-    MJWeakSelf;
+//    _topHeaderView.ConsultRed.hidden = YES;
+//    _topHeaderView.PhoneRed.hidden = YES;
+//    _topHeaderView.MeetRed.hidden = YES;
+//    _topHeaderView.serviceRed.hidden = YES;
+
+    __weak typeof(_topHeaderView)  weaktopView = _topHeaderView;
+     MJWeakSelf;
 #pragma mark    41 咨询  电话预约  见面预约  法律服务
     _topHeaderView.ItemselectBlock = ^(NSInteger index) {
-        if(index == 41){
+        
+        if (index != 44){
+        if(!IsLogin){
             
+            LawLogionViewController *view = [LawLogionViewController new];
+            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+            [UIApplication sharedApplication].delegate.window.rootViewController = na;
+            return ;
+        }
+        
+        }
+       
+        if(index == 41){
+            weaktopView.ConsultRed.hidden = YES;
+          
+            NSUserDefaults * UserDefaults =[ NSUserDefaults standardUserDefaults];
+            [UserDefaults setBool:YES forKey:@"constultN"];
+            [UserDefaults synchronize];
+            
+
             LawConSultViewController * adsListVc = [[LawConSultViewController alloc]init];
+            
             [weakSelf.navigationController pushViewController:adsListVc animated:YES];
         }else if (index == 42 || index == 43){
             LawMeetingViewController * adsListVc = [[LawMeetingViewController alloc]init];
             if (index ==42) {
-                adsListVc.meetTing =@"电话预约";
+                weaktopView.PhoneRed.hidden = YES;
+                 adsListVc.meetTing =@"电话预约";
             }else{
-                adsListVc.meetTing =@"见面预约";
+                 weaktopView.MeetRed.hidden = YES;
+                 adsListVc.meetTing =@"见面预约";
             }
             [weakSelf.navigationController pushViewController:adsListVc animated:YES];
             
         }else if (index == 44){
-      
-            
+            weaktopView.serviceRed.hidden = YES;
             LawSquarSrviceViewController * adsListVc = [[LawSquarSrviceViewController alloc]init];
             adsListVc.ServiceTitle = @"法律服务";
             [weakSelf.navigationController pushViewController:adsListVc animated:YES];
         }
+
         
     };
 //    心意
@@ -186,11 +247,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if(indexPath.section == 0){
+        
+      NSUserDefaults * UserDefaults   = [NSUserDefaults standardUserDefaults ];
         LawNewMessageMM * modle =  messageDataArray [indexPath.row];
         modle.status =@"1";
-        [dataArrray replaceObjectAtIndex:indexPath.row withObject:modle];
+        [messageDataArray replaceObjectAtIndex:indexPath.row withObject:modle];
         if ([modle.type isEqualToString:@"1"]) {
+            [UserDefaults setBool:YES forKey:@"phoneN"];
             LawMeetingViewController * adsListVc = [[LawMeetingViewController alloc]init];
+            
             adsListVc.meetTing =@"电话预约";
             adsListVc.tid =modle.tid;
             adsListVc.mid =modle.id;
@@ -200,11 +265,14 @@
             adsListVc.meetTing =@"见面预约";
             adsListVc.mid =modle.id;
             adsListVc.tid =modle.tid;
-            
+            [UserDefaults setBool:YES forKey:@"meetN"];
+
             [self.navigationController pushViewController:adsListVc animated:YES];
             
         }
         else if ([modle.type isEqualToString:@"3"]) {
+            [UserDefaults setBool:YES forKey:@"constultN"];
+
             LawConsultDetailViewController * detail =[[LawConsultDetailViewController alloc]init];
             detail.constultId = modle.tid;
             detail.mid =modle.id;
@@ -212,7 +280,11 @@
             [self.navigationController pushViewController:detail animated:YES];
         }
         else if ([modle.type isEqualToString:@"4"]) {
-            
+            [UserDefaults setBool:YES forKey:@"servicN"];
+            LawSquarSrviceViewController * adsListVc = [[LawSquarSrviceViewController alloc]init];
+            adsListVc.ServiceTitle = @"法律服务";
+            [self.navigationController pushViewController:adsListVc animated:YES];
+
         } else if ([modle.type isEqualToString:@"5"]) {
             LawHeartViewController * lawrevc =  [[LawHeartViewController alloc]init];
             lawrevc.mid = modle.id;
@@ -224,7 +296,9 @@
         }else if ([modle.type isEqualToString:@"7"]) {
             //        系统
         }
- 
+        
+        [UserDefaults synchronize];
+        
         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
 
     }else{
@@ -236,12 +310,15 @@
 //    detail.model =  model;
     detail.constultId = model.id;
 
-//    detail.reloadBlock = ^{
-//        [_tableView.mj_header beginRefreshing];
-//    };
-    detail.type = @"1";
-        [self.navigationController pushViewController:detail animated:YES];
+    detail.reloadBlock = ^{
+        model.answered = @"2";
+        [dataArrray replaceObjectAtIndex:indexPath.row withObject:model];
+
+        [_tableView reloadData];
+    };
         
+        detail.type = @"1";
+        [self.navigationController pushViewController:detail animated:YES];
         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
 
         
@@ -309,7 +386,9 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model=  dataArrray[indexPath.row];
-        return  cell;
+        if(!IsLogin){
+            cell.answBtn.hidden = YES ;
+        }         return  cell;
     }
  
     
@@ -322,7 +401,7 @@
     [LeftBtn setNormalImage:image];
     [LeftBtn setPressedImage:image];
     [LeftBtn setTitle:preTitle forState:UIControlStateNormal];
-    [LeftBtn setTitleColor:TintColor];
+    [LeftBtn setTitleColor:[UIColor colorWithHex:0x3181FE]];
     [LeftBtn addClickTarget:self action:@selector(leftBar_Action:)];
      [self.naviBarView addSubview:LeftBtn];
     LeftBtn.sd_layout
@@ -345,8 +424,10 @@
     .widthIs(44)
     .heightIs(44);
     
-    tipView = [[UIView alloc] initWithFrame:CGRectMake(0, rightButton.width - 8, 8, 8)];
+    tipView = [[UIView alloc] initWithFrame:CGRectMake(rightButton.width - 15, 10, 8, 8)];
+    tipView.backgroundColor = [UIColor redColor];
     [Utile makeCorner:tipView.height/2 view:tipView];
+    tipView.hidden = YES ;
     [rightButton addSubview:tipView];
 
 }
@@ -372,6 +453,17 @@
     }
 #pragma mark 通知
 -(void)rightBar_Action:(UIButton * )sender{
+    
+    if(!IsLogin){
+        LawLogionViewController *view = [LawLogionViewController new];
+        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+        return ;
+    }
+    
+    
+    tipView.hidden = YES ;
+
     
     NSLog(@"通知");
     LawMianPageMessageCenter* messagecent = [[LawMianPageMessageCenter alloc]init];
@@ -402,7 +494,14 @@
         NSString  * str =[NSString stringWithFormat:@"%@",data[@"status"]];
         if ([str isEqualToString:@"0"]) {
             [messageDataArray removeAllObjects];
-            for (NSDictionary * dicc in data[@"data"]) {
+      if ([data[@"data"][@"red"] isEqualToString:@"1"]) {
+          tipView.hidden = NO ;
+        }else{
+            tipView.hidden = YES ;
+                
+        }
+            
+            for (NSDictionary * dicc in data[@"data"][@"list"]) {
                 LawNewMessageMM * model = [LawNewMessageMM yy_modelWithJSON:dicc];
                 [messageDataArray addObject:model];
             }
@@ -420,12 +519,8 @@
 -(void)heatData{
          NSDictionary * dic  =[[NSMutableDictionary alloc]init];
         NewHetermind
-        if( [UserId length] < 1){
-            return ;
-        }
-    NSDictionary * valudic =[[NSDictionary alloc]init] ;
-   
-        NSString * baseStr = [NSString getBase64StringWithArray:valudic];
+      NSDictionary * valudic =[[NSDictionary alloc]init] ;
+      NSString * baseStr = [NSString getBase64StringWithArray:valudic];
         [dic setValue:baseStr forKey:@"value"];
         
          [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {

@@ -20,7 +20,7 @@
 //    [Utile makeCorner:25 view:self.IconView];
     
     self.VersionLB.text  =[NSString stringWithFormat:@"版本号：%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
       // Do any additional setup after loading the view from its nib.
 }
 

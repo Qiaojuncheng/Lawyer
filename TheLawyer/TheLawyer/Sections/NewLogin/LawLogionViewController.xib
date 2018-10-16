@@ -108,10 +108,10 @@
                     <rect key="frame" x="83" y="467" width="108" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="   我已阅读并同意" image="login_choose">
+                    <state key="normal" title="   我已阅读并同意" image="choose_no">
                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="selected">
+                    <state key="selected" image="login_choose">
                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -144,6 +144,7 @@
     </objects>
     <resources>
         <image name="1024icon" width="1024" height="1024"/>
+        <image name="choose_no" width="12" height="12"/>
         <image name="login_choose" width="12" height="12"/>
         <image name="login_code" width="24" height="24"/>
         <image name="login_img" width="286" height="142"/>

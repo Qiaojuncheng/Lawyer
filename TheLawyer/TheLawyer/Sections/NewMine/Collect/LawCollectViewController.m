@@ -34,7 +34,10 @@
 }
 -(void)makeCollect{
     
-    [self showHudInView:self.view hint:nil];
+    if(page==1){
+        [self showHudInView:self.view hint:nil];
+        
+    }
     NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
     NewCasemyCollect
     NSMutableDictionary * valuedic =[[NSMutableDictionary alloc]init];
@@ -86,23 +89,22 @@
     _tableView.mj_header  = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         page = 1;
         
-        [weakSelf loadData];
+        [weakSelf makeCollect];
     }];
-    _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+    
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight= 0;
+    _tableView.estimatedSectionFooterHeight= 0;
+    
+    
+
+    _tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         page ++;
-         [weakSelf loadData];
+         [weakSelf makeCollect];
     }];
     [self.view addSubview:_tableView];
 }
-- (void)loadData {
-    [self showHudInView:self.view hint:@"加载中..."];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideHud];
-        [_tableView.mj_header endRefreshing];
-        [_tableView reloadData];
-    });
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+ -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return dataArrray.count;
     
 }

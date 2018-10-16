@@ -66,27 +66,33 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSString *uid =[user objectForKey:@"userid"];//userID
-    if (uid.length == 0) {
+//     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//    NSString *uid =[user objectForKey:@"userid"];//userID
+//    if (uid.length == 0) {
 
 //        self.tableView.hidden = YES;
 //        LoginViewController *view = [LoginViewController new];
 //        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
 //        [UIApplication sharedApplication].delegate.window.rootViewController = na;
     
-        LawLogionViewController *view = [LawLogionViewController new];
-        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
-        [UIApplication sharedApplication].delegate.window.rootViewController = na;
-        
-        
-        
-        
-        
+//        LawLogionViewController *view = [LawLogionViewController new];
+//        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+//        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+//
+//
+//
+//
+//
+//    }else{
+    if(IsLogin){
+        [self requestData];
     }else{
         
-        [self requestData];
+        self.infoModel = [[MyInfoModel alloc]init];
+        [self.collectionView reloadData];
+
     }
+//    }
 }
 - (void)requestData {
     
@@ -134,9 +140,14 @@
 }
 
 -(void)Pushsetting{
+    
     NSLog(@"进入设置");
+    if(!IsLogin){
+        [self  JumpLoginVIewController];
+    }else{
     LawNewSettingViewController  * setting =[[LawNewSettingViewController alloc]init];
     [self.navigationController pushViewController:setting animated:YES];
+    }
 }
 
 #pragma mark  设置CollectionView的的参数
@@ -173,8 +184,12 @@
         MJWeakSelf
         if (indexPath.section == 0) {
             self.collectionTopView.infoModel = self.infoModel;
-            //     41 编辑 42 余额  43  券 44 爱心
+            //     41 编辑 42 余额  43  券 44 爱心 100 未登录点击 登录注册跳转登录页面
             self.collectionTopView.TouchBtnBlock = ^(NSInteger index) {
+                if(!IsLogin){
+                    [weakSelf  JumpLoginVIewController];
+                }else{
+                
                 if(index == 41){
                     
                     LawPersonInfoViewController * lawrevc =  [[LawPersonInfoViewController alloc]init];
@@ -193,6 +208,7 @@
  
                     LawHeartViewController * lawrevc =  [[LawHeartViewController alloc]init];
                     [weakSelf.navigationController pushViewController:lawrevc animated:YES];
+                }
                 }
                 
             };
@@ -280,13 +296,19 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section ==0) {
- 
+        if(!IsLogin){
+            [self  JumpLoginVIewController];
+            return;
+        }
+
        
         if(indexPath.row == 0){
-            
+         
+
             LawConSultViewController * adsListVc = [[LawConSultViewController alloc]init];
             [self.navigationController pushViewController:adsListVc animated:YES];
         }else if (indexPath.row ==1 || indexPath.row ==2){
+        
             LawMeetingViewController * adsListVc = [[LawMeetingViewController alloc]init];
             if (indexPath.row==1) {
                 adsListVc.meetTing =@"电话预约";
@@ -305,14 +327,28 @@ referenceSizeForHeaderInSection:(NSInteger)section {
  
     }
     else{
+        
         if (  indexPath.row == 0) {
+            if(!IsLogin){
+                [self  JumpLoginVIewController];
+                return ;
+            }
+
             LawCollectViewController *  collec =[[LawCollectViewController alloc]init];
             [self.navigationController pushViewController:collec animated:YES];
         }else  if (  indexPath.row == 1) {
+            if(!IsLogin){
+                [self  JumpLoginVIewController];
+                return ;
+
+            }
+
             LawIWantPublicVC * about= [[LawIWantPublicVC alloc] initWithNibName:@"LawIWantPublicVC" bundle:[NSBundle mainBundle]];
             [self.navigationController pushViewController:about animated:YES];
+        
         }
        else  if (  indexPath.row == 2) {
+           
             [self Callkefu];
        }else if(indexPath.row == 3){
            QJAboutAppViewController * about= [[QJAboutAppViewController alloc] initWithNibName:@"QJAboutAppViewController" bundle:[NSBundle mainBundle]];
@@ -356,7 +392,14 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     [AlertVC addAction:sure];
     [self presentViewController:AlertVC animated:YES completion:nil];
 }
+-(void)JumpLoginVIewController{
+    
+    LawLogionViewController *view = [LawLogionViewController new];
+    UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+    [UIApplication sharedApplication].delegate.window.rootViewController = na;
+    return ;
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -58,11 +58,13 @@
     NSString * UUid  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
     UUid = [UUid stringByAppendingString:self.telTextField.text];
+    NSString * md5Str = [UUid MD5];
+
     NSDictionary *dic = @{
                           @"phone":[NSString stringWithFormat:@"%@",self.telTextField.text],
                           @"password":[NSString stringWithFormat:@"%@",self.passwordField.text]
                           ,
-                          @"uuid":UUid
+                          @"uuid":md5Str
                           };
     
     NSError *dataError = nil;
@@ -228,6 +230,7 @@
     NSString * UUid  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
     UUid = [UUid stringByAppendingString:self.telTextField.text];
+    NSString * md5Str = [UUid MD5];
 
     [self showHint:@"正在加载"];
     NSMutableDictionary * dic  =[[NSMutableDictionary alloc]init];
@@ -235,7 +238,7 @@
     NSMutableDictionary *   valueDic =[[NSMutableDictionary alloc]init];
     [valueDic setObject:openId forKey:@"openid" ];
     [valueDic setObject:type  forKey:@"type" ];
-    [valueDic setObject:UUid  forKey:@"uuid" ];
+    [valueDic setObject:md5Str  forKey:@"uuid" ];
 
     NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
     [dic setValue:baseStr forKey:@"value"];
