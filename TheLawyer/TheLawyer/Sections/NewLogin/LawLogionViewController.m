@@ -98,6 +98,11 @@
 
         vadic = @{@"type":@"2",@"phone":self.PhoneTextField.text,@"code":self.PassWorldTextField.text,@"device":md5Str};
     }else{
+        
+        if(!self.XieYiBtn.selected){
+            [self showHint:@"请阅读并同意协议之后再注册"];
+            return ;
+        }
         NewRegiste
          vadic = @{@"type":@"2",@"phone":self.PhoneTextField.text,@"code":self.PassWorldTextField.text};
     }
@@ -139,7 +144,10 @@
                 }
               
                 
-             }
+            }else{
+          [self showHint:data[@"msg"]];
+
+            }
             [self hideHud];
         } failure:^(NSError *error) {
             [self hideHud];
@@ -178,18 +186,22 @@
 // 获取验证码
 -(void)requestCodeData{
  
-    [self showHudInView:self.view hint:nil];
     NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
     
     if(Type){
 //        登录
       NewLogGetCode
     }else{
+       
+    
+
+        
 //        注册
        NewGetCode
         
     }
     //action、value  type 1 用户 2 律师
+    [self showHudInView:self.view hint:nil];
 
     NSDictionary *dics = @{
                            @"phone":[NSString stringWithFormat:@"%@",self.PhoneTextField.text],@"type":@"2"

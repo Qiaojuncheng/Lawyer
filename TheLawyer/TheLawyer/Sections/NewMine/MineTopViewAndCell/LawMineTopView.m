@@ -16,7 +16,7 @@
     [self.certifi createBordersWithColor:[UIColor colorWithHex:0x3181FE] withCornerRadius:self.certifi.height/2 andWidth:1];
     [Utile makeCorner:self.HeaderImage.height/2 view:self.HeaderImage];
     self.PhoneLb.text =[NSString stringWithFormat:@"%@律师",_infoModel.name];
-    if([NSString changeNullString:_infoModel.name].length == 0){
+    if([NSString changeNullString:_infoModel.id].length == 0){
         self.certifi.text  = @"";
         self.certifi.hidden = YES;
         self.EditBtn.hidden = YES ;

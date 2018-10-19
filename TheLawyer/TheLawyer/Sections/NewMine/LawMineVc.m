@@ -166,6 +166,7 @@
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.dataSource = self;
     self.collectionView.scrollEnabled = YES;
+    
     [self.view addSubview:self.collectionView];
     //注册Cell
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LawMineCollectCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"cell"];
@@ -183,6 +184,7 @@
         [header removeAllSubviews];
         MJWeakSelf
         if (indexPath.section == 0) {
+            
             self.collectionTopView.infoModel = self.infoModel;
             //     41 编辑 42 余额  43  券 44 爱心 100 未登录点击 登录注册跳转登录页面
             self.collectionTopView.TouchBtnBlock = ^(NSInteger index) {
@@ -247,6 +249,8 @@
     _collectionTopView =[[[NSBundle mainBundle]loadNibNamed:@"LawMineTopView" owner:self options:nil]lastObject];
         _collectionTopView.frame = CGRectMake(0, 0,self.collectionView.width, Topheight);
         _collectionTopView.backgroundColor = [UIColor whiteColor];
+        _collectionTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
     }
     
     return _collectionTopView;

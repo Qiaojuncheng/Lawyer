@@ -187,7 +187,6 @@
 		1FB627831FAB1C3B006B64A4 /* QJMessageCellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB627811FAB1C3B006B64A4 /* QJMessageCellCell.xib */; };
 		1FB7E67F2140CAC300DE5745 /* AreaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7E67E2140CAC100DE5745 /* AreaData.plist */; };
 		1FBB4F171FB2E8B800E62EA4 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F161FB2E8B800E62EA4 /* libsqlite3.0.tbd */; };
-		1FBB4F1A1FB2E8CC00E62EA4 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F191FB2E8CC00E62EA4 /* libstdc++.6.0.9.tbd */; };
 		1FBB4F1B1FB2EA2900E62EA4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F131FB2E88A00E62EA4 /* CoreLocation.framework */; };
 		1FBB4F1C1FB2EAF900E62EA4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F141FB2E89500E62EA4 /* SystemConfiguration.framework */; };
 		1FBB4F1D1FB2EB0400E62EA4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBB4F151FB2E89E00E62EA4 /* Security.framework */; };
@@ -966,7 +965,6 @@
 				1F3286461FCCF7F0008FB50F /* libSocialSina.a in Frameworks */,
 				1FBB4F421FB4447500E62EA4 /* AudioToolbox.framework in Frameworks */,
 				1F3286441FCCF7F0008FB50F /* TencentOpenAPI.framework in Frameworks */,
-				1FBB4F1A1FB2E8CC00E62EA4 /* libstdc++.6.0.9.tbd in Frameworks */,
 				1F32864A1FCCF7F0008FB50F /* UMSocialCore.framework in Frameworks */,
 				1FBB4F1E1FB2EB2100E62EA4 /* CoreTelephony.framework in Frameworks */,
 				1FBB4F171FB2E8B800E62EA4 /* libsqlite3.0.tbd in Frameworks */,
