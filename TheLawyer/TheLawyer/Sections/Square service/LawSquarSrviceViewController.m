@@ -69,8 +69,12 @@
     [self makemenu];
     [self  makeAddreeData];
     [self addView ];
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logChange) name:KNOTIFICATION_LOGINSUCCESS object:nil];
 }
+-(void)logChange{
+    page =1 ;
+    [self makedata];
+ }
 
 -(void)makemenu{
     menu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, NavStatusBarHeight) andHeight:46];

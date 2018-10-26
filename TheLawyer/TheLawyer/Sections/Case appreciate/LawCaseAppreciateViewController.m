@@ -41,8 +41,14 @@
     [self makeData];
     [self makeTypeData];
     [self.view addSubview:self.caseSelectView];
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logChange) name:KNOTIFICATION_LOGINSUCCESS object:nil];
 }
+-(void)logChange{
+    page = 1 ;
+
+    [self makeData];
+}
+
 -(void)addView{
     
     _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,  NavStatusBarHeight , SCREENWIDTH, SCREENHEIGHT  -  NavStatusBarHeight - TabBarHeight) style:UITableViewStylePlain];

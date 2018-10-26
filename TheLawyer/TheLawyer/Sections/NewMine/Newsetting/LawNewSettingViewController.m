@@ -102,8 +102,11 @@
         
     }];
     UIAlertAction * sure =[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [UD removeObjectForKey:@"userid"];
         
+        
+        [UD removeObjectForKey:@"userid"];
+        [UD synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINSUCCESS object:nil];
         [self.navigationController popToRootViewControllerAnimated:NO];
 
     }];

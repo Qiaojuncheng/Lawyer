@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addLeftButtonWithImage: @"nav_arrow" preImg:@"nav_arrow" actionBlock:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINSUCCESS object:@(YES)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINSUCCESS object:@(NO)];
 
     }];
     Type = YES;
@@ -29,7 +29,8 @@
     self.XieLb.hidden =self.XieYiBtn.hidden;
     self.view.backgroundColor =[UIColor whiteColor];
     [Utile makeCorner:self.FirstBtn.height/2 view:self.FirstBtn];
-    [Utile makeCorner:self.SecondBtn.height/2 view:self.SecondBtn];
+    [Utile makeCorner:self.SecondBtn.height/2 view:self.SecondBtn ];
+    [Utile makecorner:self.SecondBtn.height/2 view:self.SecondBtn color:[UIColor colorWithHex:0x3181FE]];
     [Utile makeCorner:10  view:self.iconImaeVeiw];
  
     self.PhoneLB.text= [NSString stringWithFormat:@"客服热线:%@",APPPhone];

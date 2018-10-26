@@ -52,12 +52,17 @@
     [self addCenterLabelWithTitle:@"汇融法" titleColor:nil];
     [self addLeftButtonWithImage:@"nav_phone_blue" preTitle:@"客服"];
     [self addRightButtonWithImage:@"nav_news_blue"];
-    [self getData];//资讯列表数据
+    [self getData];//咨询列表数据
     [self makemessagedata];// 消息数据
     [self heatData];//收到的心意
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PushAction:) name:@"PushMessage" object:nil];
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logChange) name:KNOTIFICATION_LOGINSUCCESS object:nil];
+}
+-(void)logChange{
+    page = 1 ;
+    [self getData];//咨询列表数据
+    [self makemessagedata];// 消息数据
 }
 -(void)PushAction:(NSNotification *)nofi{
     NSLog(@"%@ === ", nofi.object);
@@ -96,7 +101,7 @@
      NSMutableDictionary * valueDic =[[NSMutableDictionary alloc]init];
      [valueDic setValue:@"1" forKey:@"type"];
      [valueDic setValue:UserId forKey:@"lawyer_id"];
-     [valueDic setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"p"];
+     [valueDic setValue:[NSString stringWithFormat:@"%ld",(long)page] forKey:@"p"];
      NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
      [dic setValue:baseStr forKey:@"value"];
 
@@ -302,6 +307,17 @@
         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
 
     }else{
+        
+        
+        if(!IsLogin){
+            LawLogionViewController *view = [LawLogionViewController new];
+            UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+            [UIApplication sharedApplication].delegate.window.rootViewController = na;
+            return ;
+        }
+        
+        
+        
     LawConsultDetailViewController * detail =[[LawConsultDetailViewController alloc]init];
    
     LawMainConsultCellMoldel *model = dataArrray[indexPath.row];
@@ -386,9 +402,8 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model=  dataArrray[indexPath.row];
-        if(!IsLogin){
-            cell.answBtn.hidden = YES ;
-        }         return  cell;
+        
+        return  cell;
     }
  
     
@@ -434,7 +449,7 @@
 #pragma mark 客服
 -(void)leftBar_Action:(UIButton *)sender{
  
-        UIAlertController * AlertVC =[UIAlertController alertControllerWithTitle:@"联系客服" message:[NSString stringWithFormat:@"\n%@\n(工作时间9:00_17:00)\n",APPPhone] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController * AlertVC =[UIAlertController alertControllerWithTitle:@"联系客服" message:[NSString stringWithFormat:@"\n%@\n(工作时间9:00-17:00)\n",APPPhone] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * cancal =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
         }] ;
@@ -484,6 +499,7 @@
     NSDictionary * dic  =[[NSMutableDictionary alloc]init];
     NewMymessageList
     if( [UserId length] < 1){
+        [messageDataArray removeAllObjects];
         return ;
     }
     NSDictionary * valudic  = @{@"lawyer_id":UserId,@"p":[NSString stringWithFormat:@"%ld",page]};

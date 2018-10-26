@@ -408,7 +408,7 @@ static SystemSoundID shake_sound_male_id = 0;
     // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
 //
-    [JPUSHService setupWithOption:launchOptions appKey:@"91fc5b28394293faca504a18"
+    [JPUSHService setupWithOption:launchOptions appKey:@"d8410e73b0c3c2f5705c1b4c"
                           channel:@"123123"
                  apsForProduction:YES  // 0 (默认值)表示采用的是开发证书，1 表示采用生产证书发布应用。
             advertisingIdentifier:@""];

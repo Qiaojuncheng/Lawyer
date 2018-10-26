@@ -361,6 +361,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
+    
+    if(!IsLogin){
+        LawLogionViewController *view = [LawLogionViewController new];
+        UINavigationController * na= [[UINavigationController alloc]initWithRootViewController:view];
+        [UIApplication sharedApplication].delegate.window.rootViewController = na;
+        return ;
+    }
     LawConsultDetailViewController * detail =[[LawConsultDetailViewController alloc]init];
     
     LawMainConsultCellMoldel *model = dataArrray[indexPath.row];

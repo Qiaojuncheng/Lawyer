@@ -379,7 +379,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 #pragma  mark   客服电话
 -(void)Callkefu{
     
-    UIAlertController * AlertVC =[UIAlertController alertControllerWithTitle:@"联系客服" message:@"\n4006400661\n(工作时间9:00_17:00)\n" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController * AlertVC =[UIAlertController alertControllerWithTitle:@"联系客服" message:[NSString stringWithFormat:@"\n%@\n(工作时间9:00-17:00)\n",APPPhone] preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction * cancal =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }] ;
