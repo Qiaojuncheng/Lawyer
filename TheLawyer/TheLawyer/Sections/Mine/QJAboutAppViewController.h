@@ -13,5 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *IconView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ImageIconTopHeight;
+
+
 
 @end

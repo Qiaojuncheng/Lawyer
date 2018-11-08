@@ -9,7 +9,6 @@
 #import "LawPlatformAuthViewController.h"
 #import "LawInfoCell.h"
 #import "LawIntroducionCell.h"
-#import "LawCaseAppreciateDetail.h"
 #import "LawSelectTypeofCaseView.h"
 #import "LawChagebasicInfoVC.h"
 #import "LawConsultTypeModel.h"

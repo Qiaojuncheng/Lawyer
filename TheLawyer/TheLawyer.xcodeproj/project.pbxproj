@@ -1583,21 +1583,21 @@
 		1FA3BCF3212BB51700D77FB9 /* PersonInfo */ = {
 			isa = PBXGroup;
 			children = (
-				1F3E63FB215282A6001D47AC /* model */,
-				1F7F028F212FEA82004E1A5A /* bankCard */,
 				1F7381DB212EC0F3003B189C /* Lawplatform */,
-				1F7381C9212E53F2003B189C /* SelectTypeofcase */,
-				1FA3BCFC212BB6BE00D77FB9 /* View */,
-				1FA3BCF4212BB53F00D77FB9 /* LawPersonInfoViewController.h */,
-				1FA3BCF5212BB53F00D77FB9 /* LawPersonInfoViewController.m */,
-				1F591E01212E445D006E56BA /* LawChangeSexViewController.h */,
-				1F591E02212E445D006E56BA /* LawChangeSexViewController.m */,
-				1F591E03212E445D006E56BA /* LawChangeSexViewController.xib */,
+				1F7F028F212FEA82004E1A5A /* bankCard */,
 				1F591DFC212E403B006E56BA /* LawChagebasicInfoVC.h */,
 				1F591DFD212E403B006E56BA /* LawChagebasicInfoVC.m */,
 				1F591DFE212E403B006E56BA /* LawChagebasicInfoVC.xib */,
+				1F591E01212E445D006E56BA /* LawChangeSexViewController.h */,
+				1F591E02212E445D006E56BA /* LawChangeSexViewController.m */,
+				1F591E03212E445D006E56BA /* LawChangeSexViewController.xib */,
+				1FA3BCF4212BB53F00D77FB9 /* LawPersonInfoViewController.h */,
+				1FA3BCF5212BB53F00D77FB9 /* LawPersonInfoViewController.m */,
 				1F591E06212E4A88006E56BA /* LawSeletAreaViewController.h */,
 				1F591E07212E4A88006E56BA /* LawSeletAreaViewController.m */,
+				1F3E63FB215282A6001D47AC /* model */,
+				1F7381C9212E53F2003B189C /* SelectTypeofcase */,
+				1FA3BCFC212BB6BE00D77FB9 /* View */,
 			);
 			path = PersonInfo;
 			sourceTree = "<group>";

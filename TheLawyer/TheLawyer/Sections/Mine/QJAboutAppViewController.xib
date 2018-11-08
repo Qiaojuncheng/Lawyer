@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QJAboutAppViewController">
             <connections>
                 <outlet property="IconView" destination="q4b-4w-8ah" id="A3O-Cs-cNI"/>
+                <outlet property="ImageIconTopHeight" destination="arL-Is-fvK" id="XOC-HK-XjO"/>
                 <outlet property="VersionLB" destination="rON-F3-O6n" id="xPa-5T-jMO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_about" translatesAutoresizingMaskIntoConstraints="NO" id="q4b-4w-8ah">
-                    <rect key="frame" x="162" y="100" width="50" height="50"/>
+                    <rect key="frame" x="162.5" y="100" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="I2R-fL-V7Z"/>
                         <constraint firstAttribute="height" constant="50" id="fmY-md-e1J"/>

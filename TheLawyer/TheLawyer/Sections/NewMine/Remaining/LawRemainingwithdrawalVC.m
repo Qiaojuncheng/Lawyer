@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.topHeight.constant = NavStatusBarHeight + 20;
     [self addCenterLabelWithTitle:@"余额提现" titleColor:nil];
     [Utile makeCorner:self.TiXianBtn.height/2 view:self.TiXianBtn];
     [Utile makeCorner:4 view:self.BackView];

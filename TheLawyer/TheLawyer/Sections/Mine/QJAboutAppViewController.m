@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ImageIconTopHeight.constant = NavStatusBarHeight + 36;
     [self addCenterLabelWithTitle:@"关于汇融法" titleColor:[UIColor whiteColor]];
 //    [Utile makeCorner:25 view:self.IconView];
     

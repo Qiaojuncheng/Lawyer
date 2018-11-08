@@ -24,7 +24,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18039678870" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgw-F0-ty5">
-                    <rect key="frame" x="20" y="18" width="109" height="21"/>
+                    <rect key="frame" x="29" y="18" width="109" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="bbC-qc-BNP"/>
                     </constraints>
@@ -33,7 +33,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pF6-hm-iQV">
-                    <rect key="frame" x="139" y="17" width="55" height="21"/>
+                    <rect key="frame" x="148" y="17" width="55" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="4SF-7c-f9z"/>
                         <constraint firstAttribute="height" constant="21" id="d9f-JE-gjF"/>
@@ -43,7 +43,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tng-0Q-78b">
-                    <rect key="frame" x="16" y="55" width="60" height="25"/>
+                    <rect key="frame" x="29" y="55" width="60" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -96,7 +96,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="hgw-F0-ty5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="0yH-eD-egc"/>
+                <constraint firstItem="hgw-F0-ty5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="0yH-eD-egc"/>
                 <constraint firstItem="hgw-F0-ty5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="Ipo-Re-8Ms"/>
                 <constraint firstItem="pF6-hm-iQV" firstAttribute="leading" secondItem="hgw-F0-ty5" secondAttribute="trailing" constant="10" id="Iso-cp-LRg"/>
                 <constraint firstItem="pF6-hm-iQV" firstAttribute="baseline" secondItem="hgw-F0-ty5" secondAttribute="baseline" id="cUg-9K-PBc"/>

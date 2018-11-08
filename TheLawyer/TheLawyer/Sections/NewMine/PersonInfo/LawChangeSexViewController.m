@@ -20,7 +20,15 @@
     [super viewDidLoad];
     [self addCenterLabelWithTitle:@"设置性别" titleColor:nil];
     [self addRightButtonWithTitle:@"完成" titleColor:[UIColor colorWithHex:0x3181FE] actionBlock:^{
-        
+        //     先提交信息，在返回
+        if (self.manBtn.selected) {
+            self.SexBlock(@"1");
+        }else{
+            self.SexBlock(@"2");
+            
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+
     }];
     if ( [self.sex isEqualToString:@"1"]) {
         self.manBtn.selected = YES;
@@ -56,13 +64,5 @@
     self.WomanBtn.selected = NO;
     sender.selected = YES;
     
-//     先提交信息，在返回
-    if (sender == self.manBtn) {
-        self.SexBlock(@"1");
-    }else{
-        self.SexBlock(@"2");
-        
-    }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

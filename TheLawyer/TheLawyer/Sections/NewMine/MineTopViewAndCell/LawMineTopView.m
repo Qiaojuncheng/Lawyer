@@ -32,7 +32,7 @@
     }else{
         self.certifi.hidden = NO;
         self.EditBtn.hidden = NO ;
-        self.LeftConcent.constant = 20;
+        self.LeftConcent.constant = 30;
         self.TopConcent.constant = 13;
         self.PhoneLb.textColor =[UIColor colorWithHex:0x333333];
         self.certifi.text = [_infoModel.renzheng  isEqualToString:@"2"]?@"已认证":@"未认证";

@@ -12,6 +12,7 @@
 
 @property (strong ,nonatomic ) NSString * AllMoney;
 @property (weak, nonatomic) IBOutlet UIView *BackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *CardLB;
 

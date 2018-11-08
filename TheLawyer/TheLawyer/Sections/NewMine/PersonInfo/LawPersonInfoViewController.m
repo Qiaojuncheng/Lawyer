@@ -258,7 +258,7 @@
     [AFManagerHelp   asyncUploadFileWithData:imageData name:@"avatar" fileName:@"PersonHeadPic.jpg" mimeType:@"image/jpeg" parameters:dic success:^(id responseObject) {
       
         if ([responseObject[@"status"] integerValue] == 0) {
-            
+            [self  makePersonInfo];
             
         }else{
             [ShowHUD showWYBTextOnly:responseObject[@"msg"] duration:2 inView:self.view];
@@ -330,7 +330,6 @@ WS(ws);
      if ([responseObjeck[@"status"] integerValue] == 0) {
         ws.infoModel = [MyInfoModel mj_objectWithKeyValues:responseObjeck[@"data"]];
         platforModel = [LawPlatformModel yy_modelWithJSON:responseObjeck[@"data"][@"renzhengInfo"]];
-             
  
         [_tableView reloadData];
     }else{

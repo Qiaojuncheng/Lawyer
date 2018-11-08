@@ -167,10 +167,13 @@
         _tableView.tableFooterView =  self.FootView;
         [dataArrray removeAllObjects];
       
-        [_tableView reloadData];
     }else{
+        _tableView.tableFooterView = nil;
+        [self makedata];
         NSLog(@"提交");
     }
+    [_tableView reloadData];
+
   
 }
 
