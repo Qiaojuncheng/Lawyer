@@ -18,7 +18,7 @@
 }
 -(void)setModel:(LawConsultDetailReplayModel *)model{
     _model = model;
-    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Image_URL,_model.avatar]] placeholderImage:nil];
+    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Image_URL,_model.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
     self.PersonName.text =[NSString stringWithFormat:@"%@律师", _model.lawyer_name];
     self.TimeLB.text = _model.time;
     self.concentLB.text = _model.content;

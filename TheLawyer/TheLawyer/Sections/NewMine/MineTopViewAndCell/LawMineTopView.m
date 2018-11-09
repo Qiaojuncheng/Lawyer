@@ -43,7 +43,7 @@
     }
     [self.certifi sizeToFit];
     self.CertifiCon.constant = self.certifi.width + 20;
-    [self.HeaderImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,_infoModel.avatar]] placeholderImage:[UIImage imageNamed:@"头像.png"]];
+    [self.HeaderImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,_infoModel.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
     
     
 }

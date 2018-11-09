@@ -18,7 +18,7 @@
 }
 -(void)setModle:(LawSquaremodel *)modle{
     _modle = modle;
-    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,modle.avatar]] placeholderImage:nil];
+    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,modle.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
     
     self.PersonName.text = modle.name;
     self.AddressLB.text =[NSString stringWithFormat:@"%@·%@",modle.province,modle.city];

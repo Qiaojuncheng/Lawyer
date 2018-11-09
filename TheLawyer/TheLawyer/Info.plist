@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wechat</string>
@@ -151,11 +151,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>汇融法想要访问您的相机，用于拍照</string>
+	<string>汇融法想要访问您的相机，用于拍照上传头像和营业执照</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>汇融法想在使用期间访问您的位置信息，获取位置仅为您匹配附近的信息，并不在其他地方使用</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>汇融法想要访问您的相册，用于上传图片</string>
+	<string>汇融法想要访问您的相册，用于上传头像和营业执照</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -15,6 +15,9 @@
  #import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 #import "LawMineVc.h"
+//AVCaptureDevice
+//#import <AVFoundation/AVAudioSession.h>
+
 #import "LawMainPageViewController.h"
 #import "LawSquarSrviceViewController.h"
 #import "LawCaseAppreciateViewController.h"
@@ -36,7 +39,14 @@
 #import "AMapServices.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
+
+
+
+
+
 static SystemSoundID shake_sound_male_id = 0;
+
+
 
 @interface AppDelegate ()<AMapLocationManagerDelegate,JPUSHRegisterDelegate>{
 //    BMKMapManager *  _mapManager  ;
@@ -161,7 +171,11 @@ static SystemSoundID shake_sound_male_id = 0;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+ 
+ 
    
+
+
     NSString * UUid  =   [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     UUid =[UUid stringByReplacingOccurrencesOfString:@"-" withString:@""];
     

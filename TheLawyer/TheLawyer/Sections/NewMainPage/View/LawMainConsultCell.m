@@ -22,7 +22,7 @@
 -(void)setModel:(LawMainConsultCellMoldel *)model{
     _model = model;
     
-    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Image_URL,_model.avatar]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",Image_URL,_model.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]]; 
     self.PersonName.text = _model.name;
     self.PersonTypeLB.text = _model.cate_name;
     self.ConcentLB.text = _model.content;

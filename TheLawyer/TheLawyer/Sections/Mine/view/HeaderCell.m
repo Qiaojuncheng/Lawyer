@@ -46,7 +46,7 @@
 }
 -(void)setInfoModel:(MyInfoModel *)infoModel{
     
-    [self.HeaderVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,infoModel.avatar]] placeholderImage:[UIImage imageNamed:@"logo"]];
+    [self.HeaderVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,infoModel.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
     self.LawyerName.text = [NSString changeNullString:infoModel.name];
     self.YuELb.text = [NSString stringWithFormat:@"账户余额:%@元",[NSString changeNullString:infoModel.money]];
     if ([infoModel.is_show isEqualToString:@"1"]) {

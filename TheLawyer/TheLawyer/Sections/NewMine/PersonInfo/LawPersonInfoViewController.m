@@ -95,7 +95,7 @@
             cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawInforImageCell" owner:self options:nil]lastObject];
         }
             if (self.infoModel.avatar) {
-                [cell.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,self.infoModel.avatar]] placeholderImage:nil];
+                [cell.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,self.infoModel.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
             }
              cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return  cell ;
@@ -340,6 +340,32 @@ WS(ws);
 } failure:^(NSError *error) {
   }];
 }
+
+
+//图片选择
+//
+//
+//#pragma mark -实现图片选择器代理-（上传图片的网络请求也是在这个方法里面进行，这里我不再介绍具体怎么上传图片）
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    [picker dismissViewControllerAnimated:YES completion:^{}];
+//    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage]; //通过key值获取到图片
+//    //    _headerV.image = image;  //给UIimageView赋值已经选择的相片
+//    if ([self.delegate respondsToSelector:@selector(seleWithImage:)]) {
+//        [self.delegate seleWithImage:image];
+//    }
+//    
+//    //上传图片到服务器--在这里进行图片上传的网络请求，这里不再介绍
+//}
+////当用户取消选择的时候，调用该方法
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+//    [picker dismissViewControllerAnimated:YES completion:^{
+//        if ([self.delegate  respondsToSelector:@selector(cancelSelecImage)]) {
+//            [self.delegate cancelSelecImage];
+//        }
+//        
+//    }];
+//}
+
 
  - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

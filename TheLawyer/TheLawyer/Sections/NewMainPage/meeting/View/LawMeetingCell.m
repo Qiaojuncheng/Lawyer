@@ -26,7 +26,7 @@
     self.RedView.hidden = YES;
     self.timeLB.text=[NSString timeWithTimeIntervalString: model.create_time];
     self.TypeLb.text =model.cate_name ;
-    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,model.avatar]] placeholderImage:nil];
+    [self.PersonImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,model.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
     self.PersonImaeg.text = model.name;
     self.MeetTimeL.text= [NSString stringWithFormat:@"预约时间： %@",[NSString timeWithTimeIntervalString:model.meet_time]];
     self.PersonPhone.text = [NSString stringWithFormat:@"联系电话： %@ **** %@",[model.phone substringToIndex:3],[model.phone substringFromIndex:7]];;

@@ -126,7 +126,7 @@
         if (selcetedImage) {
             cell.HeaderImage.image = selcetedImage;
         }else{
-            [cell.HeaderImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,MyInfomodel.avatar]] placeholderImage:[UIImage imageNamed:@"头像.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [cell.HeaderImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,MyInfomodel.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 NSData *data = UIImageJPEGRepresentation(image, 0.001);
                 imageString = [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
                 

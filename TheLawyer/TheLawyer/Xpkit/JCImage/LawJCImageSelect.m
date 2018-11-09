@@ -26,7 +26,7 @@
     imagePickerController.delegate = self; //设置代理
     imagePickerController.allowsEditing = YES;
 //    判断是否支持相机 不支持相机直接进入图片库中选择
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]||[UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
 
 
     UIAlertController * alControll = [UIAlertController alertControllerWithTitle:@"选择图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];

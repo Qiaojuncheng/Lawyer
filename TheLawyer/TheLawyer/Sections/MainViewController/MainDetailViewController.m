@@ -96,7 +96,7 @@
          if ([responseObjeck[@"status"] integerValue] == 0) {
             _tableView.hidden = NO;
             ws.detailModel = [MainDetailModel yy_modelWithDictionary:responseObjeck[@"data"]];
-            [self.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,ws.detailModel.avatar]] placeholderImage:[UIImage imageNamed:@"tuceng"]];
+            [self.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,ws.detailModel.avatar]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
             if ([self.detailModel.type isEqualToString:@"5"]){
                 _tableView.height =      SCREENHEIGHT - NavStatusBarHeight - 100;
             }else{
