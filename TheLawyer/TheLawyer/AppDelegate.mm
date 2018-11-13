@@ -111,7 +111,7 @@ static SystemSoundID shake_sound_male_id = 0;
     
     //设置tabBarController
     _tabBarController=[[UITabBarController alloc]init];
-    _tabBarController.viewControllers=@[homeNav,serviceNav,mineNav,MineNav];
+    _tabBarController.tabBar.translucent = NO ; _tabBarController.viewControllers=@[homeNav,serviceNav,mineNav,MineNav];
     _tabBarController.selectedIndex = 0;
     //    _tabBarController.tabBar.backgroundColor=WKColor(250, 250, 250);//tabBarBackgroundColor;
 //    _tabBarController.delegate = self;
