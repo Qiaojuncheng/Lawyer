@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LawServicePingModel.h"
 @interface LawSquarServiceDetailCell : UITableViewCell
+@property (strong , nonatomic) LawServicePingModel * model ;
+
+@property (weak, nonatomic) IBOutlet UIImageView *HeaderImageView;
+@property (weak, nonatomic) IBOutlet UILabel *PersonName;
+@property (weak, nonatomic) IBOutlet UILabel *TimeLB;
+@property (weak, nonatomic) IBOutlet UILabel *DesLB;
+
+
+
+
+
+
 
 @end

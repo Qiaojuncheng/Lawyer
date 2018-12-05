@@ -288,7 +288,7 @@
         [self showHint:@"请输入您的简介！"];
         return ;
     }else if (!SelfselectImage){
-        [self showHint:@"请上传您的营业执照"];
+        [self showHint:@"请上传您的执业证书"];
         return ;
     }
     

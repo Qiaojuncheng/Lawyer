@@ -12,9 +12,17 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [Utile makeCorner:self.HeaderImageView.height/2 view:self.HeaderImageView];
     // Initialization code
 }
-
+-(void)setModel:(LawServicePingModel *)model{
+        _model = model;
+    [self.HeaderImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_URL,model.avatar]] placeholderImage:[UIImage imageNamed:@"head_empty"]];
+    self.PersonName.text =[NSString stringWithFormat:@"%@律师",model.name];
+    self.TimeLB.text = [NSString timeWithTimeIntervalString:model.time];
+    self.DesLB.text = model.describe;
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

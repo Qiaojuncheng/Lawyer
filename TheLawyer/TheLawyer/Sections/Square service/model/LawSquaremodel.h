@@ -27,6 +27,7 @@
  "user_money" = 0;
  */
 
+@property (strong ,nonatomic ) NSString * bidding;// 0 未  1 已投
 @property (strong ,nonatomic ) NSString * avatar ;
 @property (strong ,nonatomic ) NSString * cate_name ;
 @property (strong ,nonatomic ) NSString * city ;
@@ -42,5 +43,6 @@
 @property (strong ,nonatomic ) NSString * type ;// 服务类型
 @property (strong ,nonatomic ) NSString * type_name ;
 @property (strong ,nonatomic ) NSString * user_money ;
-
+@property (assign ,nonatomic) CGFloat cellHeight;
+-(void)MakeCellHeight;
 @end

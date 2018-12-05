@@ -96,7 +96,7 @@
     }
     
     //  使用自带的
-    UIImage  *img   = [UIImage imageNamed:@"TBNotData"];
+    UIImage  *img   = [UIImage imageNamed:@"nil"];
     NSString *msg   = @"暂无数据";
     UIColor  *color = [UIColor lightGrayColor];
     CGFloat  offset = 0;

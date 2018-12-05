@@ -29,11 +29,24 @@
     self.TimeLB.text = [NSString timeWithTimeIntervalString:modle.create_time];
     if([modle.pay_type integerValue] == 3){
 //       套餐支付
-        self.PriceLB.text = [NSString stringWithFormat:@"平台统一价格:%@",modle.money];
+        if ([modle.type isEqualToString:@"1"]) {
+            self.PriceLB.text = [NSString stringWithFormat:@"委托报价:%@",modle.user_money];
+            
+        }else{
+            self.PriceLB.text = [NSString stringWithFormat:@"委托报价:%@",modle.money];
+            self.PriceLB.text = [NSString stringWithFormat:@"平台统一价格:%@",modle.money];
+        }
         self.taocanImage.hidden = NO;
         self.RightLengh.constant = 60;
     }else{
-        self.PriceLB.text = [NSString stringWithFormat:@"委托报价:%@",modle.user_money];
+        if ([modle.type isEqualToString:@"1"]) {
+            self.PriceLB.text = [NSString stringWithFormat:@"委托报价:%@",modle.user_money];
+
+        }else{
+            self.PriceLB.text = [NSString stringWithFormat:@"委托报价:%@",modle.money];
+            self.PriceLB.text = [NSString stringWithFormat:@"平台统一价格:%@",modle.money];
+         }
+        
         self.taocanImage.hidden = YES;
         self.RightLengh.constant = 10;
 

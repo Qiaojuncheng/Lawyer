@@ -13,14 +13,14 @@
 -(void)setPriceStr:(NSString *)PriceStr{
      if (!PriceStr) {
         self.TitileLB.text = [NSString stringWithFormat:@"请输入您的竞标价格"];
- 
+         self.PriceTextField.delegate = self ;
     }else{
         self.TitileLB.text = [NSString stringWithFormat:@"平台统一价格：%@元",PriceStr];
         self.PriceView.hidden = YES;
      }
     
 }
-/*
+ /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {

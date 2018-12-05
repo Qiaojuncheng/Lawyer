@@ -125,8 +125,14 @@
 //法律服务类型
 #define NewSquarGetType  [dic setValue:@"App/Lawyer/suitType" forKey:@"action"];
 // 法律服务列表
-
 #define NewSquarList  [dic setValue:@"App/Lawyer/service" forKey:@"action"];
+//法律服务详情
+#define NewSquarXq  [dic setValue:@"App/Lawyer/serviceXq" forKey:@"action"];
+//竞标
+#define NewSquarbidding  [dic setValue:@"App/Lawyer/bidding" forKey:@"action"];
+
+
+
 
 //电话或者见面预约
 #define NewMeetGetyuYue  [dic setValue:@"App/Lawyer/yuYue" forKey:@"action"];

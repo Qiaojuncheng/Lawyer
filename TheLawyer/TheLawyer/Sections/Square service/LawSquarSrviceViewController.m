@@ -293,6 +293,9 @@
             
             for (NSDictionary * dics in data[@"data"]) {
                 LawSquaremodel * model =  [LawSquaremodel yy_modelWithDictionary:dics];
+               
+                [model MakeCellHeight];
+               
                 [dataArrray addObject:model];
                 
             }
@@ -350,11 +353,19 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    LawSquarSrviceViewDetailController * detail =[[LawSquarSrviceViewDetailController alloc]init];
-//    [self.navigationController pushViewController:detail animated:YES];
+    LawSquarSrviceViewDetailController * detail =[[LawSquarSrviceViewDetailController alloc]init];
+    LawSquaremodel * model =dataArrray[indexPath.row];
+    detail.Serviceid = model.id;
+    detail.ReladBlock = ^(NSString *number) {
+        model.lawyer_num  = number ;
+        [dataArrray replaceObjectAtIndex:indexPath.row withObject:model];
+        [_tableView reloadData];
+    };
+    [self.navigationController pushViewController:detail animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-         return 178;
+    LawSquaremodel * model = dataArrray[indexPath.row];
+    return model.cellHeight;
    
 }
 -(void)viewWillAppear:(BOOL)animated{

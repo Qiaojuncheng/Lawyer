@@ -61,3 +61,4 @@
 #import "NSString+XPKit.h"
 #import "Utile.h"
 #import "HttpAfManager.h"
+#import <UShareUI/UShareUI.h>

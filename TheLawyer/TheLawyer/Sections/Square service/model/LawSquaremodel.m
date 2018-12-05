@@ -10,4 +10,8 @@
 
 @implementation LawSquaremodel
 
+-(void)MakeCellHeight{
+    _cellHeight =[NSString GetHeightWithMaxSize:CGSizeMake(SCREENWIDTH - 35, MAXFLOAT) AndFont:[UIFont systemFontOfSize:13] AndText:self.content].height +135;
+}
+
 @end

@@ -163,6 +163,7 @@
 
     __weak typeof(_topHeaderView)  weaktopView = _topHeaderView;
      MJWeakSelf;
+    
 #pragma mark    41 咨询  电话预约  见面预约  法律服务
     _topHeaderView.ItemselectBlock = ^(NSInteger index) {
         
@@ -210,13 +211,9 @@
     };
 //    心意
     _topHeaderView.adsselectBlock = ^(NSInteger index) {
-//        LawNewHeaterModel * heatmole = HearDataArray[index];
-//        LawHeartViewController * lawrevc =  [[LawHeartViewController alloc]init];
-//        lawrevc.mid = heatmole.id;
-//        [weakSelf.navigationController.navigationController pushViewController:lawrevc animated:YES];
-
-//        LawAnnouncementViewController * adsListVc = [[LawAnnouncementViewController alloc]init];
-//        [weakSelf.navigationController pushViewController:adsListVc animated:YES];
+        LawHeartViewController * lawrevc =  [[LawHeartViewController alloc]init];
+        [self.navigationController pushViewController:lawrevc animated:YES];
+        
     };
     return  _topHeaderView;
 }

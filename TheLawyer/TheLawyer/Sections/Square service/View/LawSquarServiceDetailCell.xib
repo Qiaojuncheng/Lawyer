@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VH3-RT-SLD">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_empty" translatesAutoresizingMaskIntoConstraints="NO" id="VH3-RT-SLD">
                         <rect key="frame" x="16" y="16" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="2rn-Nb-HVP"/>
@@ -44,10 +43,8 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcQ-tM-U2P">
-                        <rect key="frame" x="51" y="53" width="308" height="36"/>
-                        <string key="text">律师回答内容律师回答内容，律师回答内容律
-师回答内容律师回答内容。</string>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="师回答内容律师回答内容。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcQ-tM-U2P">
+                        <rect key="frame" x="51" y="53" width="308" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -65,7 +62,16 @@
                     <constraint firstItem="Icq-WI-HKf" firstAttribute="top" secondItem="zWP-aH-IyZ" secondAttribute="bottom" constant="5" id="pDe-g9-AVt"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="DesLB" destination="LcQ-tM-U2P" id="mNm-fc-rRN"/>
+                <outlet property="HeaderImageView" destination="VH3-RT-SLD" id="6kh-OX-Mpk"/>
+                <outlet property="PersonName" destination="zWP-aH-IyZ" id="B7F-eH-kTh"/>
+                <outlet property="TimeLB" destination="Icq-WI-HKf" id="OBh-1U-Fmu"/>
+            </connections>
             <point key="canvasLocation" x="33.5" y="85.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="head_empty" width="44" height="44"/>
+    </resources>
 </document>

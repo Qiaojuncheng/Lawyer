@@ -10,14 +10,16 @@
 
 #import "LawSquarServiceCell.h"
 #import "LawSquarServiceDetailCell.h"
+#import "LawServicePingModel.h"
 #import "IQKeyboardManager.h"
 
 
 @interface LawSquarSrviceViewDetailController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate>{
     NSMutableArray * dataArrray ;
     UITableView * _tableView;
-    
-    
+    LawSquaremodel * Detailmodel ;
+    NSString * Price ;
+    UIView * bottom  ;
     
 }
 
@@ -30,25 +32,63 @@
     [super viewDidLoad];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
-    dataArrray =[[NSMutableArray alloc]initWithArray:@[@"s",@"s",@"s",@"s",@"s"]];
+    dataArrray =[[NSMutableArray alloc]init];
     [self addCenterLabelWithTitle:@"服务广场" titleColor:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     [self makedata];
     [self addView ];
     [self addbottomView];
-    
+
     // Do any additional setup after loading the view.
 }
 -(void)makedata{
     
-    //    dataArrray   =[[NSMutableArray alloc]init];
-    //    for (int i = 0 ; i<10; i++) {
-    //        LawMessageModel * model =[[LawMessageModel alloc]init];
-    //        model.showBtn = [NSString stringWithFormat:@"%d",rand()%2];
-    //        model.showRed = [NSString stringWithFormat:@"%d",rand()%2];
-    //
-    //        [dataArrray addObject:model];
-    //    }
+    NSMutableDictionary * dic  =[[NSMutableDictionary alloc]init];
+    NewSquarXq
+    NSMutableDictionary *   valueDic =[[NSMutableDictionary alloc]init];
+    [valueDic setObject:self.Serviceid forKey:@"id" ];
+    [valueDic setObject:UserId   forKey:@"lawyer_id" ];
+ 
+    NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
+    [dic setValue:baseStr forKey:@"value"];
+    NSLog(@"dic = %@",dic);
+         [self showHudInView:self.view hint:nil];
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSLog(@"%@",data);
+        
+        NSString * codeStr =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([codeStr isEqualToString:@"0"]) {
+            Detailmodel =  [LawSquaremodel yy_modelWithDictionary:data[@"data"]];
+            [Detailmodel MakeCellHeight];
+
+           NSString * Detailmodelbidding =[NSString stringWithFormat:@"%@",data[@"data"][@"bidding"]];
+            for (NSDictionary * dics in data[@"data"][@"bidding_list"]) {
+                LawServicePingModel * pinlunmodel =  [LawServicePingModel yy_modelWithDictionary:dics];
+                
+                [pinlunmodel MakeCellHeight];
+                [dataArrray addObject:pinlunmodel];
+                
+            }
+            if (![Detailmodel.type isEqualToString:@"1"]) {
+                Price = Detailmodel.money;
+            }
+            if([Detailmodelbidding integerValue] == 0){
+//                未投标
+                bottom.hidden = NO ;
+            }else{
+//                已投标
+                bottom.hidden   = YES ;
+                 _tableView.frame  =  CGRectMake(0,  NavStatusBarHeight, SCREENWIDTH, SCREENHEIGHT -  NavStatusBarHeight) ;
+
+            }
+            [_tableView reloadData];
+        }
+        [self hideHud];
+     } failure:^(NSError *error) {
+        [self hideHud];
+       
+    }];
+
     
 }
 -(void)addView{
@@ -66,7 +106,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return 0;
+        return 1;
     }
     return 10;
 }
@@ -81,8 +121,7 @@
     }else{
         return dataArrray.count;
     }
-    //    return ;//dataArrray.count;
-    
+ 
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -92,6 +131,7 @@
             cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawSquarServiceCell" owner:self options:nil]lastObject];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.modle = Detailmodel;
         return  cell ;
         
     }else{
@@ -100,6 +140,7 @@
             cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawSquarServiceDetailCell" owner:self options:nil]lastObject];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.model = dataArrray[indexPath.row];
         return  cell ;
         
     }
@@ -108,9 +149,10 @@
     
     
     if (indexPath.section == 0) {
-        return 178;
+        return Detailmodel.cellHeight;
     }else{
-        return 103;
+        LawServicePingModel * model =   dataArrray[indexPath.row];
+        return model.cellHeight;
     }
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -127,7 +169,7 @@
     
     
     
-    UIView * bottom =[[UIView alloc]initWithFrame:CGRectMake(0, _tableView.bottom +1, SCREENWIDTH, 68)];
+     bottom =[[UIView alloc]initWithFrame:CGRectMake(0, _tableView.bottom +1, SCREENWIDTH, 68)];
     bottom.backgroundColor =[UIColor whiteColor];
     [self.view addSubview:bottom];
     
@@ -150,14 +192,23 @@
     if (!_FootView) {
         _FootView =[[[NSBundle mainBundle]loadNibNamed:@"LawSquarServiceFootView" owner:self options:nil]lastObject];
                      
-            _FootView.frame = CGRectMake(0, 0, SCREENWIDTH, 250);
+        _FootView.frame = CGRectMake(0, 0, SCREENWIDTH, 250);
         _FootView.PriceTextField.delegate = self;
         _FootView.ContentTextView.placeholderText =@"请简单描述";
         _FootView.ContentTextView.delegate = self;
-        _FootView.PriceStr = @"123";
+        
+        if(![Detailmodel.type isEqualToString:@"1"]){
+            _FootView.PriceStr = Detailmodel.money;
+
+        }else{
+            
+        }
     }
     
     return _FootView ;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    Price = textField.text;
 }
 -(void)amserBtnAction:(UIButton *)sureBtn{
     if([sureBtn.titleLabel.text  isEqualToString:@"参与竞标"]){
@@ -168,21 +219,56 @@
         [dataArrray removeAllObjects];
       
     }else{
-        _tableView.tableFooterView = nil;
-        [self makedata];
+        [self jingbiao];
         NSLog(@"提交");
     }
     [_tableView reloadData];
 
   
 }
-
--(void)textViewDidEndEditing:(UITextView *)textView{
+-(void)jingbiao{
     
+    if (self.FootView.ContentTextView.text.length ==0 ) {
+        [self showHint:@"请添加描述！"];
+        return ;
+    }else if(Price.length == 0){
+        [self showHint:@"请输入价格！"];
+        return ;
+
+    }
+    NSMutableDictionary * dic  =[[NSMutableDictionary alloc]init];
+    NewSquarbidding
+    NSMutableDictionary *   valueDic =[[NSMutableDictionary alloc]init];
+    [valueDic setObject:self.Serviceid forKey:@"id" ];
+    [valueDic setObject:UserId   forKey:@"lawyer_id" ];
+    [valueDic setObject:self.FootView.ContentTextView.text   forKey:@"describe" ];
+    [valueDic setObject:Price   forKey:@"money" ];
+ 
+    NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
+    [dic setValue:baseStr forKey:@"value"];
+    NSLog(@"dic = %@",dic);
+    [self showHudInView:self.view hint:nil];
+    [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+        NSLog(@"%@",data);
+        [self hideHud];
+
+        NSString * codeStr =[NSString stringWithFormat:@"%@",data[@"status"]];
+        if ([codeStr isEqualToString:@"0"]) {
+            _tableView.tableFooterView = nil;
+
+            [self makedata];
+         }
+    } failure:^(NSError *error) {
+        [self hideHud];
+        
+    }];
     
 }
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if(self.ReladBlock){
+        self.ReladBlock(Detailmodel.lawyer_num);
+    }
     
 }
 

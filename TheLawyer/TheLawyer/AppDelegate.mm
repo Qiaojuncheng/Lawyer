@@ -159,15 +159,14 @@ static SystemSoundID shake_sound_male_id = 0;
 - (void)loginStateChange:(NSNotification *)notification{
 //    [_locService startUserLocationService];
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-
+    [self uplocation ];
     self.window.rootViewController = _tabBarController;
 }
 -(void)locationAction{
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
 
     
-//    [_locService startUserLocationService];
-
+ 
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -193,50 +192,8 @@ static SystemSoundID shake_sound_male_id = 0;
 
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
 
-    
-    [_locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        
-        if (error)
-        {
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-            
-            if (error.code == AMapLocationErrorLocateFailed)
-            {
-                return;
-            }
-        }
-        
-//        上传位置
-        if ([UserId length] > 0) {
-            NSString *locationstr  = [NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude];
-        NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
-        NewGetLocation
-        
-        NSMutableDictionary * valueDic =[[NSMutableDictionary alloc]init];
-            [valueDic setValue:UserId forKey:@"lawyer_id"];
-            [valueDic setValue:locationstr forKey:@"position"];
-         NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
-        [dic setValue:baseStr forKey:@"value"];
-        
-        [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
-            NSLog(@"%@",data);
-            
-           
-        } failure:^(NSError *error) {
-            
-        }];
-            
-    }
-
-        
-        NSLog(@"location:%@", location);
-        
-//        if (regeocode)
-//        {
-//            NSLog(@"reGeocode:%@", regeocode);
-//        }
-    }];
-    
+    [self uplocation];
+  
 //    //初始化BMKLocationService
 //    _locService = [[BMKLocationService alloc]init];
 //    _locService.delegate = self;
@@ -303,7 +260,52 @@ static SystemSoundID shake_sound_male_id = 0;
     
     return YES;
 }
-
+-(void)uplocation{
+    [_locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        
+        if (error)
+        {
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            if (error.code == AMapLocationErrorLocateFailed)
+            {
+                return;
+            }
+        }
+        
+        //        上传位置
+        if ([UserId length] > 0) {
+            NSString *locationstr  = [NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude];
+            NSMutableDictionary * dic =[[NSMutableDictionary alloc]init];
+            NewGetLocation
+            
+            NSMutableDictionary * valueDic =[[NSMutableDictionary alloc]init];
+            [valueDic setValue:UserId forKey:@"lawyer_id"];
+            [valueDic setValue:locationstr forKey:@"position"];
+            NSString * baseStr = [NSString getBase64StringWithArray:valueDic];
+            [dic setValue:baseStr forKey:@"value"];
+            
+            [HttpAfManager postWithUrlString:BASE_URL parameters:dic success:^(id data) {
+                NSLog(@"%@",data);
+                
+                
+            } failure:^(NSError *error) {
+                
+            }];
+            
+        }
+        
+        
+        NSLog(@"location:%@", location);
+        
+        //        if (regeocode)
+        //        {
+        //            NSLog(@"reGeocode:%@", regeocode);
+        //        }
+    }];
+    
+    
+}
 #pragma mark - TabBar字体颜色
 -(void)unSelectedTapTabBarItems:(UITabBarItem *)tabBarItem
 {

@@ -137,6 +137,7 @@
 		1F7FD5E1215BBA4800B6872F /* LawMoneyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5E0215BBA4800B6872F /* LawMoneyDetailModel.m */; };
 		1F7FD5E4215BC13700B6872F /* LawNewHeaterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5E3215BC13700B6872F /* LawNewHeaterModel.m */; };
 		1F7FD5E7215BC49600B6872F /* LawMyTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FD5E6215BC49600B6872F /* LawMyTicketModel.m */; };
+		1F88FCBF21A6535B00DCAB18 /* 222.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F88FCBE21A6535B00DCAB18 /* 222.png */; };
 		1F913F062133E8E90058453E /* LawJCImageSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F913F052133E8E90058453E /* LawJCImageSelect.m */; };
 		1F9C84E21FB1963D00FBD026 /* QJTiXianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C84E01FB1963C00FBD026 /* QJTiXianViewController.m */; };
 		1F9C84E31FB1963D00FBD026 /* QJTiXianViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C84E11FB1963C00FBD026 /* QJTiXianViewController.xib */; };
@@ -206,6 +207,7 @@
 		1FC0A6B5213CE6940021C345 /* LawAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0A6B4213CE6940021C345 /* LawAddressModel.m */; };
 		1FC25F4E215E06D600D408EF /* LawNewMessageMM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC25F4D215E06D600D408EF /* LawNewMessageMM.m */; };
 		1FC3B7F11FBE760200E7FFD6 /* QJCScanHeTong.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3B7F01FBE760200E7FFD6 /* QJCScanHeTong.m */; };
+		1FD0DD6F21AED96D006F12DC /* LawServicePingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0DD6E21AED96D006F12DC /* LawServicePingModel.m */; };
 		1FF75F671FAD890700A3F46C /* MessageDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF75F651FAD890700A3F46C /* MessageDetailController.m */; };
 		1FF75F681FAD890700A3F46C /* MessageDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF75F661FAD890700A3F46C /* MessageDetailController.xib */; };
 		1FF75F6B1FAD8F0800A3F46C /* QJCMEssageDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF75F6A1FAD8F0800A3F46C /* QJCMEssageDetailModel.m */; };
@@ -217,7 +219,6 @@
 		1FF75F801FB03FB500A3F46C /* QJCSerViceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF75F7F1FB03FB500A3F46C /* QJCSerViceVC.m */; };
 		1FF75F831FB06B3E00A3F46C /* QJCSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF75F821FB06B3E00A3F46C /* QJCSelectView.m */; };
 		1FFC88DF1FB1378400DD50F9 /* 111.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFC88DA1FB1378400DD50F9 /* 111.png */; };
-		1FFC88E01FB1378400DD50F9 /* 222.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFC88DB1FB1378400DD50F9 /* 222.png */; };
 		1FFC88E11FB1378400DD50F9 /* 333.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFC88DC1FB1378400DD50F9 /* 333.png */; };
 		1FFC88E21FB1378400DD50F9 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC88DD1FB1378400DD50F9 /* GuideViewController.m */; };
 		1FFC88E61FB1468300DD50F9 /* QJCSelectLingyuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC88E41FB1468300DD50F9 /* QJCSelectLingyuCell.m */; };
@@ -590,6 +591,7 @@
 		1F7FD5E3215BC13700B6872F /* LawNewHeaterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawNewHeaterModel.m; sourceTree = "<group>"; };
 		1F7FD5E5215BC49600B6872F /* LawMyTicketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawMyTicketModel.h; sourceTree = "<group>"; };
 		1F7FD5E6215BC49600B6872F /* LawMyTicketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawMyTicketModel.m; sourceTree = "<group>"; };
+		1F88FCBE21A6535B00DCAB18 /* 222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 222.png; sourceTree = "<group>"; };
 		1F913F042133E8E90058453E /* LawJCImageSelect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawJCImageSelect.h; sourceTree = "<group>"; };
 		1F913F052133E8E90058453E /* LawJCImageSelect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawJCImageSelect.m; sourceTree = "<group>"; };
 		1F9C84DF1FB1963C00FBD026 /* QJTiXianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJTiXianViewController.h; sourceTree = "<group>"; };
@@ -703,6 +705,8 @@
 		1FC25F4D215E06D600D408EF /* LawNewMessageMM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawNewMessageMM.m; sourceTree = "<group>"; };
 		1FC3B7EF1FBE760200E7FFD6 /* QJCScanHeTong.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QJCScanHeTong.h; sourceTree = "<group>"; };
 		1FC3B7F01FBE760200E7FFD6 /* QJCScanHeTong.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QJCScanHeTong.m; sourceTree = "<group>"; };
+		1FD0DD6D21AED96D006F12DC /* LawServicePingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LawServicePingModel.h; sourceTree = "<group>"; };
+		1FD0DD6E21AED96D006F12DC /* LawServicePingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LawServicePingModel.m; sourceTree = "<group>"; };
 		1FF75F641FAD890700A3F46C /* MessageDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailController.h; sourceTree = "<group>"; };
 		1FF75F651FAD890700A3F46C /* MessageDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailController.m; sourceTree = "<group>"; };
 		1FF75F661FAD890700A3F46C /* MessageDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailController.xib; sourceTree = "<group>"; };
@@ -722,7 +726,6 @@
 		1FF75F811FB06B3E00A3F46C /* QJCSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QJCSelectView.h; sourceTree = "<group>"; };
 		1FF75F821FB06B3E00A3F46C /* QJCSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QJCSelectView.m; sourceTree = "<group>"; };
 		1FFC88DA1FB1378400DD50F9 /* 111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 111.png; sourceTree = "<group>"; };
-		1FFC88DB1FB1378400DD50F9 /* 222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 222.png; sourceTree = "<group>"; };
 		1FFC88DC1FB1378400DD50F9 /* 333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 333.png; sourceTree = "<group>"; };
 		1FFC88DD1FB1378400DD50F9 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		1FFC88DE1FB1378400DD50F9 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 				1F08B2A6216C99EE00E0EEB6 /* LawSquareService.m */,
 				1F08B2A8216CA85700E0EEB6 /* LawSquaremodel.h */,
 				1F08B2A9216CA85700E0EEB6 /* LawSquaremodel.m */,
+				1FD0DD6D21AED96D006F12DC /* LawServicePingModel.h */,
+				1FD0DD6E21AED96D006F12DC /* LawServicePingModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1312,13 +1317,13 @@
 		1F70A9352121943C0053898D /* XYTableViewNoDataView */ = {
 			isa = PBXGroup;
 			children = (
+				1F70A9392121943C0053898D /* TBNotData.png */,
 				1F70A93C2121943C0053898D /* UICollectionView+XY.h */,
 				1F70A9372121943C0053898D /* UICollectionView+XY.m */,
-				1F70A9392121943C0053898D /* TBNotData.png */,
-				1F70A93A2121943C0053898D /* XYNoDataView.m */,
-				1F70A9362121943C0053898D /* XYNoDataView.h */,
 				1F70A9382121943C0053898D /* UITableView+XY.h */,
 				1F70A93B2121943C0053898D /* UITableView+XY.m */,
+				1F70A9362121943C0053898D /* XYNoDataView.h */,
+				1F70A93A2121943C0053898D /* XYNoDataView.m */,
 			);
 			path = XYTableViewNoDataView;
 			sourceTree = "<group>";
@@ -1794,7 +1799,7 @@
 			isa = PBXGroup;
 			children = (
 				1FFC88DA1FB1378400DD50F9 /* 111.png */,
-				1FFC88DB1FB1378400DD50F9 /* 222.png */,
+				1F88FCBE21A6535B00DCAB18 /* 222.png */,
 				1FFC88DC1FB1378400DD50F9 /* 333.png */,
 			);
 			path = "引导页";
@@ -2459,7 +2464,6 @@
 				1FA5B5881FAC4E9900BB2543 /* QJSelectCell.xib in Resources */,
 				22A6BC0B1F2B31E600FDE7B2 /* 律师等级@2x.png in Resources */,
 				22DD9A431F2DF6D20012FCBC /* GrabSucessViewController.xib in Resources */,
-				1FFC88E01FB1378400DD50F9 /* 222.png in Resources */,
 				1F51422C212ACD2D001F1095 /* LawRemainingwithdrawalVC.xib in Resources */,
 				2253463E1F2A010700CF38FE /* yindao_02@2x.png in Resources */,
 				1F7AEEE42126702600CACC0F /* LawSquarServiceCell.xib in Resources */,
@@ -2529,6 +2533,7 @@
 				2280628E1F2596A20094E483 /* inventory-01@3x.png in Resources */,
 				225346421F2A010700CF38FE /* yindao_4s_03@2x.png in Resources */,
 				228F6F0B1F2C452500137445 /* MyMessageTableCell.xib in Resources */,
+				1F88FCBF21A6535B00DCAB18 /* 222.png in Resources */,
 				22A6BC171F2B348200FDE7B2 /* 我的消息@3x.png in Resources */,
 				22A6BC0A1F2B31E600FDE7B2 /* 历史记录@3x.png in Resources */,
 				2253463D1F2A010700CF38FE /* kaishi-01@3x.png in Resources */,
@@ -2616,6 +2621,7 @@
 				1FF75F6F1FADB36900A3F46C /* LPlaceholderTextView.m in Sources */,
 				22DD9A2C1F2D76540012FCBC /* XSetVCCell.m in Sources */,
 				22DD9A421F2DF6D20012FCBC /* GrabSucessViewController.m in Sources */,
+				1FD0DD6F21AED96D006F12DC /* LawServicePingModel.m in Sources */,
 				1F718B3921255E9E00F46901 /* LawConSultViewController.m in Sources */,
 				1F4086AF1FBD1BB3008DD059 /* QJNewMessageTX.m in Sources */,
 				1F1BA000212413CF0069E1CD /* LawAnnouncementViewController.m in Sources */,

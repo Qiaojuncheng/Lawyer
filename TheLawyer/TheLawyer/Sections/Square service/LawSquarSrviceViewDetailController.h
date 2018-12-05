@@ -10,4 +10,7 @@
 #import "LawSquarServiceFootView.h"
 @interface LawSquarSrviceViewDetailController : BaseViewController
 @property (strong ,nonatomic) LawSquarServiceFootView * FootView;
+@property (strong ,nonatomic) NSString * Serviceid ;//服务id
+
+@property (copy ,nonatomic) void(^ReladBlock)(NSString * number);
 @end
