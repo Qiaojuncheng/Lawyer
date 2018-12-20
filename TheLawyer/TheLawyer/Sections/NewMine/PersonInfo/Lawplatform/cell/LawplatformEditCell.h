@@ -17,6 +17,7 @@ typedef void (^moneyBlock) (NSString * money);
 @property (weak, nonatomic) IBOutlet UITextField *PriceTextField;
 
 @property (copy ,nonatomic) moneyBlock textFieldBlock;
+@property (weak, nonatomic) IBOutlet UILabel *TypeLB;
 
 
 

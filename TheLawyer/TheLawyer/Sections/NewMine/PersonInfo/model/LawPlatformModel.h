@@ -28,5 +28,6 @@
 @property(strong, nonatomic) NSString  * meet_money;
 @property(strong, nonatomic) NSString  * phone_money;
 @property(strong, nonatomic) NSString  * instru;
+@property(strong, nonatomic) NSString  * practice_years;// 执业年限
 
 @end

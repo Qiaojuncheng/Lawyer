@@ -136,8 +136,7 @@
                 if( [[NSString stringWithFormat:@"%@",data[@"data"][@"step"]] isEqualToString:@"1"]){
                     // 完善资料
                     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINSUCCESS object:@(YES)];
-                    
-                    
+ 
                 }else{
 //                     登录成功
                     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINSUCCESS object:@(YES)];

@@ -21,6 +21,9 @@
     }
     
 }
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    self.PriceTextField.text = @"";
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

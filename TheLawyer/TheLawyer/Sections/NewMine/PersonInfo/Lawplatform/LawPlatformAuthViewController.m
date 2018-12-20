@@ -37,8 +37,8 @@
 - (void)viewDidLoad {
          [super viewDidLoad];
         [self addCenterLabelWithTitle:@"平台认证" titleColor:nil];
-        titleArray = @[@"律所",@"擅长类型",@"电话咨询",@"预约面谈",@"执业证号",@"简介"];
-        contentArray = @[@"江南皮革律所",@"婚姻家庭",@"200",@"300",@"10909321u3i435",@""];
+        titleArray = @[@"律所",@"擅长类型",@"电话咨询",@"预约面谈",@"执业年限",@"执业证号",@"简介"];
+        contentArray = @[@"江南皮革律所",@"婚姻家庭",@"200",@"300",@"",@"10909321u3i435",@""];
         self.view.backgroundColor  =   BackViewColor;
  
     
@@ -105,12 +105,11 @@
 
     
     -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-        if (indexPath.row < 5){
+        if (indexPath.row < 6){
            
-            if (indexPath.row == 2 || indexPath.row == 3) {
+            if (indexPath.row == 2 || indexPath.row == 3||indexPath.row == 4) {
                 
-                
-                LawplatformEditCell  * cell  =[tableView dequeueReusableCellWithIdentifier:@"cells"];
+                 LawplatformEditCell  * cell  =[tableView dequeueReusableCellWithIdentifier:@"cells"];
                 if (cell == nil) {
                     cell  =[[[NSBundle mainBundle ]loadNibNamed:@"LawplatformEditCell" owner:self options:nil]lastObject];
                 }
@@ -119,14 +118,28 @@
                 }
                 cell.TitleLB.text =[NSString stringWithFormat:@"%@",titleArray[indexPath.row]];
                 if (indexPath.row ==2) {
+                    cell.PriceTextField.placeholder =@"请输入价格";
+                    cell.TypeLB.text =@"元";
                     cell.PriceTextField.text =[NSString stringWithFormat:@"%@",self.model.phone_money?self.model.phone_money:@""];
                     cell.textFieldBlock = ^(NSString *money) {
                         self.model.phone_money = money;
                     };
-                }else{
+                }else if (indexPath.row ==3){
+                    cell.PriceTextField.placeholder =@"请输入价格";
+                    cell.TypeLB.text =@"元";
+
                     cell.PriceTextField.text =[NSString stringWithFormat:@"%@",self.model.meet_money?self.model.meet_money:@""];
                     cell.textFieldBlock = ^(NSString *money) {
                         self.model.meet_money = money;
+                    };
+                }else{
+                    cell.PriceTextField.placeholder =@"请输入执业年限";
+                    cell.TypeLB.text =@"年";
+
+                    cell.PriceTextField.text =[NSString stringWithFormat:@"%@",self.model.practice_years?self.model.practice_years:@""];
+                    cell.textFieldBlock = ^(NSString *money) {
+                        self.model.practice_years = money;
+                        
                     };
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -145,7 +158,7 @@
             }else if (indexPath.row ==1){
                 
                cell.ConcentLB.text =cate_name?cate_name:@"未填写";
-            }else if (indexPath.row ==4){
+            }else if (indexPath.row ==5){
                 cell.ConcentLB.text= self.model.lawyer_code?self.model.lawyer_code:@"未填写";
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -204,7 +217,7 @@
 
         }else if (indexPath.row == 1) {
             self.selectCaseTypeView.hidden = NO;
-        }else   if (indexPath.row == 4) {
+        }else   if (indexPath.row == 5) {
             LawChagebasicInfoVC * changeName =[[LawChagebasicInfoVC alloc]init];
             changeName.titleStr =@"执业证号";
             changeName.placherStr =self.model.lawyer_code?self.model.lawyer_code:@"请填写您的执业证号";
@@ -214,7 +227,7 @@
             };
             [self.navigationController pushViewController:changeName animated:YES];
             
-        }else if (indexPath.row == 5){
+        }else if (indexPath.row == 6){
             LawChangInfoIntroductVC * changInfoVc =[[LawChangInfoIntroductVC alloc]init];
             changInfoVc.instru  = self.model.instru ;
             changInfoVc.ChangValue = ^(NSString *changeValueStr) {
@@ -226,7 +239,7 @@
       
     }
     -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-        if( indexPath.row == 5){
+        if( indexPath.row == 6){
             return 200;
         }else{
             return 60;
@@ -281,6 +294,9 @@
     }else if (!self.model.meet_money){
         [self showHint:@"请填写您见面咨询价格！"];
      return ;
+    }else if (!self.model.practice_years){
+        [self showHint:@"请填写您的执业年限！"];
+        return ;
     }else if (!self.model.lawyer_code){
         [self showHint:@"请填写您的执业证号！"];
     return ;
@@ -302,6 +318,8 @@
     [valuedic setValue:self.model.phone_money forKey:@"phone_money"];
     [valuedic setValue:self.model.meet_money forKey:@"meet_money"];
     [valuedic setValue:self.model.lawyer_code forKey:@"lawyer_code"];
+    [valuedic setValue:self.model.practice_years forKey:@"practice_years"];
+    
     [valuedic setValue:self.model.instru forKey:@"instru"];
  
     NSString * base64String =[NSString getBase64StringWithArray:valuedic];

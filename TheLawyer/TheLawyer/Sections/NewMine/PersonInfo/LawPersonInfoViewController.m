@@ -195,7 +195,8 @@
             changeName.placherStr= self.infoModel.name?self.infoModel.name:@"请输入您的名字";
           
           changeName.ChangValue = ^(NSString *changeValueStr) {
-                 [self   ChangInformationWithDic:@{@"name":changeValueStr} ];
+           changeValueStr  =  [changeValueStr stringByReplacingOccurrencesOfString:@"律师" withString:@""];
+              [self   ChangInformationWithDic:@{@"name":changeValueStr} ];
 
              };
             [self.navigationController pushViewController:changeName animated:YES];
